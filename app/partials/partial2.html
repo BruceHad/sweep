@@ -1,6 +1,20 @@
-<h2>Heading - view 2</h2>
-<p>This is the partial for view 2.</p>
-<p>
-  Showing of 'interpolate' filter:
-  {{ 'Current version is v%VERSION%.' | interpolate }}
-</p>
+<h2>World Cup Sweep &ndash; {{data.view}}</h2>
+<form novalidate name="userForm" id="userForm" ng-submit="userForm.$valid && registerUser(form)">
+    <div class="form-group">
+        <div class="input-group">
+            <span class="input-group-addon">Select Competion</span>
+            <select id="group" name="group" ng-model="form.group">
+                <option ng-repeat="group in data.groups" value="{{group.group_id}}">{{group.group_name}} &ndash; {{group.competition}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="input-group">
+            <span class="input-group-addon">Enter name...</span>
+            <input type="text" ng-model="form.name" minlength="4" required />
+        </div>
+    </div>
+    <div class="form-group">
+        <button type="submit" id="submit" class="btn btn-default" ng-class="{disabled : ! userForm.$valid}">Register</button>
+    </div>
+</form>

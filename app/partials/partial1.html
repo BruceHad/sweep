@@ -1,2 +1,36 @@
-<h2>Heading - View 1</h2>
-<p>This is the partial for view 1.</p>
+<h2>World Cup Sweep -{{data.view}}</h2>
+<p>Round {{round}}</p>
+<div class="row">
+    <div class="col col-md-5">
+        <h2 class="question">Who are ya?</h2>
+        <form ng-submit="method.submit()">
+            <div class="form-group">
+                <div class="input-group">
+                    <span class="input-group-addon">Select name</span>
+                    <select id="user-name" name="user-name" class="fancy-select" style="width:100%">
+                        <option value="NEW" selected>Ian</option>
+                        <option value="ASS">Assigned</option>
+                        <option value="FIX">Fixed</option>
+                        <option value="REJ">Rejected</option>
+                        <option value="CLO">Closed</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="input-group">
+                    <span class="input-group-addon">or enter name</span>
+                    <input type="text" id="user-name-text" />
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="col col-md-7">
+        <h2>Pick teams</h2>
+    </div>
+</div>
+
+    <script>
+      $(document).ready(function() { 
+        $("#user-name").select2();
+      });
+    </script>

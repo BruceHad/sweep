@@ -4,6 +4,52 @@
    Author's custom styles
    ========================================================================== */
 
+/* Form and form validation
+-------------------------------------------*/
+.input-group-addon, label {
+    width:200px;
+    text-align:right;
+}
+
+.input-group select, .input-group input  {
+    border: 1px solid #ccc;
+    line-height: 1;
+    padding: 6px 12px;
+    border-radius: 4px;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    min-width: 200px;
+}
+
+.form-horizontal .form-group {
+    margin-left: 0;
+    margin-right: 0;
+}
+#form-date {
+    border-bottom: 0;
+    border-radius: 0 5px 0 0;
+}
+#form-time {
+    border-top:0;
+    border-radius: 0 0 5px 0;
+}
+
+input.ng-invalid.ng-dirty {
+    background-color: #FA787E;
+}
+ 
+input.ng-valid.ng-dirty {
+    background-color: #78FA89;
+}
+
+button[submit] {
+    color: blue;
+}
+button.invalid {
+    color: #444;
+}
+
+
 
 
 

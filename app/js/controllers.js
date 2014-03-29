@@ -3,17 +3,26 @@
 /* Controllers */
 
 angular.module('myApp.controllers', [])
-    .controller('MyCtrl', ['$scope', function($scope) {
+    .controller('MyCtrl1', ['$scope', '$http', function($scope, $http) {
         $scope.data = {};
-        $scope.data.view = "Main";
+        $scope.data.view = "Select Your Teams";
     }])
-    .controller('MyCtrl1', ['$scope', function($scope) {
-        // Instantiate an object to store your scope data in (Best Practices)
+    .controller('MyCtrl2', ['$scope', '$http', function($scope, $http){
         $scope.data = {};
-        $scope.data.view = "view 1";
+        $scope.data.view = "Register";
+        function getGroups(){
+            $http.get("ajax/getGroups.php").success(function(groups){
+                $scope.data.groups = groups;
+            });
+        };
+        getGroups();
+
+        $scope.registerUser = function(form){
+            console.log(form);
+        };
     }])
-    .controller('MyCtrl2', ['$scope', function($scope) {
+    .controller('MyCtrl3', ['$scope', function($scope) {
         $scope.data = {};
-        $scope.data.view = "view 2";
+        $scope.data.view = "Who is winning";
     }])
 ;
