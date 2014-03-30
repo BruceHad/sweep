@@ -1,1 +1,14 @@
-<h2>World Cup Sweep &ndash; {{data.view}}</h2>
+<h2>World Cup Sweep <small>{{data.view}}</small></h2>
+<h3>The Players</h3>
+<table class="table">
+    <tr>
+        <th>Competition</th>
+        <th>Team</th>
+        <th>Player</th>
+    </tr>
+    <tr ng-repeat="user in data.userGroups">
+        <td>{{user.competition}}</td>
+        <td>{{user.group_name}}</td>
+        <td>{{user.nickname}}</td>
+    </tr>
+</table>
