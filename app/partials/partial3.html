@@ -12,3 +12,19 @@
         <td>{{user.nickname}}</td>
     </tr>
 </table>
+
+<h3>The Teams</h3>
+<table class="table">
+    <tr>
+        <th>Competition</th>
+        <th>Team</th>
+        <th>Odds</th>
+        <th>Status</th>
+    </tr>
+    <tr ng-repeat="team in data.teams">
+        <td>{{team.competition}}</td>
+        <td>{{team.name}}</td>
+        <td>{{team.odds}}</td>
+        <td>{{team.status}}</td>
+    </tr>
+</table>

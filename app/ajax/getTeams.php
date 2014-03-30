@@ -9,11 +9,12 @@ if(isset($_GET['id'])){
 }
 
 $query=mysql_query("
-select user_id, nickname, av_url, group_name, competition
-from sweep_users 
-inner join sweep_groups
-on (sweep_users.group_id = sweep_groups.group_id)
-;") 
+select name,
+    status,
+    odds,
+    competition
+from sweep_teams
+order by competition, name;") 
     or die(mysql_error());
  
 # Collect the results

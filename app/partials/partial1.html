@@ -4,33 +4,32 @@
     <div class="col col-md-5">
         <h2 class="question">Who are ya?</h2>
         <form ng-submit="method.submit()">
-            <div class="form-group">
+             <div class="form-group">
                 <div class="input-group">
-                    <span class="input-group-addon">Select name</span>
-                    <select id="user-name" name="user-name" class="fancy-select" style="width:100%">
-                        <option value="NEW" selected>Ian</option>
-                        <option value="ASS">Assigned</option>
-                        <option value="FIX">Fixed</option>
-                        <option value="REJ">Rejected</option>
-                        <option value="CLO">Closed</option>
+                    <span class="input-group-addon">Select Competition</span>
+                    <select id="s1" class="fancy-select" style="width: 300px" ng-model="data.competition">
+                        <option ng-repeat="comp in data.comps" value="{{comp}}" >{{comp}}</option>
                     </select>
                 </div>
             </div>
             <div class="form-group">
                 <div class="input-group">
-                    <span class="input-group-addon">or enter name</span>
-                    <input type="text" id="user-name-text" />
+                    <span class="input-group-addon">Select Player</span>
+                    <select id="s2" class="fancy-select" style="width: 300px" ng-model="data.user_id">
+                        <option ng-repeat="user in data.userGroups | filter:data.competition" value="{{user.user_id}}" >{{user.nickname}} - {{user.group_name}}</option>
+                    </select>
                 </div>
             </div>
         </form>
     </div>
     <div class="col col-md-7">
-        <h2>Pick teams</h2>
+        <h2>Pick teams {{data.user_id}}</h2>
     </div>
 </div>
 
     <script>
       $(document).ready(function() { 
-        $("#user-name").select2();
+        $("#s1").select2();
+        $("#s2").select2();
       });
     </script>

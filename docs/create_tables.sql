@@ -30,6 +30,7 @@ create table if not exists `sweep_teams`(
     `name` varchar(50) not null,
     `status`  varchar(50) not null,
     `odds` decimal(3, 2),
+    `competition` varchar(5) not null,
     primary key (`team_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 
 ;

@@ -11,6 +11,12 @@ select nickname, av_url, group_name, competition
 from sweep_users 
 inner join sweep_groups
 on (sweep_users.group_id = sweep_groups.group_id)
+order by group_name, competition
 ;
 
---nickname, av_url, group_name, competion
+select name,
+    status,
+    odds,
+    competition
+from sweep_teams
+order by competition, name;
