@@ -4,6 +4,7 @@
 // Declare app level module which depends on filters, and services
 angular.module('myApp', [
   'ngRoute',
+  'ngCookies',
   'myApp.filters',
   'myApp.services',
   'myApp.directives',
@@ -13,9 +14,10 @@ angular.module('myApp', [
 // therefore partials are disabled
 // and I need to define the controller in the template.
 .config(['$routeProvider', function($routeProvider) {
-  $routeProvider.when('/choose', {templateUrl: 'partials/partial1.html', controller: 'MyCtrl1'});
-  $routeProvider.when('/register/', {templateUrl: 'partials/partial2.html', controller: 'MyCtrl2'});
-  $routeProvider.when('/progress', {templateUrl: 'partials/partial3.html', controller: 'MyCtrl3'});
-  $routeProvider.otherwise({redirectTo: '/progress'});
+  $routeProvider.when('/choose/:comp', {templateUrl: 'partials/partial1.html', controller: 'MyCtrl1'});
+  $routeProvider.when('/register/:comp', {templateUrl: 'partials/partial2.html', controller: 'MyCtrl2'});
+  $routeProvider.when('/progress/:comp', {templateUrl: 'partials/partial3.html', controller: 'MyCtrl3'});
+  $routeProvider.when('/edit/:comp', {templateUrl: 'partials/partial4.html', controller: 'MyCtrl4'});
+  $routeProvider.otherwise({redirectTo: '/register/:comp'});
 }])
 ;

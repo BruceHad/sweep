@@ -4,6 +4,10 @@
 		"selected_items":
 		[
 			[
+				"cos",
+				"console"
+			],
+			[
 				"mar",
 				"margin"
 			],
@@ -340,42 +344,18 @@
 	"buffers":
 	[
 		{
-			"file": "README.md",
+			"file": "app/js/app.js",
 			"settings":
 			{
-				"buffer_size": 59,
+				"buffer_size": 901,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "docs/notes.md",
+			"file": "app/partials/partial4.html",
 			"settings":
 			{
-				"buffer_size": 187,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "app/partials/partial2.html",
-			"settings":
-			{
-				"buffer_size": 362,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "app/partials/partial1.html",
-			"settings":
-			{
-				"buffer_size": 704,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "app/index.html",
-			"settings":
-			{
-				"buffer_size": 3667,
+				"buffer_size": 498,
 				"line_ending": "Unix"
 			}
 		},
@@ -383,15 +363,47 @@
 			"file": "app/js/controllers.js",
 			"settings":
 			{
-				"buffer_size": 564,
+				"buffer_size": 5152,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "/home/treerock/Projects/sb-helpdesk-redone/app/index.html",
+			"file": "app/index.html",
 			"settings":
 			{
-				"buffer_size": 12455,
+				"buffer_size": 4268,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/ajax/getComp.php",
+			"settings":
+			{
+				"buffer_size": 471,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/ajax/addGroup.php",
+			"settings":
+			{
+				"buffer_size": 528,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/ajax/addUser.php",
+			"settings":
+			{
+				"buffer_size": 374,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "docs/notes.md",
+			"settings":
+			{
+				"buffer_size": 1961,
 				"line_ending": "Unix"
 			}
 		}
@@ -420,28 +432,49 @@
 	},
 	"file_history":
 	[
-		"/home/treerock/Projects/sweep/README.md",
-		"/home/treerock/Projects/sb-do-something/app/js/controllers.js",
+		"/home/treerock/Projects/sweep/app/partials/partial1.html",
+		"/home/treerock/Projects/sweep/app/index.html",
 		"/home/treerock/Projects/sb-do-something/app/ajax/addTask.php",
+		"/home/treerock/Projects/sb-do-something/app/ajax/getUsers.php",
+		"/home/treerock/Projects/sb-do-something/app/js/controllers.js",
+		"/home/treerock/Projects/sb-do-something/app/js/app.js",
+		"/home/treerock/Projects/sb-helpdesk-redone/app/index.html",
+		"/home/treerock/Projects/sb-do-something/app/index.html",
+		"/home/treerock/Projects/sweep/app/partials/partial3.html",
+		"/home/treerock/Projects/sweep/app/partials/partial2.html",
+		"/home/treerock/Projects/sweep/app/ajax/getTeams.php",
+		"/home/treerock/Projects/sweep/app/js/controllers.js",
+		"/home/treerock/Projects/sweep/app/ajax/getUsers.php",
+		"/home/treerock/Projects/sweep/docs/notes.md",
+		"/home/treerock/Projects/sweep/app/ajax/getGroups.php",
+		"/home/treerock/Projects/sweep/app/ajax/getUserGroups.php",
+		"/home/treerock/Projects/sweep/app/js/app.js",
+		"/home/treerock/Projects/sweep/app/css/main.css",
+		"/home/treerock/Projects/sweep/app/css/select2.css",
+		"/home/treerock/Projects/sb-helpdesk-redone/app/css/select2.css",
+		"/home/treerock/Downloads/select2-3.4.6/select2_locale_th.js",
+		"/home/treerock/Projects/sweep/app/ajax/addUser.php",
+		"/home/treerock/Projects/sweep/docs/teams.csv",
+		"/home/treerock/.config/sublime-text-2/Packages/Default/Default (Linux).sublime-keymap",
+		"/home/treerock/Projects/sb-do-something/app/ajax/getTasks.php",
+		"/home/treerock/Projects/sb-do-something/app/partials/partial1.html",
+		"/home/treerock/Projects/sb-do-something/app/ajax/db.php",
+		"/home/treerock/Projects/sweep/docs/sql.md",
+		"/home/treerock/Projects/sweep/README.md",
+		"/home/treerock/Projects/sweep/app/ajax/db.php",
+		"/home/treerock/Projects/sb-do-something/sql-scripts/sql_scripts.sql",
 		"/home/treerock/Projects/sb-do-something/app/ajax/addTaskDate.php",
 		"/home/treerock/Projects/sb-do-something/app/css/bootstrap.css",
-		"/home/treerock/Projects/sb-do-something/app/partials/partial1.html",
 		"/home/treerock/Projects/sb-do-something/app/css/main.css",
 		"/home/treerock/Projects/sb-do-something/app/css/bootstrap.min.css",
-		"/home/treerock/Projects/sb-do-something/app/index.html",
 		"/home/treerock/Projects/sb-do-something/.backup/do-something-seed/app/partials/partial1.html",
 		"/home/treerock/Projects/lrn-todo-app/app/js/controllers.js",
 		"/home/treerock/Projects/sb-do-something/app/ajax/delTaskDate.php",
-		"/home/treerock/Projects/sb-do-something/app/ajax/getTasks.php",
 		"/home/treerock/Projects/sb-do-something/app/ajax/getTaskDates.php",
-		"/home/treerock/Projects/sb-do-something/app/ajax/getUsers.php",
-		"/home/treerock/Projects/sb-do-something/app/js/app.js",
 		"/home/treerock/Projects/sb-do-something/.backup/project.php",
-		"/home/treerock/Projects/sb-do-something/sql-scripts/sql_scripts.sql",
 		"/home/treerock/Projects/sb-do-something/app/css/app.css",
 		"/home/treerock/Projects/sb-do-something/app/ajax/updateTask.php",
 		"/home/treerock/Projects/sb-do-something/app/ajax/deleteTask.php",
-		"/home/treerock/Projects/sb-do-something/app/ajax/db.php",
 		"/home/treerock/Projects/Notes/Development/javascript-callbacks.md",
 		"/home/treerock/Projects/sb-do-something/app/js/controllers.bak",
 		"/home/treerock/Projects/sb-do-something/app/ajax/getTask.php",
@@ -451,7 +484,6 @@
 		"/home/treerock/Projects/sb-do-something/README.md",
 		"/home/treerock/Projects/lrn-todo-app/app/index.html",
 		"/home/treerock/Projects/lrn-todo-app/app/partials/partial1.html",
-		"/home/treerock/.config/sublime-text-2/Packages/Default/Default (Linux).sublime-keymap",
 		"/home/treerock/.config/sublime-text-2/Packages/User/Default (Linux).sublime-keymap",
 		"/home/treerock/Projects/lrn-todo-app/app/js/services.js",
 		"/home/treerock/Projects/lrn-todo-app/app/ajax/getTask.php",
@@ -527,27 +559,7 @@
 		"/home/treerock/Projects/sandbox/index.html",
 		"/var/www/sandbox/css/sandbox.css",
 		"/var/www/sandbox/css/base.css",
-		"/home/treerock/Projects/sandbox/two_col.html",
-		"/var/www/template/bootstrap/css/bootstrap.css",
-		"/home/treerock/Projects/sandbox/base.html",
-		"/var/www/sandbox/index.html",
-		"/home/treerock/Dropbox/Projects/codio/codio.txt",
-		"/home/treerock/Projects/converting/html/convert.html",
-		"/home/treerock/Projects/converting/notes/converting_metric.md",
-		"/home/treerock/Projects/converting/html/js/convert.js",
-		"/home/treerock/Projects/converting/html/css/convert.css",
-		"/home/treerock/Dropbox/Files/Spending/bitcoin.txt",
-		"/home/treerock/.bitcoin/bitcoin-0.8.1-linux/src/doc/README",
-		"/home/treerock/Dropbox/Files/Personal/bitcoin.txt",
-		"/home/treerock/.cache/.fr-rsXJg3/accounts.txt",
-		"/home/treerock/Dropbox/Files/Personal/Major Events.txt",
-		"/home/treerock/.bitcoin/bitcoin-0.8.1-linux/src/doc/files.txt",
-		"/home/treerock/.bitcoin/bitcoin-0.8.1-linux/README",
-		"/home/treerock/Projects/converting/html/css/base.css",
-		"/home/treerock/Dropbox/Notes/Development/javascript.txt",
-		"/usr/share/applications/Sound",
-		"/home/treerock/Projects/converting/html/convert.txt",
-		"/home/treerock/Projects/converting/.gitignore"
+		"/home/treerock/Projects/sandbox/two_col.html"
 	],
 	"find":
 	{
@@ -565,6 +577,14 @@
 		"case_sensitive": true,
 		"find_history":
 		[
+			"conso",
+			"url",
+			"option",
+			")",
+			"\",",
+			",\"",
+			">\n",
+			"submit",
 			"fancy",
 			"col-sm-10",
 			"col-sm-2",
@@ -684,15 +704,7 @@
 			"uploads",
 			" move",
 			"$_FILES",
-			"media_upload_form()",
-			"$_FILES",
-			"S_FILE",
-			"uploadComplete",
-			"asp",
-			"upload(",
-			"upload",
-			"$file",
-			"upload("
+			"media_upload_form()"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -700,6 +712,8 @@
 		"regex": false,
 		"replace_history":
 		[
+			"),",
+			"",
 			"col-sm-9",
 			"col-sm-3",
 			"class=\"col-sm-2 control-label\"",
@@ -742,23 +756,25 @@
 			[
 				{
 					"buffer": 0,
-					"file": "README.md",
+					"file": "app/js/app.js",
 					"settings":
 					{
-						"buffer_size": 59,
+						"buffer_size": 901,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								59,
-								59
+								890,
+								890
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/Markdown/Markdown.tmLanguage"
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -768,23 +784,25 @@
 				},
 				{
 					"buffer": 1,
-					"file": "docs/notes.md",
+					"file": "app/partials/partial4.html",
 					"settings":
 					{
-						"buffer_size": 187,
+						"buffer_size": 498,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								187,
-								187
+								444,
+								444
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/Markdown/Markdown.tmLanguage"
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -794,70 +812,46 @@
 				},
 				{
 					"buffer": 2,
-					"file": "app/partials/partial2.html",
+					"file": "app/js/controllers.js",
 					"settings":
 					{
-						"buffer_size": 362,
+						"buffer_size": 5152,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								327,
-								327
+								5114,
+								5114
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/HTML/HTML.tmLanguage"
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 2138.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
 					"buffer": 3,
-					"file": "app/partials/partial1.html",
-					"settings":
-					{
-						"buffer_size": 704,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								682,
-								682
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/HTML/HTML.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 4,
 					"file": "app/index.html",
 					"settings":
 					{
-						"buffer_size": 3667,
+						"buffer_size": 4268,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								2543,
-								2543
+								0,
+								0
 							]
 						],
 						"settings":
@@ -867,32 +861,86 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 895.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
-					"buffer": 5,
-					"file": "app/js/controllers.js",
+					"buffer": 4,
+					"file": "app/ajax/getComp.php",
 					"settings":
 					{
-						"buffer_size": 564,
+						"buffer_size": 471,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								543,
-								543
+								235,
+								235
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"syntax": "Packages/PHP/PHP.tmLanguage",
 							"tab_size": 4,
 							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "app/ajax/addGroup.php",
+					"settings":
+					{
+						"buffer_size": 528,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								185,
+								185
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "app/ajax/addUser.php",
+					"settings":
+					{
+						"buffer_size": 374,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.tmLanguage"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -907,29 +955,27 @@
 			"sheets":
 			[
 				{
-					"buffer": 6,
-					"file": "/home/treerock/Projects/sb-helpdesk-redone/app/index.html",
+					"buffer": 7,
+					"file": "docs/notes.md",
 					"settings":
 					{
-						"buffer_size": 12455,
+						"buffer_size": 1961,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								3352,
-								3352
+								0,
+								0
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/HTML/HTML.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
+							"syntax": "Packages/Markdown/Markdown.tmLanguage"
 						},
 						"translation.x": 0.0,
-						"translation.y": 1536.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -965,7 +1011,7 @@
 		"cols":
 		[
 			0.0,
-			0.516105417277,
+			0.792825768668,
 			1.0
 		],
 		"rows":

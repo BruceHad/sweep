@@ -2,15 +2,14 @@
 
 require_once 'db.php'; // The mysql database connection script
 
-if(isset($_GET['comp'])){
+if(isset($_GET['group_name'])){
     $comp = $_GET['comp'];
+    $group_name = $_GET['group_name'];
+    $group_id = 
     $query=mysql_query("
-    select user_id, nickname, av_url, group_name, competition
-    from sweep_users 
-    inner join sweep_groups
-    on (sweep_users.group_id = sweep_groups.group_id)
-    where competition = '$comp'
-    order by group_name, competition
+    select group_id, group_name, comp_id
+    from sweep_groups
+    where comp_id = '$comp'
     ;") or die(mysql_error());
      
     # Collect the results

@@ -1,7 +1,8 @@
 insert into `sweep_groups` 
-    (`group_id`, `group_name`, `competition`)
+    (`group_id`, `group_name`, `comp_id`)
 values
-    (1, 'A. B. E.', 'World Cup 2014')
+    ('BRECHI', 'Brechin Boys', 'WC2014'),
+    ('ABERDE', 'Aberdeen Boys', 'WC2014')
 ; 
 
 insert into `sweep_users` 
@@ -10,39 +11,45 @@ values
     ('Bruce H', 'Bonus', 1)
 ;
 
+insert into `sweep_competitions`
+    (`comp_id`, `name`)
+values
+    ('WC2014', 'World Cup 2014')
+;
+
 insert into `sweep_teams` 
     (`competition`, `name`, `status`)
 values 
-    ('World Cup 2014', 'Brazil', 'in'),
-('World Cup 2014', 'Croatia', 'in'),
-('World Cup 2014', 'Mexico', 'in'),
-('World Cup 2014', 'Cameroon', 'in'),
-('World Cup 2014', 'Spain', 'in'),
-('World Cup 2014', 'Netherlands', 'in'),
-('World Cup 2014', 'Chile', 'in'),
-('World Cup 2014', 'Australia', 'in'),
-('World Cup 2014', 'Colombia', 'in'),
-('World Cup 2014', 'Greece', 'in'),
-('World Cup 2014', 'Ivory Coast', 'in'),
-('World Cup 2014', 'Japan', 'in'),
-('World Cup 2014', 'Uruguay', 'in'),
-('World Cup 2014', 'Costa Rica', 'in'),
-('World Cup 2014', 'England', 'in'),
-('World Cup 2014', 'Italy', 'in'),
-('World Cup 2014', 'Switzerland', 'in'),
-('World Cup 2014', 'Ecuador', 'in'),
-('World Cup 2014', 'France', 'in'),
-('World Cup 2014', 'Honduras', 'in'),
-('World Cup 2014', 'Argentina', 'in'),
-('World Cup 2014', 'Bosnia-Hercegovina', 'in'),
-('World Cup 2014', 'Iran', 'in'),
-('World Cup 2014', 'Nigeria', 'in'),
-('World Cup 2014', 'Germany', 'in'),
-('World Cup 2014', 'Portugal', 'in'),
-('World Cup 2014', 'Ghana', 'in'),
-('World Cup 2014', 'USA', 'in'),
-('World Cup 2014', 'Belgium', 'in'),
-('World Cup 2014', 'Algeria', 'in'),
-('World Cup 2014', 'Russia', 'in'),
-('World Cup 2014', 'South Korea', 'in')
+    ('wc2014', 'Brazil', 'in'),
+('wc2014', 'Croatia', 'in'),
+('wc2014', 'Mexico', 'in'),
+('wc2014', 'Cameroon', 'in'),
+('wc2014', 'Spain', 'in'),
+('wc2014', 'Netherlands', 'in'),
+('wc2014', 'Chile', 'in'),
+('wc2014', 'Australia', 'in'),
+('wc2014', 'Colombia', 'in'),
+('wc2014', 'Greece', 'in'),
+('wc2014', 'Ivory Coast', 'in'),
+('wc2014', 'Japan', 'in'),
+('wc2014', 'Uruguay', 'in'),
+('wc2014', 'Costa Rica', 'in'),
+('wc2014', 'England', 'in'),
+('wc2014', 'Italy', 'in'),
+('wc2014', 'Switzerland', 'in'),
+('wc2014', 'Ecuador', 'in'),
+('wc2014', 'France', 'in'),
+('wc2014', 'Honduras', 'in'),
+('wc2014', 'Argentina', 'in'),
+('wc2014', 'Bosnia-Hercegovina', 'in'),
+('wc2014', 'Iran', 'in'),
+('wc2014', 'Nigeria', 'in'),
+('wc2014', 'Germany', 'in'),
+('wc2014', 'Portugal', 'in'),
+('wc2014', 'Ghana', 'in'),
+('wc2014', 'USA', 'in'),
+('wc2014', 'Belgium', 'in'),
+('wc2014', 'Algeria', 'in'),
+('wc2014', 'Russia', 'in'),
+('wc2014', 'South Korea', 'in')
 ;
