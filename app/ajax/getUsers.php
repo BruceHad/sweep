@@ -8,14 +8,8 @@ if(isset($_GET['email'])){
         su.user_id,
         su.username,
         su.email,
-        su.av_url,
-        sg.group_id,
-        sg.group_name
+        su.av_url
     from sweep_users su
-        inner join sweep_user_group sug
-        on (su.user_id = sug.user_id)
-        inner join sweep_groups sg
-        on (sg.group_id = sug.group_id)
     where su.email =  '$email'
 ;") or die(mysql_error());
 

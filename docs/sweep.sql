@@ -21,15 +21,30 @@ select
 from sweep_user_group
 ;
 
+-- Users + Groups
+select 
+    su.user_id,
+    su.username,
+    su.email,
+    su.av_url,
+    sg.group_id,
+    sg.group_name
+from sweep_users su
+    inner join sweep_user_group sug
+    on (su.user_id = sug.user_id)
+    inner join sweep_groups sg
+    on (sg.group_id = sug.group_id)
+where su.email = 'bruce@hadden.com'
+;
 
 -- Teams
 select 
     team_id,
     name,
     status,
-    odds,
     competition
 from sweep_teams
+where competition = 'WC2014'
 ;
 
 -- Competitions

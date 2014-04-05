@@ -33,6 +33,15 @@
         <p>{{data.message}}</p>
     </div>
 </form>
+<div ng-show="loggedin">
+    <h3>User Account</h3>
+    <p><strong>Name:</strong> {{user.username}}</p>
+    <p><strong>Email:</strong> {{user.email}}</p>
+    <p><strong>Registered with:</strong></p>
+    <ul>
+        <li ng-repeat="group in userGroups">{{group.group_name}}</li>
+    </ul>
+</div>
 
 
 

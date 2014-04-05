@@ -47,9 +47,12 @@
       </div>
       <div class="navbar-collapse collapse">
         <ul class="nav navbar-nav">
-          <li><a href="#/choose/{{comp}}" class="active">Choose Team</a></li>
-          <li><a href="#/progress/{{comp}}">Progress</a></li>
+          <li><a href="#/choose/{{comp}}/{{group}}" class="active">Choose Team</a></li>
+          <li><a href="#/progress/{{comp}}/{{group}}">Progress</a></li>
         </ul>
+        
+        <p class="navbar-text navbar-right"> | <a href="#/edit/{{comp}}">Groups</a></p>
+        <p class="navbar-text navbar-right" ng-hide="loggedin"><a href="#/register/{{comp}}">Register to Play</a></p>
         <div ng-hide="loggedin">
           <form class="navbar-form navbar-right" ng-submit="login(form.email)">
             <div class="form-group">
@@ -58,10 +61,7 @@
             <button type="submit" class="btn">Sign in</button>
           </form>
         </div>
-        <p class="navbar-text navbar-right"> | <a href="#/edit/{{comp}}">Groups</a></p>
-        <p class="navbar-text navbar-right" ng-hide="loggedin"><a href="#/register/{{comp}}">Register to Play</a></p>
-        
-        <p ng-show="loggedin" class="navbar-text navbar-right">Logged in as <strong>{{user.username}}</strong> <a href="#" ng-click="logOut()">Logout</a></p>
+        <p ng-show="loggedin" class="navbar-text navbar-right">Logged in as <strong>{{user.username}}</strong> <a href="" ng-click="logout()">Logout</a></p>
       </div><!--/.navbar-collapse -->
     </div>
   </div>

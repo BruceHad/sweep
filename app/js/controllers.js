@@ -12,9 +12,12 @@ angular.module('myApp.controllers', [])
             $scope.user.username = $cookieStore.get('username');
             $scope.user.email = $cookieStore.get('email');
         }
+        $scope.$watch('form.email', function(newValue, oldValue) {
+            $scope.userMessage = "";
+        });
 
         $scope.init = function(params){
-            console.log(params);
+
             if(typeof params.comp != 'undefined'){
                 // Set the competition id and get competition name.
                 $scope.comp = params.comp;
@@ -24,25 +27,28 @@ angular.module('myApp.controllers', [])
                 // Get all the groups
                 $http.get("ajax/getGroups.php?comp="+$scope.comp).success(function(data){
                     $scope.groups = data;
-                    console.log(data);
                 });
-            } else {
+            } 
+            else {
                 $scope.comp = '';
             }
 
             if(typeof params.group != 'undefined'){
                 $scope.group = params.group;
-            } else {
+            } 
+            else {
                 $scope.group = '';
+            }
+            if($scope.loggedin){
+                $http.get("ajax/getUserGroups.php?id="+$scope.user.id).success(function(data){
+                    $scope.userGroups = data;
+                });
             }
         };
 
-
        $scope.login = function(email) {
             $http.get("ajax/getUsers.php", {params: {'email': email}}).success(function(data){
-                console.log(data);
                 if(typeof data == 'object'){
-                    console.log(data[0].user_id);
                     $scope.user.id = data[0].user_id;
                     $scope.user.username = data[0].username;
                     $scope.user.email = data[0].email;
@@ -56,6 +62,14 @@ angular.module('myApp.controllers', [])
                     $scope.userMessage = "Invalid user: " + email;
                 }
             });
+        };
+        $scope.logout = function(){
+            $cookieStore.remove('id');
+            $cookieStore.remove('loggedin');
+            $cookieStore.remove('username');
+            $cookieStore.remove('email');
+            $scope.user = {};
+            $scope.loggedin = false;
         };
         // if(typeof $routeParams.comp != 'undefined'){
         //     $scope.comp = $routeParams.comp;
@@ -72,16 +86,17 @@ angular.module('myApp.controllers', [])
         // else {
         //     $scope.comp = "none";
         // }
-
-
-
-
- 
-
     }])
     .controller('MyCtrl1', ['$scope', '$http', '$routeParams', function($scope, $http, $routeParams) {
-        // $scope.data = {};
-        // $scope.data.view = "Select Your Teams";
+        $scope.init($routeParams);
+        $scope.data = {};
+        $scope.data.view = "Select Your Teams";
+        $http.get("ajax/getTeams.php?comp="+$scope.comp).success(function(data){
+            $scope.data.teams = data;
+            console.log(data);
+            // getLists(userGroups);
+        });
+
         // $scope.form = {};
         // $scope.init($routeParams);
         // // function getUserGroups(){
@@ -113,9 +128,8 @@ angular.module('myApp.controllers', [])
         if(typeof $scope.group != 'undefined'){$scope.form.group = $scope.group;}
         $scope.registerUser = function(thisForm){
             $http.get('ajax/addUser.php?name='+$scope.form.name+'&email='+$scope.form.email+'&group='+$scope.form.group).success(function(response){
-                console.log(response);
                 $scope.data.message = $scope.form.name + " has been registered";
-                $scope.login($scope.form.name);
+                $scope.login($scope.form.email);
                 thisForm.$setPristine()
                 $scope.form = {};
                 if(typeof $routeParams.group != 'undefined'){
@@ -125,23 +139,9 @@ angular.module('myApp.controllers', [])
         };
     }])
     .controller('MyCtrl3', ['$scope', '$http', '$routeParams', function($scope, $http, $routeParams) {
-        // $scope.data = {};
-        // $scope.data.view = "Who is winning";
-        // $scope.init($routeParams);
-
-        // function getUserGroups(){
-        //     $http.get("ajax/getUserGroups.php?comp="+$scope.comp).success(function(userGroups){
-        //         $scope.data.userGroups = userGroups;
-        //     }); 
-        // };
-
-        // function getTeams(){
-        //     $http.get("ajax/getTeams.php?comp="+$scope.comp).success(function(userGroups){
-        //         $scope.data.teams = userGroups;
-        //     }); 
-        // };
-        // getUserGroups();
-        // getTeams();
+        $scope.init($routeParams);
+        $scope.data = {};
+        $scope.data.view = "Who is winning";
     }])
     .controller('MyCtrl4', ['$scope', '$http', '$routeParams', function($scope, $http, $routeParams) {
         $scope.data = {};
@@ -152,14 +152,12 @@ angular.module('myApp.controllers', [])
         $scope.addGroup = function(form){
             $http.get("ajax/addGroup.php?comp="+$scope.comp+"&group_name="+$scope.form.group_name)
             .success(function(data){
-                console.log(data);
                 $scope.data.message = data;
                 $scope.form = {};
                 $scope.init($routeParams);
                 form.$setPristine();
             }).
             error(function(data){
-                console.log(data);
                 $scope.data.message = data;
             });
         };

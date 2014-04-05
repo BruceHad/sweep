@@ -344,26 +344,13 @@
 	"buffers":
 	[
 		{
+			"contents": "'use strict';\n\n\n// Declare app level module which depends on filters, and services\nangular.module('myApp', [\n  'ngRoute',\n  'ngCookies',\n  'myApp.filters',\n  'myApp.services',\n  'myApp.directives',\n  'myApp.controllers'\n])\n// disabling routing as it isn't playing nicely\n// therefore partials are disabled\n// and I need to define the controller in the template.\n.config(['$routeProvider', function($routeProvider) {\n  $routeProvider.when('/choose/:comp/:group?', {templateUrl: 'partials/partial1.html', controller: 'MyCtrl1'});\n  $routeProvider.when('/register/:comp/:group?', {templateUrl: 'partials/partial2.html', controller: 'MyCtrl2'});\n  $routeProvider.when('/progress/:comp/:group?', {templateUrl: 'partials/partial3.html', controller: 'MyCtrl3'});\n  $routeProvider.when('/edit/:comp/:group?', {templateUrl: 'partials/partial4.html', controller: 'MyCtrl4'});\n  $routeProvider.otherwise({redirectTo: '/register/:comp/:group?  '});\n}])\n;\n",
 			"file": "app/js/app.js",
+			"file_size": 941,
+			"file_write_time": 1396726227000000,
 			"settings":
 			{
-				"buffer_size": 901,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "app/partials/partial4.html",
-			"settings":
-			{
-				"buffer_size": 498,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "app/js/controllers.js",
-			"settings":
-			{
-				"buffer_size": 5152,
+				"buffer_size": 943,
 				"line_ending": "Unix"
 			}
 		},
@@ -371,31 +358,50 @@
 			"file": "app/index.html",
 			"settings":
 			{
-				"buffer_size": 4268,
+				"buffer_size": 4387,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "app/ajax/getComp.php",
+			"contents": "'use strict';\n\n/* Controllers */\n\nangular.module('myApp.controllers', [])\n    .controller('MainCtrl', ['$scope', '$http',  '$cookieStore', function($scope, $http, $cookieStore){\n        $scope.loggedin = false;\n        $scope.user = {};\n        if($cookieStore.get('loggedin')){\n            $scope.user.id = $cookieStore.get('id');\n            $scope.loggedin = true;\n            $scope.user.username = $cookieStore.get('username');\n            $scope.user.email = $cookieStore.get('email');\n        }\n        $scope.$watch('form.email', function(newValue, oldValue) {\n            $scope.userMessage = \"\";\n        });\n\n        $scope.init = function(params){\n\n            if(typeof params.comp != 'undefined'){\n                // Set the competition id and get competition name.\n                $scope.comp = params.comp;\n                $http.get(\"ajax/getComp.php?comp=\"+$scope.comp).success(function(data){\n                    $scope.competition = data[0].name;\n                });\n                // Get all the groups\n                $http.get(\"ajax/getGroups.php?comp=\"+$scope.comp).success(function(data){\n                    $scope.groups = data;\n                });\n            } \n            else {\n                $scope.comp = '';\n            }\n\n            if(typeof params.group != 'undefined'){\n                $scope.group = params.group;\n            } \n            else {\n                $scope.group = '';\n            }\n            if($scope.loggedin){\n                $http.get(\"ajax/getUserGroups.php?id=\"+$scope.user.id).success(function(data){\n                    $scope.userGroups = data;\n                });\n            }\n        };\n\n       $scope.login = function(email) {\n            $http.get(\"ajax/getUsers.php\", {params: {'email': email}}).success(function(data){\n                if(typeof data == 'object'){\n                    $scope.user.id = data[0].user_id;\n                    $scope.user.username = data[0].username;\n                    $scope.user.email = data[0].email;\n                    $scope.loggedin = true;\n                    $cookieStore.put('id', data[0].user_id);\n                    $cookieStore.put('loggedin', true);\n                    $cookieStore.put('username', data[0].username);\n                    $cookieStore.put('email', data[0].email);\n                } \n                else {\n                    $scope.userMessage = \"Invalid user: \" + email;\n                }\n            });\n        };\n        $scope.logout = function(){\n            $cookieStore.remove('id');\n            $cookieStore.remove('loggedin');\n            $cookieStore.remove('username');\n            $cookieStore.remove('email');\n            $scope.user = {};\n            $scope.loggedin = false;\n        };\n        // if(typeof $routeParams.comp != 'undefined'){\n        //     $scope.comp = $routeParams.comp;\n        //     $http.get(\"ajax/getComp.php?comp=\"+$scope.comp).success(function(data){\n        //         console.log(data);\n        //     });\n        // }\n        // else {\n        //     $scope.comp = \"none\";\n        // }\n        // if(typeof $routeParams.group != 'undefined'){\n        //     $scope.comp = $routeParams.group;   \n        // }\n        // else {\n        //     $scope.comp = \"none\";\n        // }\n    }])\n    .controller('MyCtrl1', ['$scope', '$http', '$routeParams', function($scope, $http, $routeParams) {\n        $scope.init($routeParams);\n        $scope.data = {};\n        $scope.data.view = \"Select Your Teams\";\n        $http.get(\"ajax/getTeams.php?comp=\"+$scope.comp).success(function(data){\n            $scope.data.teams = data;\n            // getLists(userGroups);\n        });\n\n        // $scope.form = {};\n        // $scope.init($routeParams);\n        // // function getUserGroups(){\n        // //     $http.get(\"ajax/getUserGroups.php\").success(function(userGroups){\n        // //         $scope.data.userGroups = userGroups;\n        // //         getLists(userGroups);\n        // //     });\n        // // };\n        // // function getLists(groups){\n        // //     var comps = [];\n        // //     var users = [];\n        // //     for (var group in groups){\n        // //         if(comps.indexOf(groups[group].competition)==-1){\n        // //             comps.push(groups[group].competition);\n        // //         }\n        // //     }\n        // //     $scope.data.comps = comps;\n        // // };\n        // // getUserGroups();\n        // // function getTeams(){\n            \n        // // }\n    }])\n    .controller('MyCtrl2', ['$scope', '$http', '$routeParams', function($scope, $http, $routeParams) {\n        $scope.init($routeParams);\n        $scope.data = {};\n        $scope.data.view = \"Register\";\n        $scope.form = {};\n        if(typeof $scope.group != 'undefined'){$scope.form.group = $scope.group;}\n        $scope.registerUser = function(thisForm){\n            $http.get('ajax/addUser.php?name='+$scope.form.name+'&email='+$scope.form.email+'&group='+$scope.form.group).success(function(response){\n                $scope.data.message = $scope.form.name + \" has been registered\";\n                $scope.login($scope.form.email);\n                thisForm.$setPristine()\n                $scope.form = {};\n                if(typeof $routeParams.group != 'undefined'){\n                    $scope.form.group = $routeParams.group;\n                }\n            });\n        };\n    }])\n    .controller('MyCtrl3', ['$scope', '$http', '$routeParams', function($scope, $http, $routeParams) {\n        $scope.init($routeParams);\n        $scope.data = {};\n        $scope.data.view = \"Who is winning\";\n    }])\n    .controller('MyCtrl4', ['$scope', '$http', '$routeParams', function($scope, $http, $routeParams) {\n        $scope.data = {};\n        $scope.data.view = \"Edit All The Things\";\n        $scope.form = {};\n        $scope.init($routeParams);\n        $scope.form.comp_id = $scope.comp;\n        $scope.addGroup = function(form){\n            $http.get(\"ajax/addGroup.php?comp=\"+$scope.comp+\"&group_name=\"+$scope.form.group_name)\n            .success(function(data){\n                $scope.data.message = data;\n                $scope.form = {};\n                $scope.init($routeParams);\n                form.$setPristine();\n            }).\n            error(function(data){\n                $scope.data.message = data;\n            });\n        };\n    }])\n;",
+			"file": "app/js/controllers.js",
+			"file_size": 6365,
+			"file_write_time": 1396727169000000,
 			"settings":
 			{
-				"buffer_size": 471,
+				"buffer_size": 6334,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "app/ajax/addGroup.php",
+			"file": "app/ajax/getTeams.php",
 			"settings":
 			{
-				"buffer_size": 528,
+				"buffer_size": 532,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "app/ajax/addUser.php",
+			"file": "app/partials/partial1.html",
 			"settings":
 			{
-				"buffer_size": 374,
+				"buffer_size": 596,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/css/main.css",
+			"settings":
+			{
+				"buffer_size": 1046,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/ajax/getUserGroups.php",
+			"settings":
+			{
+				"buffer_size": 660,
 				"line_ending": "Unix"
 			}
 		},
@@ -403,7 +409,31 @@
 			"file": "docs/notes.md",
 			"settings":
 			{
-				"buffer_size": 1961,
+				"buffer_size": 1966,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/home/treerock/Projects/sb-do-something/app/js/controllers.js",
+			"settings":
+			{
+				"buffer_size": 8085,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/home/treerock/Projects/sb-do-something/app/partials/partial1.html",
+			"settings":
+			{
+				"buffer_size": 4440,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/home/treerock/Projects/sb-do-something/app/partials/partial2.html",
+			"settings":
+			{
+				"buffer_size": 164,
 				"line_ending": "Unix"
 			}
 		}
@@ -432,28 +462,31 @@
 	},
 	"file_history":
 	[
-		"/home/treerock/Projects/sweep/app/partials/partial1.html",
+		"/home/treerock/Projects/sweep/app/partials/partial3.html",
+		"/home/treerock/Projects/sweep/app/ajax/addUser.php",
+		"/home/treerock/Projects/sweep/app/ajax/getUsers.php",
+		"/home/treerock/Projects/sweep/app/ajax/addGroup.php",
+		"/home/treerock/Projects/sweep/app/partials/partial2.html",
+		"/home/treerock/Projects/sweep/app/ajax/getGroups.php",
+		"/home/treerock/Projects/sweep/app/ajax/getUserGroups.php",
+		"/home/treerock/Projects/sweep/app/partials/partial4.html",
 		"/home/treerock/Projects/sweep/app/index.html",
+		"/home/treerock/Projects/sweep/app/ajax/getComp.php",
+		"/home/treerock/Projects/sb-do-something/app/index.html",
+		"/home/treerock/Projects/sweep/app/partials/partial1.html",
 		"/home/treerock/Projects/sb-do-something/app/ajax/addTask.php",
 		"/home/treerock/Projects/sb-do-something/app/ajax/getUsers.php",
 		"/home/treerock/Projects/sb-do-something/app/js/controllers.js",
 		"/home/treerock/Projects/sb-do-something/app/js/app.js",
 		"/home/treerock/Projects/sb-helpdesk-redone/app/index.html",
-		"/home/treerock/Projects/sb-do-something/app/index.html",
-		"/home/treerock/Projects/sweep/app/partials/partial3.html",
-		"/home/treerock/Projects/sweep/app/partials/partial2.html",
 		"/home/treerock/Projects/sweep/app/ajax/getTeams.php",
 		"/home/treerock/Projects/sweep/app/js/controllers.js",
-		"/home/treerock/Projects/sweep/app/ajax/getUsers.php",
 		"/home/treerock/Projects/sweep/docs/notes.md",
-		"/home/treerock/Projects/sweep/app/ajax/getGroups.php",
-		"/home/treerock/Projects/sweep/app/ajax/getUserGroups.php",
 		"/home/treerock/Projects/sweep/app/js/app.js",
 		"/home/treerock/Projects/sweep/app/css/main.css",
 		"/home/treerock/Projects/sweep/app/css/select2.css",
 		"/home/treerock/Projects/sb-helpdesk-redone/app/css/select2.css",
 		"/home/treerock/Downloads/select2-3.4.6/select2_locale_th.js",
-		"/home/treerock/Projects/sweep/app/ajax/addUser.php",
 		"/home/treerock/Projects/sweep/docs/teams.csv",
 		"/home/treerock/.config/sublime-text-2/Packages/Default/Default (Linux).sublime-keymap",
 		"/home/treerock/Projects/sb-do-something/app/ajax/getTasks.php",
@@ -556,14 +589,11 @@
 		"/home/treerock/Projects/sandbox/README",
 		"/home/treerock/Projects/sandbox/css/base.css",
 		"/home/treerock/Projects/sandbox/index.txt",
-		"/home/treerock/Projects/sandbox/index.html",
-		"/var/www/sandbox/css/sandbox.css",
-		"/var/www/sandbox/css/base.css",
-		"/home/treerock/Projects/sandbox/two_col.html"
+		"/home/treerock/Projects/sandbox/index.html"
 	],
 	"find":
 	{
-		"height": 35.0
+		"height": 46.0
 	},
 	"find_in_files":
 	{
@@ -577,6 +607,19 @@
 		"case_sensitive": true,
 		"find_history":
 		[
+			".group",
+			"conso",
+			"user.data",
+			"watch",
+			".group",
+			"edit",
+			"conso",
+			"prist",
+			"Pristine",
+			"pristine",
+			"add",
+			"console.",
+			"init",
 			"conso",
 			"url",
 			"option",
@@ -691,20 +734,7 @@
 			"objects",
 			">\n",
 			"call",
-			"owner",
-			"start",
-			"task",
-			"conso",
-			"Strut",
-			"centrey",
-			"centrex",
-			"sed",
-			"../assets/",
-			"*",
-			"uploads",
-			" move",
-			"$_FILES",
-			"media_upload_form()"
+			"owner"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -751,7 +781,7 @@
 	"groups":
 	[
 		{
-			"selected": 5,
+			"selected": 1,
 			"sheets":
 			[
 				{
@@ -759,15 +789,15 @@
 					"file": "app/js/app.js",
 					"settings":
 					{
-						"buffer_size": 901,
+						"buffer_size": 943,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								890,
-								890
+								932,
+								932
 							]
 						],
 						"settings":
@@ -784,28 +814,28 @@
 				},
 				{
 					"buffer": 1,
-					"file": "app/partials/partial4.html",
+					"file": "app/index.html",
 					"settings":
 					{
-						"buffer_size": 498,
+						"buffer_size": 4387,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								444,
-								444
+								2347,
+								2347
 							]
 						],
 						"settings":
 						{
 							"syntax": "Packages/HTML/HTML.tmLanguage",
-							"tab_size": 4,
+							"tab_size": 2,
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 966.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -815,15 +845,15 @@
 					"file": "app/js/controllers.js",
 					"settings":
 					{
-						"buffer_size": 5152,
+						"buffer_size": 6334,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								5114,
-								5114
+								3595,
+								3595
 							]
 						],
 						"settings":
@@ -833,31 +863,31 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 2138.0,
+						"translation.y": 1296.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
 					"buffer": 3,
-					"file": "app/index.html",
+					"file": "app/ajax/getTeams.php",
 					"settings":
 					{
-						"buffer_size": 4268,
+						"buffer_size": 532,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								0
+								274,
+								274
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/HTML/HTML.tmLanguage",
-							"tab_size": 2,
+							"syntax": "Packages/PHP/PHP.tmLanguage",
+							"tab_size": 4,
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
@@ -868,23 +898,23 @@
 				},
 				{
 					"buffer": 4,
-					"file": "app/ajax/getComp.php",
+					"file": "app/partials/partial1.html",
 					"settings":
 					{
-						"buffer_size": 471,
+						"buffer_size": 596,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								235,
-								235
+								217,
+								217
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/PHP/PHP.tmLanguage",
+							"syntax": "Packages/HTML/HTML.tmLanguage",
 							"tab_size": 4,
 							"translate_tabs_to_spaces": true
 						},
@@ -896,18 +926,46 @@
 				},
 				{
 					"buffer": 5,
-					"file": "app/ajax/addGroup.php",
+					"file": "app/css/main.css",
 					"settings":
 					{
-						"buffer_size": 528,
+						"buffer_size": 1046,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								185,
-								185
+								698,
+								698
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/CSS/CSS.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 432.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "app/ajax/getUserGroups.php",
+					"settings":
+					{
+						"buffer_size": 660,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
 							]
 						],
 						"settings":
@@ -921,37 +979,11 @@
 						"zoom_level": 1.0
 					},
 					"type": "text"
-				},
-				{
-					"buffer": 6,
-					"file": "app/ajax/addUser.php",
-					"settings":
-					{
-						"buffer_size": 374,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/PHP/PHP.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
 				}
 			]
 		},
 		{
-			"selected": 0,
+			"selected": 1,
 			"sheets":
 			[
 				{
@@ -959,7 +991,89 @@
 					"file": "docs/notes.md",
 					"settings":
 					{
-						"buffer_size": 1961,
+						"buffer_size": 1966,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								47,
+								47
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Markdown/Markdown.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 8,
+					"file": "/home/treerock/Projects/sb-do-something/app/js/controllers.js",
+					"settings":
+					{
+						"buffer_size": 8085,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1836,
+								1836
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 576.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 9,
+					"file": "/home/treerock/Projects/sb-do-something/app/partials/partial1.html",
+					"settings":
+					{
+						"buffer_size": 4440,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2154,
+								2154
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1002.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 10,
+					"file": "/home/treerock/Projects/sb-do-something/app/partials/partial2.html",
+					"settings":
+					{
+						"buffer_size": 164,
 						"regions":
 						{
 						},
@@ -972,7 +1086,7 @@
 						],
 						"settings":
 						{
-							"syntax": "Packages/Markdown/Markdown.tmLanguage"
+							"syntax": "Packages/HTML/HTML.tmLanguage"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -1011,7 +1125,7 @@
 		"cols":
 		[
 			0.0,
-			0.792825768668,
+			0.659590043924,
 			1.0
 		],
 		"rows":

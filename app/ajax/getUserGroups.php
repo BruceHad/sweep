@@ -2,15 +2,18 @@
 
 require_once 'db.php'; // The mysql database connection script
 
-if(isset($_GET['comp'])){
-    $comp = $_GET['comp'];
+if(isset($_GET['id'])){
+    $id = $_GET['id'];
     $query=mysql_query("
-    select user_id, nickname, av_url, group_name, competition
-    from sweep_users 
-    inner join sweep_groups
-    on (sweep_users.group_id = sweep_groups.group_id)
-    where competition = '$comp'
-    order by group_name, competition
+    select
+        sg.group_id,
+        sg.group_name
+    from sweep_users su
+        inner join sweep_user_group sug
+        on (su.user_id = sug.user_id)
+        inner join sweep_groups sg
+        on (sg.group_id = sug.group_id)
+    where su.user_id = '$id'
     ;") or die(mysql_error());
      
     # Collect the results
@@ -20,6 +23,8 @@ if(isset($_GET['comp'])){
      
     # JSON-encode the response
     echo $json_response = json_encode($arr);
+} else {
+    echo "Not found";
 }
 
 ?>
