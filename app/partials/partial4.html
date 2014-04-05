@@ -1,18 +1,29 @@
 <h2>{{competition}} Sweep <small>{{data.view}}</small></h2>
 <h2>Groups</h2>
-<table>
-    <tr>
-        <th>Group Id</th>
-        <th>Name</th>
-        <th>Competition</th>
-    </tr>
-    <tr ng-repeat="group in data.groups">
-        <td>{{group.group_id}}</td>
-        <td>{{group.group_name}}</td>
-        <td>{{group.comp_id}}</td>
-    </tr>
-</table>
-<form>
-    <input type="text" ng-model="form.group_name" required placeholder="Enter Name" />
-    <button ng-click="addGroup()">Add</button>
-</form>
+<div class="container">
+    <div class="row">
+        <div class="col col-sm-7">
+            <table class="table">
+                <tr>
+                    <th>Group Id</th>
+                    <th>Name</th>
+                    <th>Competition</th>
+                    <th></th>
+                </tr>
+                <tr ng-repeat="group in groups">
+                    <td>{{group.group_id}}</td>
+                    <td>{{group.group_name}}</td>
+                    <td>{{group.comp_id}}</td>
+                    <td><a href="#/register/{{comp}}/{{group.group_id}}">Register to Play</a></td>
+                </tr>
+            </table>
+        </div>
+        <div class="col col-sm-3">
+            <form name="add" class="form-inline">
+                <input type="text" class="form-control" ng-model="form.group_name" required placeholder="Enter Name" />
+                <button class="btn btn-default" ng-click="addGroup(add)">Add</button>
+            </form>
+            <p class="alert alert-info" ng-show="data.message">{{data.message}}</p>
+        </div>
+    </div>
+</div>

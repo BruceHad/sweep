@@ -3,22 +3,21 @@
 require_once 'db.php'; // The mysql database connection script
 
 if(isset($_GET['group_name'])){
-    $comp = $_GET['comp'];
+    $comp = strtoupper ($_GET['comp']);
     $group_name = $_GET['group_name'];
-    $group_id = 
+    $id = uniqid();
+
     $query=mysql_query("
-    select group_id, group_name, comp_id
-    from sweep_groups
-    where comp_id = '$comp'
+    insert into `sweep_groups` 
+    (`group_id`, `group_name`, `comp_id`)
+    values
+    ('$id', '$group_name', '$comp')
     ;") or die(mysql_error());
      
-    # Collect the results
-    while($obj = mysql_fetch_object($query)) {
-        $arr[] = $obj;
-    }
-     
     # JSON-encode the response
-    echo $json_response = json_encode($arr);
+    echo $group_name . " inserted into sweep_groups";
+} else {
+    echo "Not found";
 }
 
 ?>

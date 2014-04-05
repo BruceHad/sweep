@@ -1,15 +1,24 @@
 <?php
 require_once 'db.php'; // The mysql database connection script
 
-if(isset($_GET['name'])){
-    $name=$_GET['name'];
-    $group = $_GET['group'];
-
+if(isset($_GET['email'])){
+    $email=$_GET['email'];
     $query=mysql_query("
-    select id from sweep_users 
-    where username = '$name';") or die(mysql_error());
+    select 
+        su.user_id,
+        su.username,
+        su.email,
+        su.av_url,
+        sg.group_id,
+        sg.group_name
+    from sweep_users su
+        inner join sweep_user_group sug
+        on (su.user_id = sug.user_id)
+        inner join sweep_groups sg
+        on (sg.group_id = sug.group_id)
+    where su.email =  '$email'
+;") or die(mysql_error());
 
-    echo "Complete, $name, $group has been added to sweep_users .";
 
     while($obj = mysql_fetch_object($query)) {
         $arr[] = $obj;

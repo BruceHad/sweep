@@ -2,26 +2,25 @@
 select 
     group_id,
     group_name,
-    competition
+    comp_id
 from sweep_groups
 ;
-
+-- Users
 select user_id,
     username,
-    nickname,
-    av_url,
-    group_id
+    email,
+    av_url
 from sweep_users
 ;
 
 -- User Groups
-select user_id, nickname, av_url, group_name, competition
-    from sweep_users 
-    inner join sweep_groups
-    on (sweep_users.group_id = sweep_groups.group_id)
-    where competition = 'wc2014'
-order by group_name, competition
+select 
+    swg_id,
+    group_id,
+    user_id
+from sweep_user_group
 ;
+
 
 -- Teams
 select 

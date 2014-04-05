@@ -2,10 +2,15 @@
 Competition (e.g. world cup).
 
 Each Competition has a list of Teams.
+
 A Group is a group of Users connected with a Competition. There can be many Groups, each connected to one Competition.
+
 There can be many Users, each connected to one or more Groups.
+
 Each user selects one or more teams, per Group, randomly from the Competition.
+
 # URLs and Routing
+
 Want to make it as easy as possible to send people to the right place. So the URL should contain the Competition and the Group ids. This should propagate down to the navigation so the users don't have to jump up and down through the hierarchy.
 
 That means the Ids should be fairly random (not just incremented integers), to make it difficult to accidentally move between competitions.

@@ -51,25 +51,23 @@
           <li><a href="#/progress/{{comp}}">Progress</a></li>
         </ul>
         <div ng-hide="loggedin">
-          <p class="navbar-text navbar-right"><a href="#/register/{{comp}}">Register to Play</a> | <a href="#/edit/{{comp}}">Edit</a></p>
-          <form class="navbar-form navbar-right" ng-submit="getUsers(form.username)">
+          <form class="navbar-form navbar-right" ng-submit="login(form.email)">
             <div class="form-group">
-              <input type="text" placeholder="Enter Username" class="form-control" ng-model="form.username">
+              <input type="email" placeholder="Enter Email Address" class="form-control" ng-model="form.email">
             </div>
             <button type="submit" class="btn">Sign in</button>
           </form>
         </div>
-        <p class="navbar-text navbar-right">{{userMessage}}</p>
-
+        <p class="navbar-text navbar-right"> | <a href="#/edit/{{comp}}">Groups</a></p>
+        <p class="navbar-text navbar-right" ng-hide="loggedin"><a href="#/register/{{comp}}">Register to Play</a></p>
         
-        <p class="navbar-text navbar-right">Logged in as <strong>{{username}}</strong> <a href="#" ng-click="logOut()">Logout</a></p>
-
-
+        <p ng-show="loggedin" class="navbar-text navbar-right">Logged in as <strong>{{user.username}}</strong> <a href="#" ng-click="logOut()">Logout</a></p>
       </div><!--/.navbar-collapse -->
     </div>
   </div>
 
     <div class="container">
+      <p ng-show="userMessage" class="alert alert-danger">{{userMessage}}</p>
       <div class="ng-view"></div>
       <footer>
         <p>&copy; Company 2013</p>
