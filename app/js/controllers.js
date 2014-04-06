@@ -91,34 +91,54 @@ angular.module('myApp.controllers', [])
         $scope.init($routeParams);
         $scope.data = {};
         $scope.data.view = "Select Your Teams";
-        $http.get("ajax/getTeams.php?comp="+$scope.comp).success(function(data){
-            $scope.data.teams = data;
-            console.log(data);
-            // getLists(userGroups);
+        $scope.data.yourteams = [];
+        $http.get("ajax/getUserGroups.php?id="+$scope.user.id).success(function(data){
+            $scope.data.groups = data;
+            $scope.update();
         });
-
-        // $scope.form = {};
-        // $scope.init($routeParams);
-        // // function getUserGroups(){
-        // //     $http.get("ajax/getUserGroups.php").success(function(userGroups){
-        // //         $scope.data.userGroups = userGroups;
-        // //         getLists(userGroups);
-        // //     });
-        // // };
-        // // function getLists(groups){
-        // //     var comps = [];
-        // //     var users = [];
-        // //     for (var group in groups){
-        // //         if(comps.indexOf(groups[group].competition)==-1){
-        // //             comps.push(groups[group].competition);
-        // //         }
-        // //     }
-        // //     $scope.data.comps = comps;
-        // // };
-        // // getUserGroups();
-        // // function getTeams(){
-            
-        // // }
+        $scope.update = function(){
+            if($scope.data.groups.length == 1){
+                $scope.data.group = $scope.data.groups[0].group_id;
+                $scope.data.groupname = $scope.data.groups[0].group_name;
+            } 
+            else {
+                console.log("More than one");
+            }
+            if(typeof $scope.data.group != 'undefined'){
+                $http.get("ajax/getTeams.php?comp="+$scope.comp+"&group="+$scope.data.group).success(function(data){
+                    $scope.data.teams = data;
+                    console.log(data);
+                });
+            }
+        };
+        $scope.pickTeam = function() {
+            var i = 1;
+            var init = 100
+            function myLoop(delay) {
+                setTimeout(function() {
+                    $scope.$apply(function() {
+                        var rand = Math.floor(Math.random() * $scope.data.teams.length-1 + 1);
+                        if($scope.data.teams[rand].user_id == null){
+                            console.log("Not Picked");
+                            $scope.data.team = $scope.data.teams[rand].name;
+                            i++;
+                        } else {
+                            // console.log("Not Found");
+                            myLoop(0);
+                            return;
+                        }                        
+                        if(i < 10) {
+                            myLoop(init+Math.pow(i/3,3));
+                        }
+                        else {
+                            $scope.data.yourteams.push($scope.data.team);
+                            // Insert into database and update object
+                        }
+                    });
+                }, delay)
+            }
+            myLoop(100);
+        };
     }])
     .controller('MyCtrl2', ['$scope', '$http', '$routeParams', function($scope, $http, $routeParams) {
         $scope.init($routeParams);

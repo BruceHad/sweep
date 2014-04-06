@@ -34,17 +34,21 @@ from sweep_users su
     on (su.user_id = sug.user_id)
     inner join sweep_groups sg
     on (sg.group_id = sug.group_id)
-where su.email = 'bruce@hadden.com'
-;
+where su.user = '5340529'
 
 -- Teams
 select 
-    team_id,
-    name,
-    status,
-    competition
-from sweep_teams
-where competition = 'WC2014'
+    st.team_id,
+    st.name,
+    st.status,
+    st.competition,
+    sut.user_id,
+    sut.group_id
+from sweep_teams st
+    left outer join sweep_user_team sut
+    on (st.team_id = sut.team_id)
+where st.competition = '$comp'
+    and (sut.group_id = '$group_id' or sut.group_id is null)
 ;
 
 -- Competitions

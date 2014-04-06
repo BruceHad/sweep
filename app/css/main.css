@@ -55,6 +55,30 @@ button.invalid {
 }
 
 
+/* Team Pickers
+-----------------------------------------*/
+.teamlist .teambox {
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin: 5px;
+    float:left;
+    width: 130px;
+    height: 100px;
+    line-height: 100px;
+    text-align:center;
+    font-size: small;
+    color: #666;
+    font-weight: bold;
+}
+
+.teamlist  .picked {
+    background-color: #ddd;
+}
+
+.teamlist .highlight {
+    border: 1px solid red;
+}
+
 
 
 

@@ -5,7 +5,11 @@ require_once 'db.php'; // The mysql database connection script
 if(isset($_GET['id'])){
     $id = $_GET['id'];
     $query=mysql_query("
-    select
+    select 
+        su.user_id,
+        su.username,
+        su.email,
+        su.av_url,
         sg.group_id,
         sg.group_name
     from sweep_users su
@@ -13,7 +17,7 @@ if(isset($_GET['id'])){
         on (su.user_id = sug.user_id)
         inner join sweep_groups sg
         on (sg.group_id = sug.group_id)
-    where su.user_id = '$id'
+    where su.user_id =  '$id'
     ;") or die(mysql_error());
      
     # Collect the results
