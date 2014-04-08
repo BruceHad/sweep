@@ -10,10 +10,9 @@
     </div>
     <div class="col col-sm-4 right">
         <section ng-class="{fade: data.complete}">
-            <p>Your Team: {{data.groupname}}</p>
-            <p>Max Number of picks: {{data.maxpicks}}</p>
-            <p>Number of teams you've picked: {{data.picks}}</p>
-            <button ng-click="pickTeam()">
+            <p>Hello {{user.username}}, you have joined <strong>{{data.group_name}}</strong> You've selected {{data.picks}} teams in the sweep so you have {{data.maxpicks-data.picks}} teams remaining.</p>
+            <p>
+            <button ng-click="pickTeam()" class="btn btn-primary">
                 Pick a team
             </button>
         </section>

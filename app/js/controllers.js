@@ -69,6 +69,7 @@ angular.module('myApp.controllers', [])
             $cookieStore.remove('username');
             $cookieStore.remove('email');
             $scope.user = {};
+            $scope.data = {};
             $scope.loggedin = false;
         };
 
@@ -85,8 +86,8 @@ angular.module('myApp.controllers', [])
             if($scope.loggedin){
                 $http.get("ajax/getUserGroups.php?id="+$scope.user.id).success(function(data){
                     if(data.length == 1){
-                       getPicks(data);
-                       getTeams(data);
+                        getPicks(data);
+                        getTeams(data);
                     } 
                     else if(data.length > 1) {
                         console.log("More than one");
@@ -96,17 +97,24 @@ angular.module('myApp.controllers', [])
         }
 
         function getPicks(group){
-            var group = group[0].group_id;
-            $http.get("ajax/getPicks.php?user="+$scope.user.id+"&group="+group+"&comp="+$scope.comp).success(function(data){
-                console.log(data);
+            console.log($scope.user.id);
+            $http.get("ajax/getPicks.php?user="+$scope.user.id+"&group="+group[0].group_id+"&comp="+$scope.comp).success(function(data){
+                if(data != 'null'){
+                    for (var i in data){
+                        $scope.data.yourteams.push(data[i].name);
+                    }
+                    if(data.length >= $scope.data.maxpicks){
+                        $scope.data.complete = true;
+                    }
+                }
             });
         }
 
         function getTeams(group){
-            var group = group[0].group_id;
-            $http.get("ajax/getTeams.php?comp="+$scope.comp+"&group="+group).success(function(data){
+            $scope.data.group_id = group;
+            $scope.data.group_name = group[0].group_name;
+            $http.get("ajax/getTeams.php?comp="+$scope.comp+"&group="+$scope.data.group_id).success(function(data){
                 $scope.data.teams = data;
-                $scope.data.group_id = group;
             });
         };
         function updatePicks(user, team){
@@ -139,14 +147,13 @@ angular.module('myApp.controllers', [])
                         }
                         else {
                             $scope.data.yourteams.push($scope.data.team);
-                            $scope.data.team = "";
                             $scope.data.picks = $scope.data.yourteams.length;
                             // Insert into database and update object
                             updatePicks($scope.user.id, team_id);
                             if($scope.data.picks >= $scope.data.maxpicks){
                                 $scope.data.complete = true;
+                                $scope.data.team = "";
                             }
-                            $scope.data.team = "";
                         }
                     });
                 }, delay)

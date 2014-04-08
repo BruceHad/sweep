@@ -85,12 +85,11 @@ button.invalid {
 }
 .teamlist .myhide{
     visibility: hidden;
-    border: 1px solid red;
 }
 
 .right section {
-    margin-bottom: 20px;
-    border: 1px solid red;
+    padding: 5px;
+    margin-bottom: 10px;
 }
 
 
