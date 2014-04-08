@@ -85,6 +85,7 @@ angular.module('myApp.controllers', [])
             if($scope.loggedin){
                 $http.get("ajax/getUserGroups.php?id="+$scope.user.id).success(function(data){
                     if(data.length == 1){
+                       getPicks(data);
                        getTeams(data);
                     } 
                     else if(data.length > 1) {
@@ -94,10 +95,23 @@ angular.module('myApp.controllers', [])
             }
         }
 
+        function getPicks(group){
+            var group = group[0].group_id;
+            $http.get("ajax/getPicks.php?user="+$scope.user.id+"&group="+group+"&comp="+$scope.comp).success(function(data){
+                console.log(data);
+            });
+        }
+
         function getTeams(group){
             var group = group[0].group_id;
             $http.get("ajax/getTeams.php?comp="+$scope.comp+"&group="+group).success(function(data){
                 $scope.data.teams = data;
+                $scope.data.group_id = group;
+            });
+        };
+        function updatePicks(user, team){
+            $http.get("ajax/addTeam.php?user="+user+"&team="+team+"&group="+$scope.data.group_id).success(function(data){
+                console.log(data);
             });
         };
         $scope.pickTeam = function() {
@@ -113,6 +127,7 @@ angular.module('myApp.controllers', [])
                         var rand = Math.floor(Math.random() * $scope.data.teams.length-1 + 1);
                         if($scope.data.teams[rand].user_id == null){
                             $scope.data.team = $scope.data.teams[rand].name;
+                            var team_id = $scope.data.teams[rand].team_id;
                             i++;
                         } else {
                             // console.log("Not Found");
@@ -124,12 +139,14 @@ angular.module('myApp.controllers', [])
                         }
                         else {
                             $scope.data.yourteams.push($scope.data.team);
+                            $scope.data.team = "";
                             $scope.data.picks = $scope.data.yourteams.length;
+                            // Insert into database and update object
+                            updatePicks($scope.user.id, team_id);
                             if($scope.data.picks >= $scope.data.maxpicks){
-                                console.log("Done");
                                 $scope.data.complete = true;
-                                // Insert into database and update object
                             }
+                            $scope.data.team = "";
                         }
                     });
                 }, delay)
