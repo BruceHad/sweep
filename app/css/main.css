@@ -70,12 +70,26 @@ button.invalid {
     color: #666;
     font-weight: bold;
 }
-
 .teamlist  .picked {
     background-color: #ddd;
 }
-
 .teamlist .highlight {
+    border: 1px solid red;
+}
+.teamlist .fade {
+  opacity: 0.3;
+}
+.teamlist .fade.in {
+    visibility: visible;
+  opacity: 1;
+}
+.teamlist .myhide{
+    visibility: hidden;
+    border: 1px solid red;
+}
+
+.right section {
+    margin-bottom: 20px;
     border: 1px solid red;
 }
 

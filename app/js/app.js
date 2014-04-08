@@ -18,6 +18,6 @@ angular.module('myApp', [
   $routeProvider.when('/register/:comp/:group?', {templateUrl: 'partials/partial2.html', controller: 'MyCtrl2'});
   $routeProvider.when('/progress/:comp/:group?', {templateUrl: 'partials/partial3.html', controller: 'MyCtrl3'});
   $routeProvider.when('/edit/:comp/:group?', {templateUrl: 'partials/partial4.html', controller: 'MyCtrl4'});
-  $routeProvider.otherwise({redirectTo: '/register/:comp/:group?'});
+  $routeProvider.otherwise({redirectTo: '/register/:comp/:group?  '});
 }])
 ;

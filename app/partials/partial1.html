@@ -1,23 +1,31 @@
-<h2>{{data.competion}} Sweep <small>{{data.view}}</small></h2>
-<p>Your Team: {{data.groupname}}</p>
-<div class="row" ng-show="loggedin">
-    <div class="col col-sm-8 teamlist">
-        <div ng-repeat="team in data.teams">
-            <div class="clearfix teambox"
+<h2>{{competition}} Sweep <small>{{data.view}}</small></h2>
+<div class="row teamlist" ng-show="loggedin">
+    <div class="col col-sm-8 ">
+        <section ng-class="{fade: data.complete}">
+            <div ng-repeat="team in data.teams">
+                <div class="clearfix teambox"
                 ng-class="{highlight : team.name == data.team}">{{team.name}}</div>
-        </div>
+            </div>
+        </section>
     </div>
-    <div class="col col-sm-4">
-        <button ng-click="pickTeam()">
-            Pick a team
-        </button>
-        <p><strong>Picked Teams:</strong><p>
-        <ol>
-            <li ng-repeat="team in data.yourteams">{{team}}</li>
-        </ol>
-        <p>{{data.team}}</p>
-    </div>
+    <div class="col col-sm-4 right">
+        <section ng-class="{fade: data.complete}">
+            <p>Your Team: {{data.groupname}}</p>
+            <p>Max Number of picks: {{data.maxpicks}}</p>
+            <p>Number of teams you've picked: {{data.picks}}</p>
+            <button ng-click="pickTeam()">
+                Pick a team
+            </button>
+        </section>
+        <section class="fade myhide" ng-class="{in: data.complete}"}>
+            <ol>
+                <li ng-repeat="team in data.yourteams">{{team}}</li>
+            </ol>
+         </div>
+     </section>
+ </div>
 </div>
+
 <div ng-hide="loggedin">
     <p>You have to log in.</p>
 </div>

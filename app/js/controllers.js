@@ -71,47 +71,40 @@ angular.module('myApp.controllers', [])
             $scope.user = {};
             $scope.loggedin = false;
         };
-        // if(typeof $routeParams.comp != 'undefined'){
-        //     $scope.comp = $routeParams.comp;
-        //     $http.get("ajax/getComp.php?comp="+$scope.comp).success(function(data){
-        //         console.log(data);
-        //     });
-        // }
-        // else {
-        //     $scope.comp = "none";
-        // }
-        // if(typeof $routeParams.group != 'undefined'){
-        //     $scope.comp = $routeParams.group;   
-        // }
-        // else {
-        //     $scope.comp = "none";
-        // }
+
     }])
     .controller('MyCtrl1', ['$scope', '$http', '$routeParams', function($scope, $http, $routeParams) {
         $scope.init($routeParams);
         $scope.data = {};
         $scope.data.view = "Select Your Teams";
         $scope.data.yourteams = [];
-        $http.get("ajax/getUserGroups.php?id="+$scope.user.id).success(function(data){
-            $scope.data.groups = data;
-            $scope.update();
-        });
-        $scope.update = function(){
-            if($scope.data.groups.length == 1){
-                $scope.data.group = $scope.data.groups[0].group_id;
-                $scope.data.groupname = $scope.data.groups[0].group_name;
-            } 
-            else {
-                console.log("More than one");
-            }
-            if(typeof $scope.data.group != 'undefined'){
-                $http.get("ajax/getTeams.php?comp="+$scope.comp+"&group="+$scope.data.group).success(function(data){
-                    $scope.data.teams = data;
-                    console.log(data);
+        $scope.data.maxpicks = 2;
+        $scope.data.picks = $scope.data.yourteams.length;
+
+        function getGroups(){
+            if($scope.loggedin){
+                $http.get("ajax/getUserGroups.php?id="+$scope.user.id).success(function(data){
+                    if(data.length == 1){
+                       getTeams(data);
+                    } 
+                    else if(data.length > 1) {
+                        console.log("More than one");
+                    }
                 });
             }
+        }
+
+        function getTeams(group){
+            var group = group[0].group_id;
+            $http.get("ajax/getTeams.php?comp="+$scope.comp+"&group="+group).success(function(data){
+                $scope.data.teams = data;
+            });
         };
         $scope.pickTeam = function() {
+            if($scope.data.picks >= $scope.data.maxpicks){
+                console.log("Max picks exceeded");
+                return;
+            }
             var i = 1;
             var init = 100
             function myLoop(delay) {
@@ -119,26 +112,34 @@ angular.module('myApp.controllers', [])
                     $scope.$apply(function() {
                         var rand = Math.floor(Math.random() * $scope.data.teams.length-1 + 1);
                         if($scope.data.teams[rand].user_id == null){
-                            console.log("Not Picked");
                             $scope.data.team = $scope.data.teams[rand].name;
                             i++;
                         } else {
                             // console.log("Not Found");
                             myLoop(0);
-                            return;
+                            // return;
                         }                        
                         if(i < 10) {
                             myLoop(init+Math.pow(i/3,3));
                         }
                         else {
                             $scope.data.yourteams.push($scope.data.team);
-                            // Insert into database and update object
+                            $scope.data.picks = $scope.data.yourteams.length;
+                            if($scope.data.picks >= $scope.data.maxpicks){
+                                console.log("Done");
+                                $scope.data.complete = true;
+                                // Insert into database and update object
+                            }
                         }
                     });
                 }, delay)
             }
             myLoop(100);
         };
+        // Watchers
+        $scope.$watch("loggedin", function(newValue, oldValue) {
+            getGroups(); // This should find the group then get the teams.
+        });
     }])
     .controller('MyCtrl2', ['$scope', '$http', '$routeParams', function($scope, $http, $routeParams) {
         $scope.init($routeParams);

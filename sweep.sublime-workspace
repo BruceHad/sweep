@@ -4,6 +4,10 @@
 		"selected_items":
 		[
 			[
+				"user",
+				"user_id"
+			],
+			[
 				"cos",
 				"console"
 			],
@@ -355,21 +359,10 @@
 			}
 		},
 		{
-			"file": "app/index.html",
-			"settings":
-			{
-				"buffer_size": 4387,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"contents": "'use strict';\n\n/* Controllers */\n\nangular.module('myApp.controllers', [])\n    .controller('MainCtrl', ['$scope', '$http',  '$cookieStore', function($scope, $http, $cookieStore){\n        $scope.loggedin = false;\n        $scope.user = {};\n        if($cookieStore.get('loggedin')){\n            $scope.user.id = $cookieStore.get('id');\n            $scope.loggedin = true;\n            $scope.user.username = $cookieStore.get('username');\n            $scope.user.email = $cookieStore.get('email');\n        }\n        $scope.$watch('form.email', function(newValue, oldValue) {\n            $scope.userMessage = \"\";\n        });\n\n        $scope.init = function(params){\n\n            if(typeof params.comp != 'undefined'){\n                // Set the competition id and get competition name.\n                $scope.comp = params.comp;\n                $http.get(\"ajax/getComp.php?comp=\"+$scope.comp).success(function(data){\n                    $scope.competition = data[0].name;\n                });\n                // Get all the groups\n                $http.get(\"ajax/getGroups.php?comp=\"+$scope.comp).success(function(data){\n                    $scope.groups = data;\n                });\n            } \n            else {\n                $scope.comp = '';\n            }\n\n            if(typeof params.group != 'undefined'){\n                $scope.group = params.group;\n            } \n            else {\n                $scope.group = '';\n            }\n            if($scope.loggedin){\n                $http.get(\"ajax/getUserGroups.php?id=\"+$scope.user.id).success(function(data){\n                    $scope.userGroups = data;\n                });\n            }\n        };\n\n       $scope.login = function(email) {\n            $http.get(\"ajax/getUsers.php\", {params: {'email': email}}).success(function(data){\n                if(typeof data == 'object'){\n                    $scope.user.id = data[0].user_id;\n                    $scope.user.username = data[0].username;\n                    $scope.user.email = data[0].email;\n                    $scope.loggedin = true;\n                    $cookieStore.put('id', data[0].user_id);\n                    $cookieStore.put('loggedin', true);\n                    $cookieStore.put('username', data[0].username);\n                    $cookieStore.put('email', data[0].email);\n                } \n                else {\n                    $scope.userMessage = \"Invalid user: \" + email;\n                }\n            });\n        };\n        $scope.logout = function(){\n            $cookieStore.remove('id');\n            $cookieStore.remove('loggedin');\n            $cookieStore.remove('username');\n            $cookieStore.remove('email');\n            $scope.user = {};\n            $scope.loggedin = false;\n        };\n        // if(typeof $routeParams.comp != 'undefined'){\n        //     $scope.comp = $routeParams.comp;\n        //     $http.get(\"ajax/getComp.php?comp=\"+$scope.comp).success(function(data){\n        //         console.log(data);\n        //     });\n        // }\n        // else {\n        //     $scope.comp = \"none\";\n        // }\n        // if(typeof $routeParams.group != 'undefined'){\n        //     $scope.comp = $routeParams.group;   \n        // }\n        // else {\n        //     $scope.comp = \"none\";\n        // }\n    }])\n    .controller('MyCtrl1', ['$scope', '$http', '$routeParams', function($scope, $http, $routeParams) {\n        $scope.init($routeParams);\n        $scope.data = {};\n        $scope.data.view = \"Select Your Teams\";\n        $http.get(\"ajax/getTeams.php?comp=\"+$scope.comp).success(function(data){\n            $scope.data.teams = data;\n            // getLists(userGroups);\n        });\n\n        // $scope.form = {};\n        // $scope.init($routeParams);\n        // // function getUserGroups(){\n        // //     $http.get(\"ajax/getUserGroups.php\").success(function(userGroups){\n        // //         $scope.data.userGroups = userGroups;\n        // //         getLists(userGroups);\n        // //     });\n        // // };\n        // // function getLists(groups){\n        // //     var comps = [];\n        // //     var users = [];\n        // //     for (var group in groups){\n        // //         if(comps.indexOf(groups[group].competition)==-1){\n        // //             comps.push(groups[group].competition);\n        // //         }\n        // //     }\n        // //     $scope.data.comps = comps;\n        // // };\n        // // getUserGroups();\n        // // function getTeams(){\n            \n        // // }\n    }])\n    .controller('MyCtrl2', ['$scope', '$http', '$routeParams', function($scope, $http, $routeParams) {\n        $scope.init($routeParams);\n        $scope.data = {};\n        $scope.data.view = \"Register\";\n        $scope.form = {};\n        if(typeof $scope.group != 'undefined'){$scope.form.group = $scope.group;}\n        $scope.registerUser = function(thisForm){\n            $http.get('ajax/addUser.php?name='+$scope.form.name+'&email='+$scope.form.email+'&group='+$scope.form.group).success(function(response){\n                $scope.data.message = $scope.form.name + \" has been registered\";\n                $scope.login($scope.form.email);\n                thisForm.$setPristine()\n                $scope.form = {};\n                if(typeof $routeParams.group != 'undefined'){\n                    $scope.form.group = $routeParams.group;\n                }\n            });\n        };\n    }])\n    .controller('MyCtrl3', ['$scope', '$http', '$routeParams', function($scope, $http, $routeParams) {\n        $scope.init($routeParams);\n        $scope.data = {};\n        $scope.data.view = \"Who is winning\";\n    }])\n    .controller('MyCtrl4', ['$scope', '$http', '$routeParams', function($scope, $http, $routeParams) {\n        $scope.data = {};\n        $scope.data.view = \"Edit All The Things\";\n        $scope.form = {};\n        $scope.init($routeParams);\n        $scope.form.comp_id = $scope.comp;\n        $scope.addGroup = function(form){\n            $http.get(\"ajax/addGroup.php?comp=\"+$scope.comp+\"&group_name=\"+$scope.form.group_name)\n            .success(function(data){\n                $scope.data.message = data;\n                $scope.form = {};\n                $scope.init($routeParams);\n                form.$setPristine();\n            }).\n            error(function(data){\n                $scope.data.message = data;\n            });\n        };\n    }])\n;",
 			"file": "app/js/controllers.js",
-			"file_size": 6365,
-			"file_write_time": 1396727169000000,
 			"settings":
 			{
-				"buffer_size": 6334,
+				"buffer_size": 7346,
 				"line_ending": "Unix"
 			}
 		},
@@ -377,7 +370,7 @@
 			"file": "app/ajax/getTeams.php",
 			"settings":
 			{
-				"buffer_size": 532,
+				"buffer_size": 766,
 				"line_ending": "Unix"
 			}
 		},
@@ -385,7 +378,7 @@
 			"file": "app/partials/partial1.html",
 			"settings":
 			{
-				"buffer_size": 596,
+				"buffer_size": 733,
 				"line_ending": "Unix"
 			}
 		},
@@ -393,7 +386,7 @@
 			"file": "app/css/main.css",
 			"settings":
 			{
-				"buffer_size": 1046,
+				"buffer_size": 1466,
 				"line_ending": "Unix"
 			}
 		},
@@ -401,7 +394,7 @@
 			"file": "app/ajax/getUserGroups.php",
 			"settings":
 			{
-				"buffer_size": 660,
+				"buffer_size": 740,
 				"line_ending": "Unix"
 			}
 		},
@@ -462,6 +455,7 @@
 	},
 	"file_history":
 	[
+		"/home/treerock/Projects/sweep/app/index.html",
 		"/home/treerock/Projects/sweep/app/partials/partial3.html",
 		"/home/treerock/Projects/sweep/app/ajax/addUser.php",
 		"/home/treerock/Projects/sweep/app/ajax/getUsers.php",
@@ -470,7 +464,6 @@
 		"/home/treerock/Projects/sweep/app/ajax/getGroups.php",
 		"/home/treerock/Projects/sweep/app/ajax/getUserGroups.php",
 		"/home/treerock/Projects/sweep/app/partials/partial4.html",
-		"/home/treerock/Projects/sweep/app/index.html",
 		"/home/treerock/Projects/sweep/app/ajax/getComp.php",
 		"/home/treerock/Projects/sb-do-something/app/index.html",
 		"/home/treerock/Projects/sweep/app/partials/partial1.html",
@@ -607,6 +600,7 @@
 		"case_sensitive": true,
 		"find_history":
 		[
+			"console",
 			".group",
 			"conso",
 			"user.data",
@@ -733,8 +727,7 @@
 			"round",
 			"objects",
 			">\n",
-			"call",
-			"owner"
+			"call"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -781,7 +774,7 @@
 	"groups":
 	[
 		{
-			"selected": 1,
+			"selected": 3,
 			"sheets":
 			[
 				{
@@ -814,46 +807,18 @@
 				},
 				{
 					"buffer": 1,
-					"file": "app/index.html",
-					"settings":
-					{
-						"buffer_size": 4387,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								2347,
-								2347
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/HTML/HTML.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 966.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 2,
 					"file": "app/js/controllers.js",
 					"settings":
 					{
-						"buffer_size": 6334,
+						"buffer_size": 7346,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								3595,
-								3595
+								4780,
+								4780
 							]
 						],
 						"settings":
@@ -863,25 +828,25 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 1296.0,
+						"translation.y": 1948.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
-					"buffer": 3,
+					"buffer": 2,
 					"file": "app/ajax/getTeams.php",
 					"settings":
 					{
-						"buffer_size": 532,
+						"buffer_size": 766,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								274,
-								274
+								93,
+								93
 							]
 						],
 						"settings":
@@ -897,19 +862,19 @@
 					"type": "text"
 				},
 				{
-					"buffer": 4,
+					"buffer": 3,
 					"file": "app/partials/partial1.html",
 					"settings":
 					{
-						"buffer_size": 596,
+						"buffer_size": 733,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								217,
-								217
+								327,
+								327
 							]
 						],
 						"settings":
@@ -925,19 +890,19 @@
 					"type": "text"
 				},
 				{
-					"buffer": 5,
+					"buffer": 4,
 					"file": "app/css/main.css",
 					"settings":
 					{
-						"buffer_size": 1046,
+						"buffer_size": 1466,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								698,
-								698
+								1407,
+								1407
 							]
 						],
 						"settings":
@@ -947,25 +912,25 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 432.0,
+						"translation.y": 798.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
-					"buffer": 6,
+					"buffer": 5,
 					"file": "app/ajax/getUserGroups.php",
 					"settings":
 					{
-						"buffer_size": 660,
+						"buffer_size": 740,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								0
+								154,
+								154
 							]
 						],
 						"settings":
@@ -987,7 +952,7 @@
 			"sheets":
 			[
 				{
-					"buffer": 7,
+					"buffer": 6,
 					"file": "docs/notes.md",
 					"settings":
 					{
@@ -1013,7 +978,7 @@
 					"type": "text"
 				},
 				{
-					"buffer": 8,
+					"buffer": 7,
 					"file": "/home/treerock/Projects/sb-do-something/app/js/controllers.js",
 					"settings":
 					{
@@ -1041,7 +1006,7 @@
 					"type": "text"
 				},
 				{
-					"buffer": 9,
+					"buffer": 8,
 					"file": "/home/treerock/Projects/sb-do-something/app/partials/partial1.html",
 					"settings":
 					{
@@ -1069,7 +1034,7 @@
 					"type": "text"
 				},
 				{
-					"buffer": 10,
+					"buffer": 9,
 					"file": "/home/treerock/Projects/sb-do-something/app/partials/partial2.html",
 					"settings":
 					{
