@@ -21,6 +21,11 @@ select
 from sweep_user_group
 ;
 
+-- s user teams
+select *
+from sweep_user_team
+;
+
 -- Users + Groups
 select 
     su.user_id,
@@ -34,10 +39,32 @@ from sweep_users su
     on (su.user_id = sug.user_id)
     inner join sweep_groups sg
     on (sg.group_id = sug.group_id)
-where su.user = '5340529'
+where su.user_id = '5340529'
+;
 
--- Teams
+-- All Teams
 select 
+    st.team_id,
+    st.name,
+    st.status,
+    st.competition,
+    sut.user_id,
+    sut.group_id,
+    su.username,
+    su.email,
+    su.av_url
+from sweep_teams st
+    left outer join sweep_user_team sut
+    on (st.team_id = sut.team_id)
+    left outer join sweep_users su
+    on (su.user_id = sut.user_id)
+where st.competition = 'wc2014' #'$comp'
+    and (sut.group_id = '23432914838487043' or sut.group_id is null)
+;
+
+-- Picked Teams
+select
+    su.email,
     st.team_id,
     st.name,
     st.status,
@@ -45,10 +72,18 @@ select
     sut.user_id,
     sut.group_id
 from sweep_teams st
-    left outer join sweep_user_team sut
+    inner join sweep_user_team sut
     on (st.team_id = sut.team_id)
-where st.competition = '$comp'
-    and (sut.group_id = '$group_id' or sut.group_id is null)
+    inner join sweep_users su
+    on (su.user_id = sut.user_id)
+where st.competition = 'WC2014'
+;
+  --and sut.user_id = '$user_id'
+    --and sut.group_id = '$group_id'
+;
+
+select *
+from sweep_user_team
 ;
 
 -- Competitions

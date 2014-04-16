@@ -6,17 +6,22 @@ if(isset($_GET['comp'])){
     $comp = $_GET['comp'];
     $group = $_GET['group'];
     $query=mysql_query("
-    select 
-        st.team_id,
-        st.name,
-        st.status,
-        st.competition,
-        sut.user_id,
-        sut.group_id
-    from sweep_teams st
-        left outer join sweep_user_team sut
-        on (st.team_id = sut.team_id)
-    where st.competition = '$comp'
+        select 
+            st.team_id,
+            st.name,
+            st.status,
+            st.competition,
+            sut.user_id,
+            sut.group_id,
+            su.username,
+            su.email,
+            su.av_url
+        from sweep_teams st
+            left outer join sweep_user_team sut
+            on (st.team_id = sut.team_id)
+            left outer join sweep_users su
+            on (su.user_id = sut.user_id)
+        where st.competition = '$comp'
         and (sut.group_id = '$group' or sut.group_id is null)
     ;") or die(mysql_error());
      

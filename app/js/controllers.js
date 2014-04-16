@@ -80,12 +80,12 @@ angular.module('myApp.controllers', [])
         $scope.data.view = "Select Your Teams";
         $scope.data.yourteams = [];
         $scope.data.maxpicks = 2;
-        $scope.data.picks = $scope.data.yourteams.length;
 
         function getGroups(){
             if($scope.loggedin){
                 $http.get("ajax/getUserGroups.php?id="+$scope.user.id).success(function(data){
                     if(data.length == 1){
+                        $scope.data.group_id = data[0].group_id;
                         getPicks(data);
                         getTeams(data);
                     } 
@@ -97,7 +97,8 @@ angular.module('myApp.controllers', [])
         }
 
         function getPicks(group){
-            console.log($scope.user.id);
+            // Checks if the user has picked teams already, 
+            // and if so, populates the yourteams array.
             $http.get("ajax/getPicks.php?user="+$scope.user.id+"&group="+group[0].group_id+"&comp="+$scope.comp).success(function(data){
                 if(data != 'null'){
                     for (var i in data){
@@ -105,20 +106,22 @@ angular.module('myApp.controllers', [])
                     }
                     if(data.length >= $scope.data.maxpicks){
                         $scope.data.complete = true;
+                        $scope.data.view = "Progress So Far";
                     }
+                    $scope.data.picks = $scope.data.yourteams.length;
                 }
             });
         }
 
         function getTeams(group){
-            $scope.data.group_id = group;
             $scope.data.group_name = group[0].group_name;
             $http.get("ajax/getTeams.php?comp="+$scope.comp+"&group="+$scope.data.group_id).success(function(data){
                 $scope.data.teams = data;
             });
         };
-        function updatePicks(user, team){
-            $http.get("ajax/addTeam.php?user="+user+"&team="+team+"&group="+$scope.data.group_id).success(function(data){
+        function updatePicks(team){
+            console.log($scope.data.group_id);
+            $http.get("ajax/addTeam.php?user="+$scope.user.id+"&team="+team+"&group="+$scope.data.group_id).success(function(data){
                 console.log(data);
             });
         };
@@ -149,7 +152,7 @@ angular.module('myApp.controllers', [])
                             $scope.data.yourteams.push($scope.data.team);
                             $scope.data.picks = $scope.data.yourteams.length;
                             // Insert into database and update object
-                            updatePicks($scope.user.id, team_id);
+                            updatePicks(team_id);
                             if($scope.data.picks >= $scope.data.maxpicks){
                                 $scope.data.complete = true;
                                 $scope.data.team = "";
@@ -168,7 +171,7 @@ angular.module('myApp.controllers', [])
     .controller('MyCtrl2', ['$scope', '$http', '$routeParams', function($scope, $http, $routeParams) {
         $scope.init($routeParams);
         $scope.data = {};
-        $scope.data.view = "Register";
+        $scope.data.view = "User Details";
         $scope.form = {};
         if(typeof $scope.group != 'undefined'){$scope.form.group = $scope.group;}
         $scope.registerUser = function(thisForm){

@@ -1,7 +1,7 @@
 <h2>{{competition}} Sweep <small>{{data.view}}</small></h2>
-<div class="row teamlist" ng-show="loggedin">
+<div class="row teamlist">
     <div class="col col-sm-8 ">
-        <section ng-class="{fade: data.complete}">
+        <section>
             <div ng-repeat="team in data.teams">
                 <div class="clearfix teambox"
                 ng-class="{highlight : team.name == data.team}">{{team.name}}</div>
@@ -9,20 +9,42 @@
         </section>
     </div>
     <div class="col col-sm-4 right">
-        <section ng-class="{fade: data.complete}">
-            <p>Hello {{user.username}}, you have joined <strong>{{data.group_name}}</strong> You've selected {{data.picks}} teams in the sweep so you have {{data.maxpicks-data.picks}} teams remaining.</p>
-            <p>
-            <button ng-click="pickTeam()" class="btn btn-primary">
-                Pick a team
-            </button>
+        <section>
+            <p>Hello {{user.username}}, you have joined <strong>{{data.group_name}}</strong> You've selected {{data.yourteams.length}} teams in the sweep so you have {{data.maxpicks-data.yourteams.length}} teams remaining.</p>
+            <button ng-click="pickTeam()" ng-disabled="data.complete" class="btn btn-primary">Pick a team</button>
         </section>
-        <section class="fade myhide" ng-class="{in: data.complete}"}>
-            <ol>
-                <li ng-repeat="team in data.yourteams">{{team}}</li>
-            </ol>
-         </div>
-     </section>
- </div>
+    </div>
+
+</div>
+<div class="row sweep" ng-show="loggedin && data.complete">
+    <div class="col col-sm-6">
+        <h2>{{user.username}}</h2>
+    </div>
+    <div class="col col-sm-6">
+        <h2>The Teams</h2>
+        <p>You have chosen:</p>
+        <ol>
+            <li ng-repeat="team in data.yourteams">
+                {{team}}
+            </li>
+        </ol>
+        <p>The rest:</p>
+        <table>
+            <tr>
+                <th>Competition</th>
+                <th>Team</th>
+                <th>Username</th>
+                <th>Email</th>
+            </tr>
+            <tr ng-repeat="team in data.teams">
+                <td>{{team.competition}}</td>
+                <td>{{team.name}}</td>
+                <td>{{team.username}}</td>
+                <td>{{team.email}}</td>
+            </tr>
+        </table>
+    </div>
+
 </div>
 
 <div ng-hide="loggedin">

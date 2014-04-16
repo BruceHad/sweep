@@ -28,6 +28,7 @@ create table if not exists `sweep_user_team`(
     `swt_id` int(11) not null auto_increment,
     `team_id` varchar(50) not null,
     `user_id`  varchar(50) not null,
+    `group_id` BIGINT UNSIGNED not null,
     primary key (`swt_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 
 ;

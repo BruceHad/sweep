@@ -4,6 +4,14 @@
 		"selected_items":
 		[
 			[
+				"log",
+				"loggedin"
+			],
+			[
+				"com",
+				"competition"
+			],
+			[
 				"user",
 				"user_id"
 			],
@@ -22,10 +30,6 @@
 			[
 				"date",
 				"date_complete"
-			],
-			[
-				"log",
-				"log"
 			],
 			[
 				"da",
@@ -348,21 +352,18 @@
 	"buffers":
 	[
 		{
-			"contents": "'use strict';\n\n\n// Declare app level module which depends on filters, and services\nangular.module('myApp', [\n  'ngRoute',\n  'ngCookies',\n  'myApp.filters',\n  'myApp.services',\n  'myApp.directives',\n  'myApp.controllers'\n])\n// disabling routing as it isn't playing nicely\n// therefore partials are disabled\n// and I need to define the controller in the template.\n.config(['$routeProvider', function($routeProvider) {\n  $routeProvider.when('/choose/:comp/:group?', {templateUrl: 'partials/partial1.html', controller: 'MyCtrl1'});\n  $routeProvider.when('/register/:comp/:group?', {templateUrl: 'partials/partial2.html', controller: 'MyCtrl2'});\n  $routeProvider.when('/progress/:comp/:group?', {templateUrl: 'partials/partial3.html', controller: 'MyCtrl3'});\n  $routeProvider.when('/edit/:comp/:group?', {templateUrl: 'partials/partial4.html', controller: 'MyCtrl4'});\n  $routeProvider.otherwise({redirectTo: '/register/:comp/:group?  '});\n}])\n;\n",
-			"file": "app/js/app.js",
-			"file_size": 941,
-			"file_write_time": 1396726227000000,
+			"file": "app/js/controllers.js",
 			"settings":
 			{
-				"buffer_size": 943,
+				"buffer_size": 8655,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "app/js/controllers.js",
+			"file": "app/ajax/addTeam.php",
 			"settings":
 			{
-				"buffer_size": 7346,
+				"buffer_size": 489,
 				"line_ending": "Unix"
 			}
 		},
@@ -370,7 +371,15 @@
 			"file": "app/ajax/getTeams.php",
 			"settings":
 			{
-				"buffer_size": 766,
+				"buffer_size": 965,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/ajax/getPicks.php",
+			"settings":
+			{
+				"buffer_size": 808,
 				"line_ending": "Unix"
 			}
 		},
@@ -378,7 +387,7 @@
 			"file": "app/partials/partial1.html",
 			"settings":
 			{
-				"buffer_size": 733,
+				"buffer_size": 1691,
 				"line_ending": "Unix"
 			}
 		},
@@ -386,15 +395,23 @@
 			"file": "app/css/main.css",
 			"settings":
 			{
-				"buffer_size": 1466,
+				"buffer_size": 1655,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "app/ajax/getUserGroups.php",
+			"file": "app/index.html",
 			"settings":
 			{
-				"buffer_size": 740,
+				"buffer_size": 4387,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/js/app.js",
+			"settings":
+			{
+				"buffer_size": 943,
 				"line_ending": "Unix"
 			}
 		},
@@ -455,18 +472,22 @@
 	},
 	"file_history":
 	[
-		"/home/treerock/Projects/sweep/app/index.html",
 		"/home/treerock/Projects/sweep/app/partials/partial3.html",
+		"/home/treerock/Projects/sweep/app/partials/partial2.html",
+		"/home/treerock/Projects/sweep/app/ajax/getUserGroups.php",
+		"/home/treerock/Projects/sweep/app/ajax/addTeam.php",
+		"/home/treerock/Projects/sweep/app/partials/partial1.html",
+		"/home/treerock/Projects/sweep/app/partials/partial4.html",
+		"/home/treerock/Projects/sweep/app/ajax/getPicks.php",
+		"/home/treerock/Projects/sweep/app/css/main.css",
+		"/home/treerock/Projects/sweep/app/js/app.js",
+		"/home/treerock/Projects/sweep/app/index.html",
 		"/home/treerock/Projects/sweep/app/ajax/addUser.php",
 		"/home/treerock/Projects/sweep/app/ajax/getUsers.php",
 		"/home/treerock/Projects/sweep/app/ajax/addGroup.php",
-		"/home/treerock/Projects/sweep/app/partials/partial2.html",
 		"/home/treerock/Projects/sweep/app/ajax/getGroups.php",
-		"/home/treerock/Projects/sweep/app/ajax/getUserGroups.php",
-		"/home/treerock/Projects/sweep/app/partials/partial4.html",
 		"/home/treerock/Projects/sweep/app/ajax/getComp.php",
 		"/home/treerock/Projects/sb-do-something/app/index.html",
-		"/home/treerock/Projects/sweep/app/partials/partial1.html",
 		"/home/treerock/Projects/sb-do-something/app/ajax/addTask.php",
 		"/home/treerock/Projects/sb-do-something/app/ajax/getUsers.php",
 		"/home/treerock/Projects/sb-do-something/app/js/controllers.js",
@@ -475,8 +496,6 @@
 		"/home/treerock/Projects/sweep/app/ajax/getTeams.php",
 		"/home/treerock/Projects/sweep/app/js/controllers.js",
 		"/home/treerock/Projects/sweep/docs/notes.md",
-		"/home/treerock/Projects/sweep/app/js/app.js",
-		"/home/treerock/Projects/sweep/app/css/main.css",
 		"/home/treerock/Projects/sweep/app/css/select2.css",
 		"/home/treerock/Projects/sb-helpdesk-redone/app/css/select2.css",
 		"/home/treerock/Downloads/select2-3.4.6/select2_locale_th.js",
@@ -580,13 +599,11 @@
 		"/home/treerock/Projects/sandbox/scripts/script.js",
 		"/home/treerock/Projects/sb-image-loading/index.html",
 		"/home/treerock/Projects/sandbox/README",
-		"/home/treerock/Projects/sandbox/css/base.css",
-		"/home/treerock/Projects/sandbox/index.txt",
-		"/home/treerock/Projects/sandbox/index.html"
+		"/home/treerock/Projects/sandbox/css/base.css"
 	],
 	"find":
 	{
-		"height": 46.0
+		"height": 44.0
 	},
 	"find_in_files":
 	{
@@ -600,6 +617,25 @@
 		"case_sensitive": true,
 		"find_history":
 		[
+			"$scope.data.group_id",
+			"pdatePicks",
+			"$scope.",
+			".main",
+			"getTeams",
+			"getPicks",
+			"loggedin",
+			"groups",
+			"userMessage",
+			"message",
+			"groups",
+			"group",
+			"competition",
+			".groups",
+			"$scope.competition",
+			"conso",
+			"    $team_id = $_GET['team']);\n    $user_id = $_GET['user'];\n    $group_id = $_GET['group'];\n",
+			"consol",
+			"{{comp}}",
 			"console",
 			".group",
 			"conso",
@@ -708,26 +744,7 @@
 			"#",
 			"#PS1",
 			"style=\"text-align:center\"",
-			"QT",
-			"_tkinter",
-			" ",
-			",",
-			"]",
-			"\\",
-			"'",
-			"[",
-			"centre",
-			"width",
-			"pos[0]",
-			"width",
-			"height",
-			"Beam",
-			"width",
-			"length",
-			"round",
-			"objects",
-			">\n",
-			"call"
+			"QT"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -774,51 +791,23 @@
 	"groups":
 	[
 		{
-			"selected": 3,
+			"selected": 0,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "app/js/app.js",
-					"settings":
-					{
-						"buffer_size": 943,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								932,
-								932
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 1,
 					"file": "app/js/controllers.js",
 					"settings":
 					{
-						"buffer_size": 7346,
+						"buffer_size": 8655,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								4780,
-								4780
+								3324,
+								3324
 							]
 						],
 						"settings":
@@ -828,7 +817,35 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 1948.0,
+						"translation.y": 1190.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "app/ajax/addTeam.php",
+					"settings":
+					{
+						"buffer_size": 489,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -838,15 +855,15 @@
 					"file": "app/ajax/getTeams.php",
 					"settings":
 					{
-						"buffer_size": 766,
+						"buffer_size": 965,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								93,
-								93
+								684,
+								684
 							]
 						],
 						"settings":
@@ -863,74 +880,18 @@
 				},
 				{
 					"buffer": 3,
-					"file": "app/partials/partial1.html",
+					"file": "app/ajax/getPicks.php",
 					"settings":
 					{
-						"buffer_size": 733,
+						"buffer_size": 808,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								327,
-								327
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/HTML/HTML.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"file": "app/css/main.css",
-					"settings":
-					{
-						"buffer_size": 1466,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1407,
-								1407
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/CSS/CSS.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 798.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 5,
-					"file": "app/ajax/getUserGroups.php",
-					"settings":
-					{
-						"buffer_size": 740,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								154,
-								154
+								0,
+								0
 							]
 						],
 						"settings":
@@ -944,15 +905,127 @@
 						"zoom_level": 1.0
 					},
 					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "app/partials/partial1.html",
+					"settings":
+					{
+						"buffer_size": 1691,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								552,
+								552
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 216.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "app/css/main.css",
+					"settings":
+					{
+						"buffer_size": 1655,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1512,
+								1512
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/CSS/CSS.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1026.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "app/index.html",
+					"settings":
+					{
+						"buffer_size": 4387,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 288.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "app/js/app.js",
+					"settings":
+					{
+						"buffer_size": 943,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
 				}
 			]
 		},
 		{
-			"selected": 1,
+			"selected": 0,
 			"sheets":
 			[
 				{
-					"buffer": 6,
+					"buffer": 8,
 					"file": "docs/notes.md",
 					"settings":
 					{
@@ -978,7 +1051,7 @@
 					"type": "text"
 				},
 				{
-					"buffer": 7,
+					"buffer": 9,
 					"file": "/home/treerock/Projects/sb-do-something/app/js/controllers.js",
 					"settings":
 					{
@@ -1006,7 +1079,7 @@
 					"type": "text"
 				},
 				{
-					"buffer": 8,
+					"buffer": 10,
 					"file": "/home/treerock/Projects/sb-do-something/app/partials/partial1.html",
 					"settings":
 					{
@@ -1034,7 +1107,7 @@
 					"type": "text"
 				},
 				{
-					"buffer": 9,
+					"buffer": 11,
 					"file": "/home/treerock/Projects/sb-do-something/app/partials/partial2.html",
 					"settings":
 					{
@@ -1090,7 +1163,7 @@
 		"cols":
 		[
 			0.0,
-			0.659590043924,
+			0.660322108345,
 			1.0
 		],
 		"rows":

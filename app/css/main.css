@@ -76,15 +76,14 @@ button.invalid {
 .teamlist .highlight {
     border: 1px solid red;
 }
-.teamlist .fade {
+.teamlist.fade {
   opacity: 0.3;
+  height: 0;
+  overflow: hidden;
 }
 .teamlist .fade.in {
-    visibility: visible;
+  visibility: visible;
   opacity: 1;
-}
-.teamlist .myhide{
-    visibility: hidden;
 }
 
 .right section {
