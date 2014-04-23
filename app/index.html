@@ -52,8 +52,8 @@
         </ul>
         
         <p class="navbar-text navbar-right"> | <a href="#/edit/{{comp}}">Groups</a></p>
-        <p class="navbar-text navbar-right" ng-hide="loggedin"><a href="#/register/{{comp}}">Register to Play</a></p>
-        <div ng-hide="loggedin">
+        <p class="navbar-text navbar-right" ng-hide="user.loggedin"><a href="#/register/{{comp}}">Register to Play</a></p>
+        <div ng-hide="user.loggedin">
           <form class="navbar-form navbar-right" ng-submit="login(form.email)">
             <div class="form-group">
               <input type="email" placeholder="Enter Email Address" class="form-control" ng-model="form.email">
@@ -61,13 +61,14 @@
             <button type="submit" class="btn">Sign in</button>
           </form>
         </div>
-        <p ng-show="loggedin" class="navbar-text navbar-right">Logged in as <strong>{{user.username}}</strong> <a href="" ng-click="logout()">Logout</a></p>
+        <p ng-show="user.loggedin" class="navbar-text navbar-right">Logged in as <strong>{{user.username}}</strong> <a href="" ng-click="logout()">Logout</a></p>
       </div><!--/.navbar-collapse -->
     </div>
   </div>
 
     <div class="container">
       <p ng-show="userMessage" class="alert alert-danger">{{userMessage}}</p>
+      <p>User:{{user}}<p>
       <div class="ng-view"></div>
       <footer>
         <p>&copy; Company 2013</p>

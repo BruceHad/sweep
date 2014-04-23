@@ -3,21 +3,19 @@
 /* Controllers */
 
 angular.module('myApp.controllers', [])
-    .controller('MainCtrl', ['$scope', '$http',  '$cookieStore', function($scope, $http, $cookieStore){
-        $scope.loggedin = false;
-        $scope.user = {};
-        if($cookieStore.get('loggedin')){
-            $scope.user.id = $cookieStore.get('id');
-            $scope.loggedin = true;
-            $scope.user.username = $cookieStore.get('username');
-            $scope.user.email = $cookieStore.get('email');
+    .controller('MainCtrl', ['$scope', '$http',  '$cookies', function($scope, $http, $cookies){
+        
+        $scope.user = {"loggedin":"false"}
+        if($cookies.loggedin == "true") {
+            $scope.user = $cookies;
         }
+        console.log($scope.user);
+        console.log($cookies);
         $scope.$watch('form.email', function(newValue, oldValue) {
             $scope.userMessage = "";
         });
 
         $scope.init = function(params){
-
             if(typeof params.comp != 'undefined'){
                 // Set the competition id and get competition name.
                 $scope.comp = params.comp;
@@ -39,38 +37,38 @@ angular.module('myApp.controllers', [])
             else {
                 $scope.group = '';
             }
-            if($scope.loggedin){
-                $http.get("ajax/getUserGroups.php?id="+$scope.user.id).success(function(data){
-                    $scope.userGroups = data;
-                });
-            }
         };
 
        $scope.login = function(email) {
             $http.get("ajax/getUsers.php", {params: {'email': email}}).success(function(data){
                 if(typeof data == 'object'){
-                    $scope.user.id = data[0].user_id;
-                    $scope.user.username = data[0].username;
-                    $scope.user.email = data[0].email;
-                    $scope.loggedin = true;
-                    $cookieStore.put('id', data[0].user_id);
-                    $cookieStore.put('loggedin', true);
-                    $cookieStore.put('username', data[0].username);
-                    $cookieStore.put('email', data[0].email);
+                    $scope.user = {
+                        "id": data[0].user_id,
+                        "username": data[0].username,
+                        "email": data[0].email,
+                        "url": data[0].av_url,
+                        "loggedin": "true"
+                    };
+                    for(var prop in $scope.user){
+                        $cookies[prop] = $scope.user[prop];
+                    }
                 } 
                 else {
                     $scope.userMessage = "Invalid user: " + email;
                 }
+                console.log($scope.user);
+                console.log($cookies);
             });
+
         };
         $scope.logout = function(){
-            $cookieStore.remove('id');
-            $cookieStore.remove('loggedin');
-            $cookieStore.remove('username');
-            $cookieStore.remove('email');
-            $scope.user = {};
-            $scope.data = {};
-            $scope.loggedin = false;
+            for (var prop in $cookies){
+                delete $cookies[prop];
+            }
+            $scope.user = {"loggedin": "false"};
+            $cookies = $scope.user;
+            console.log($scope.user);
+            console.log($cookies);
         };
 
     }])
@@ -82,15 +80,18 @@ angular.module('myApp.controllers', [])
         $scope.data.maxpicks = 2;
 
         function getGroups(){
-            if($scope.loggedin){
+            // console.log($scope.user);
+            // Gets the groups that the user is registered with.
+            if($scope.user.loggedin){
                 $http.get("ajax/getUserGroups.php?id="+$scope.user.id).success(function(data){
                     if(data.length == 1){
                         $scope.data.group_id = data[0].group_id;
                         getPicks(data);
                         getTeams(data);
                     } 
-                    else if(data.length > 1) {
-                        console.log("More than one");
+                    else if(typeof data != 'object' || data.length > 1) {
+                        // console.log("User is registered with more than one group");
+                        // console.log(data);
                     }
                 });
             }

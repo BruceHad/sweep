@@ -4,6 +4,10 @@
 		"selected_items":
 		[
 			[
+				"co",
+				"console"
+			],
+			[
 				"log",
 				"loggedin"
 			],
@@ -122,10 +126,6 @@
 			[
 				"fo",
 				"font-style"
-			],
-			[
-				"co",
-				"converted"
 			],
 			[
 				"a",
@@ -355,31 +355,7 @@
 			"file": "app/js/controllers.js",
 			"settings":
 			{
-				"buffer_size": 8655,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "app/ajax/addTeam.php",
-			"settings":
-			{
-				"buffer_size": 489,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "app/ajax/getTeams.php",
-			"settings":
-			{
-				"buffer_size": 965,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "app/ajax/getPicks.php",
-			"settings":
-			{
-				"buffer_size": 808,
+				"buffer_size": 8570,
 				"line_ending": "Unix"
 			}
 		},
@@ -387,7 +363,7 @@
 			"file": "app/partials/partial1.html",
 			"settings":
 			{
-				"buffer_size": 1691,
+				"buffer_size": 1785,
 				"line_ending": "Unix"
 			}
 		},
@@ -403,7 +379,7 @@
 			"file": "app/index.html",
 			"settings":
 			{
-				"buffer_size": 4387,
+				"buffer_size": 4428,
 				"line_ending": "Unix"
 			}
 		},
@@ -472,28 +448,28 @@
 	},
 	"file_history":
 	[
+		"/home/treerock/Projects/sweep/app/ajax/getComp.php",
+		"/home/treerock/Projects/sweep/app/ajax/getGroups.php",
+		"/home/treerock/Projects/sweep/app/ajax/getTeams.php",
+		"/home/treerock/Projects/sweep/app/ajax/getUserGroups.php",
+		"/home/treerock/Projects/sweep/app/ajax/getPicks.php",
+		"/home/treerock/Projects/sweep/app/ajax/getUsers.php",
+		"/home/treerock/Projects/sweep/app/ajax/addTeam.php",
 		"/home/treerock/Projects/sweep/app/partials/partial3.html",
 		"/home/treerock/Projects/sweep/app/partials/partial2.html",
-		"/home/treerock/Projects/sweep/app/ajax/getUserGroups.php",
-		"/home/treerock/Projects/sweep/app/ajax/addTeam.php",
 		"/home/treerock/Projects/sweep/app/partials/partial1.html",
 		"/home/treerock/Projects/sweep/app/partials/partial4.html",
-		"/home/treerock/Projects/sweep/app/ajax/getPicks.php",
 		"/home/treerock/Projects/sweep/app/css/main.css",
 		"/home/treerock/Projects/sweep/app/js/app.js",
 		"/home/treerock/Projects/sweep/app/index.html",
 		"/home/treerock/Projects/sweep/app/ajax/addUser.php",
-		"/home/treerock/Projects/sweep/app/ajax/getUsers.php",
 		"/home/treerock/Projects/sweep/app/ajax/addGroup.php",
-		"/home/treerock/Projects/sweep/app/ajax/getGroups.php",
-		"/home/treerock/Projects/sweep/app/ajax/getComp.php",
 		"/home/treerock/Projects/sb-do-something/app/index.html",
 		"/home/treerock/Projects/sb-do-something/app/ajax/addTask.php",
 		"/home/treerock/Projects/sb-do-something/app/ajax/getUsers.php",
 		"/home/treerock/Projects/sb-do-something/app/js/controllers.js",
 		"/home/treerock/Projects/sb-do-something/app/js/app.js",
 		"/home/treerock/Projects/sb-helpdesk-redone/app/index.html",
-		"/home/treerock/Projects/sweep/app/ajax/getTeams.php",
 		"/home/treerock/Projects/sweep/app/js/controllers.js",
 		"/home/treerock/Projects/sweep/docs/notes.md",
 		"/home/treerock/Projects/sweep/app/css/select2.css",
@@ -617,6 +593,15 @@
 		"case_sensitive": true,
 		"find_history":
 		[
+			"console",
+			"cons",
+			"cono",
+			"consol",
+			"loggedin",
+			"$scope.loggedin",
+			"$cookieStore",
+			"consol",
+			"cookieStore",
 			"$scope.data.group_id",
 			"pdatePicks",
 			"$scope.",
@@ -735,16 +720,7 @@
 			"navbar",
 			"text-decoration: none",
 			"underline",
-			"list-style",
-			"navbar-nav",
-			"navbar-header",
-			"navbar-fixed-top",
-			"navbar",
-			"www",
-			"#",
-			"#PS1",
-			"style=\"text-align:center\"",
-			"QT"
+			"list-style"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -752,6 +728,9 @@
 		"regex": false,
 		"replace_history":
 		[
+			"user.loggedin",
+			"$scope.user.loggedin",
+			"$cookies",
 			"),",
 			"",
 			"col-sm-9",
@@ -791,7 +770,7 @@
 	"groups":
 	[
 		{
-			"selected": 0,
+			"selected": 1,
 			"sheets":
 			[
 				{
@@ -799,15 +778,15 @@
 					"file": "app/js/controllers.js",
 					"settings":
 					{
-						"buffer_size": 8655,
+						"buffer_size": 8570,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								3324,
-								3324
+								374,
+								374
 							]
 						],
 						"settings":
@@ -817,109 +796,25 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 1190.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
 					"buffer": 1,
-					"file": "app/ajax/addTeam.php",
-					"settings":
-					{
-						"buffer_size": 489,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/PHP/PHP.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "app/ajax/getTeams.php",
-					"settings":
-					{
-						"buffer_size": 965,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								684,
-								684
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/PHP/PHP.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "app/ajax/getPicks.php",
-					"settings":
-					{
-						"buffer_size": 808,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/PHP/PHP.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 4,
 					"file": "app/partials/partial1.html",
 					"settings":
 					{
-						"buffer_size": 1691,
+						"buffer_size": 1785,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								552,
-								552
+								1001,
+								1001
 							]
 						],
 						"settings":
@@ -929,13 +824,13 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 216.0,
+						"translation.y": 378.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
-					"buffer": 5,
+					"buffer": 2,
 					"file": "app/css/main.css",
 					"settings":
 					{
@@ -953,7 +848,7 @@
 						"settings":
 						{
 							"syntax": "Packages/CSS/CSS.tmLanguage",
-							"tab_size": 2,
+							"tab_size": 4,
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
@@ -963,19 +858,19 @@
 					"type": "text"
 				},
 				{
-					"buffer": 6,
+					"buffer": 3,
 					"file": "app/index.html",
 					"settings":
 					{
-						"buffer_size": 4387,
+						"buffer_size": 4428,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								0
+								1277,
+								1277
 							]
 						],
 						"settings":
@@ -985,13 +880,13 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 288.0,
+						"translation.y": 576.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
-					"buffer": 7,
+					"buffer": 4,
 					"file": "app/js/app.js",
 					"settings":
 					{
@@ -1025,7 +920,7 @@
 			"sheets":
 			[
 				{
-					"buffer": 8,
+					"buffer": 5,
 					"file": "docs/notes.md",
 					"settings":
 					{
@@ -1051,7 +946,7 @@
 					"type": "text"
 				},
 				{
-					"buffer": 9,
+					"buffer": 6,
 					"file": "/home/treerock/Projects/sb-do-something/app/js/controllers.js",
 					"settings":
 					{
@@ -1079,7 +974,7 @@
 					"type": "text"
 				},
 				{
-					"buffer": 10,
+					"buffer": 7,
 					"file": "/home/treerock/Projects/sb-do-something/app/partials/partial1.html",
 					"settings":
 					{
@@ -1107,7 +1002,7 @@
 					"type": "text"
 				},
 				{
-					"buffer": 11,
+					"buffer": 8,
 					"file": "/home/treerock/Projects/sb-do-something/app/partials/partial2.html",
 					"settings":
 					{
