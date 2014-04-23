@@ -1,52 +1,57 @@
-<h2>{{competition}} Sweep <small>{{data.view}}</small></h2>
-<div class="row teamlist" ng-show="user.loggedin && ! data.complete">
-    <div class="col col-sm-8 ">
-        <section>
-            <div ng-repeat="team in data.teams">
-                <div class="clearfix teambox"
-                ng-class="{highlight : team.name == data.team}">{{team.name}}</div>
-            </div>
-        </section>
-    </div>
-    <div class="col col-sm-4 right">
-        <section>
-            <p>Hello {{user.username}}, you have joined <strong>{{data.group_name}}</strong> You've selected {{data.yourteams.length}} teams in the sweep so you have {{data.maxpicks-data.yourteams.length}} teams remaining.</p>
-            <button ng-click="pickTeam()" ng-disabled="data.complete || !user.loggedin" class="btn btn-primary">Pick a team</button>
-        </section>
-    </div>
+<div ng-show="user.loggedin">
+	<div class="row teamlist" ng-show="!data.complete">
+		<div class="col col-sm-8 ">
+			<section>
+				<div ng-repeat="team in data.teams">
+					<div class="clearfix teambox"
+					ng-class="{highlight : team.name == data.team}">{{team.name}}</div>
+				</div>
+			</section>
+		</div>
+		<div class="col col-sm-4 right">
+			<section>
+				<p>Hello {{user.username}}, you have joined <strong>{{data.group_name}}</strong> You've selected {{data.yourteams.length}} teams in the sweep so you have {{data.maxpicks-data.yourteams.length}} teams remaining.</p>
+				<button ng-click="pickTeam()" ng-disabled="data.complete || !user.loggedin" class="btn btn-primary">Pick a team</button>
+			</section>
+		</div>
 
-</div>
-<div class="row sweep" ng-show="user.loggedin && data.complete">
-    <div class="col col-sm-6">
-        <!-- <h2>{{user.username}}</h2> -->
-    </div>
-    <div class="col col-sm-6">
-        <h2>The Teams</h2>
-        <p>You have chosen:</p>
-        <ol>
-            <li ng-repeat="team in data.yourteams">
-                {{team}}
-            </li>
-        </ol>
-        <p>The rest:</p>
-        <table class="table">
-            <tr>
-                <th>Competition</th>
-                <th>Team</th>
-                <th>Username</th>
-                <th>Email</th>
-            </tr>
-            <tr ng-repeat="team in data.teams">
-                <td>{{team.competition}}</td>
-                <td>{{team.name}}</td>
-                <td>{{team.username}}</td>
-                <td>{{team.email}}</td>
-            </tr>
-        </table>
-    </div>
+	</div>
+	<div class="row sweep" ng-show="data.complete">
+		<div class="col col-sm-6">
+			<!-- <h2>{{user.username}}</h2> -->
+		</div>
+		<div class="col col-sm-6">
+			<h2>The Teams</h2>
+			<p>You have chosen:</p>
+			<ol>
+				<li ng-repeat="team in data.yourteams">
+					{{team}}
+				</li>
+			</ol>
+			<p>The rest:</p>
+			<table class="table">
+				<tr>
+					<th>Competition</th>
+					<th>Team</th>
+					<th>Username</th>
+					<th>Email</th>
+				</tr>
+				<tr ng-repeat="team in data.teams">
+					<td>{{team.competition}}</td>
+					<td>{{team.name}}</td>
+					<td>{{team.username}}</td>
+					<td>{{team.email}}</td>
+				</tr>
+			</table>
+		</div>
 
+	</div>
 </div>
 
 <div ng-hide="user.loggedin">
-    <p>You have to log in.</p>
+	<div class="row ">
+		<div class="col col-sm-6">
+			<p>You have to log in.</p>
+		</div>
+	</div>
 </div>

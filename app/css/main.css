@@ -4,6 +4,14 @@
    Author's custom styles
    ========================================================================== */
 
+/* Random
+-------------------------------------------*/
+
+.loading {
+	text-align: center;
+	margin: 50px 0;
+}
+
 /* Form and form validation
 -------------------------------------------*/
 .input-group-addon, label {

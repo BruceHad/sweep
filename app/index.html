@@ -31,7 +31,7 @@
         <script src="js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
         <link href="css/select2.css" rel="stylesheet">
     </head>
-    <body ng-controller="MainCtrl">
+    <body ng-controller="MainCtrl" ng-cloak>
         <!--[if lt IE 7]>
             <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
         <![endif]-->
@@ -47,10 +47,8 @@
       </div>
       <div class="navbar-collapse collapse">
         <ul class="nav navbar-nav">
-          <li><a href="#/choose/{{comp}}/{{group}}" class="active">Choose Team</a></li>
-          <li><a href="#/progress/{{comp}}/{{group}}">Progress</a></li>
-        </ul>
-        
+          <li><a href="#/play/{{comp}}/{{group}}" class="active">Play</a></li>
+        </ul>    
         <p class="navbar-text navbar-right"> | <a href="#/edit/{{comp}}">Groups</a></p>
         <p class="navbar-text navbar-right" ng-hide="user.loggedin"><a href="#/register/{{comp}}">Register to Play</a></p>
         <div ng-hide="user.loggedin">
@@ -67,11 +65,12 @@
   </div>
 
     <div class="container">
-      <p ng-show="userMessage" class="alert alert-danger">{{userMessage}}</p>
-      <p>User:{{user}}<p>
+	  <h1>Sweep</h1>
       <div class="ng-view"></div>
       <footer>
         <p>&copy; Company 2013</p>
+		<p>Message: {{user_message}}</p>
+		<p>User: {{user}}</p>
       </footer>
     </div> <!-- /container -->  
 

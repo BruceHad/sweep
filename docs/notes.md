@@ -1,4 +1,5 @@
 # Basic Structure
+
 Competition (e.g. world cup).
 
 Each Competition has a list of Teams.
@@ -16,6 +17,7 @@ Want to make it as easy as possible to send people to the right place. So the UR
 That means the Ids should be fairly random (not just incremented integers), to make it difficult to accidentally move between competitions.
 
 There also needs to be some verification, that means a user must sign in to view a page, and won't be able to view a page they aren't specifically allowed to.
+
 No need for passwords for now, trust the users to enter their own user name.
 
 # Login/Register

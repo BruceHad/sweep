@@ -6,37 +6,35 @@ angular.module('myApp.controllers', [])
     .controller('MainCtrl', ['$scope', '$http',  '$cookies', function($scope, $http, $cookies){
         
         $scope.user = {"loggedin":"false"}
+		$scope.user_message = "All good.";
+		$scope.competition = {};
         if($cookies.loggedin == "true") {
             $scope.user = $cookies;
         }
-        console.log($scope.user);
-        console.log($cookies);
-        $scope.$watch('form.email', function(newValue, oldValue) {
-            $scope.userMessage = "";
-        });
+        $scope.initComp = function(params){
+			// Set the competition id and get competition name
+			console.log(params.comp);
+			$http.get("ajax/getComp.php?comp="+params.comp).success(function(data){
+				if(typeof data == 'object'){
+					$scope.competition.name = data[0].name;
+					$scope.competition.id = params.comp;
+				} 
+				else {
+					$scope.competition.name = "NF";
+					$scope.user_message = "Something wrong with Competition";
+				}
 
-        $scope.init = function(params){
-            if(typeof params.comp != 'undefined'){
-                // Set the competition id and get competition name.
-                $scope.comp = params.comp;
-                $http.get("ajax/getComp.php?comp="+$scope.comp).success(function(data){
-                    $scope.competition = data[0].name;
-                });
-                // Get all the groups
-                $http.get("ajax/getGroups.php?comp="+$scope.comp).success(function(data){
-                    $scope.groups = data;
-                });
-            } 
-            else {
-                $scope.comp = '';
-            }
-
+			});
+		};
+			
+		$scope.initGroup = function(params){
             if(typeof params.group != 'undefined'){
                 $scope.group = params.group;
             } 
             else {
                 $scope.group = '';
             }
+			return true;
         };
 
        $scope.login = function(email) {
@@ -54,10 +52,8 @@ angular.module('myApp.controllers', [])
                     }
                 } 
                 else {
-                    $scope.userMessage = "Invalid user: " + email;
+                    $scope.user_message = "Invalid user: " + email;
                 }
-                console.log($scope.user);
-                console.log($cookies);
             });
 
         };
@@ -67,9 +63,13 @@ angular.module('myApp.controllers', [])
             }
             $scope.user = {"loggedin": "false"};
             $cookies = $scope.user;
-            console.log($scope.user);
-            console.log($cookies);
         };
+		
+		// Watchers
+		$scope.$watch('form.email', function(newValue, oldValue) {
+			// If email address changes, clear the userMessage.
+//             $scope.user_message = "";
+        });
 
     }])
     .controller('MyCtrl1', ['$scope', '$http', '$routeParams', function($scope, $http, $routeParams) {
@@ -80,7 +80,6 @@ angular.module('myApp.controllers', [])
         $scope.data.maxpicks = 2;
 
         function getGroups(){
-            // console.log($scope.user);
             // Gets the groups that the user is registered with.
             if($scope.user.loggedin){
                 $http.get("ajax/getUserGroups.php?id="+$scope.user.id).success(function(data){
@@ -121,7 +120,6 @@ angular.module('myApp.controllers', [])
             });
         };
         function updatePicks(team){
-            console.log($scope.data.group_id);
             $http.get("ajax/addTeam.php?user="+$scope.user.id+"&team="+team+"&group="+$scope.data.group_id).success(function(data){
                 console.log(data);
             });
@@ -142,7 +140,6 @@ angular.module('myApp.controllers', [])
                             var team_id = $scope.data.teams[rand].team_id;
                             i++;
                         } else {
-                            // console.log("Not Found");
                             myLoop(0);
                             // return;
                         }                        
@@ -166,7 +163,15 @@ angular.module('myApp.controllers', [])
         };
         // Watchers
         $scope.$watch("loggedin", function(newValue, oldValue) {
-            getGroups(); // This should find the group then get the teams.
+			if($scope.user.loggedin){
+				getGroups(); 
+			}
+			else {
+				$scope.data = {};
+				$scope.data.view = "Select Your Teams";
+				$scope.data.yourteams = [];
+				$scope.data.maxpicks = 2;
+			}
         });
     }])
     .controller('MyCtrl2', ['$scope', '$http', '$routeParams', function($scope, $http, $routeParams) {
@@ -193,22 +198,54 @@ angular.module('myApp.controllers', [])
         $scope.data.view = "Who is winning";
     }])
     .controller('MyCtrl4', ['$scope', '$http', '$routeParams', function($scope, $http, $routeParams) {
-        $scope.data = {};
-        $scope.data.view = "Edit All The Things";
+        $scope.data = {
+			view: "Manage Groups",
+			loading: true,
+			user_message: false,
+			competition_set: false
+		};
         $scope.form = {};
-        $scope.init($routeParams);
-        $scope.form.comp_id = $scope.comp;
-        $scope.addGroup = function(form){
-            $http.get("ajax/addGroup.php?comp="+$scope.comp+"&group_name="+$scope.form.group_name)
+        $scope.initComp($routeParams);
+		function getGroups(){
+			$http.get("ajax/getGroups.php?comp="+$scope.competition.id).success(function(data){
+				if(typeof data == 'object'){
+					$scope.groups = data;
+					$scope.data.loading = false;
+					$scope.data.loaded = true;
+				} 
+				else {
+					$scope.data.user_message = "Competition can't be found. Please check the address.";
+				}				
+			})
+			.error(function(data){
+				console.log(data);
+			});
+		}
+		
+        $scope.addGroup = function(){
+            $http.get("ajax/addGroup.php?comp="+$scope.competition.id+"&group_name="+$scope.form.group_name)
             .success(function(data){
-                $scope.data.message = data;
+                $scope.data.response = data;
                 $scope.form = {};
                 $scope.init($routeParams);
                 form.$setPristine();
             }).
             error(function(data){
-                $scope.data.message = data;
+                $scope.data.user_message = data;
             });
         };
+		// Watchers
+		$scope.$watch('competition.name', function(newValue, oldValue) {
+			// Watch for a valid competition being set.
+			// then get groups.
+			if (newValue == "NF"){
+				$scope.data.user_message = "Competion not found. Please check address.";
+				$scope.data.loading = false;
+			}
+			else if(newValue != 'undefined'){
+				$scope.form.comp_id = $scope.competition.id;
+				getGroups();
+			}
+        });
     }])
 ;

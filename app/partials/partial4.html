@@ -1,29 +1,46 @@
-<h2>{{competition}} Sweep <small>{{data.view}}</small></h2>
-<h2>Groups</h2>
-<div class="container">
-    <div class="row">
-        <div class="col col-sm-7">
-            <table class="table">
-                <tr>
-                    <th>Group Id</th>
-                    <th>Name</th>
-                    <th>Competition</th>
-                    <th></th>
-                </tr>
-                <tr ng-repeat="group in groups">
-                    <td>{{group.group_id}}</td>
-                    <td>{{group.group_name}}</td>
-                    <td>{{group.comp_id}}</td>
-                    <td><a href="#/register/{{comp}}/{{group.group_id}}">Register to Play</a></td>
-                </tr>
-            </table>
-        </div>
-        <div class="col col-sm-3">
-            <form name="add" class="form-inline">
-                <input type="text" class="form-control" ng-model="form.group_name" required placeholder="Enter Name" />
-                <button class="btn btn-default" ng-click="addGroup(add)">Add</button>
-            </form>
-            <p class="alert alert-info" ng-show="data.message">{{data.message}}</p>
-        </div>
-    </div>
+<div ng-show="data.user_message" class="alert alert-warning">
+	<p>{{data.user_message}}</p>
+</div>
+<div ng-show="data.loaded">
+	<h2>{{competition.name}} <small>{{data.view}}</small></h2>
+	<div class="row">
+		<div class="col col-sm-7">
+			<h3>Sweep Teams playing <em>{{competition.name}}</em></h3>
+			<table class="table">
+				<tr>
+					<th>Group Id</th>
+					<th>Name</th>
+					<th>Competition</th>
+					<th></th>
+					<th></th>
+				</tr>
+				<tr ng-repeat="group in groups">
+					<td>{{group.group_id}}</td>
+					<td>{{group.group_name}}</td>
+					<td>{{group.comp_id}}</td>
+					<td><a href="#/register/{{comp}}/{{group.group_id}}">Register</a></td>
+					<td><a href="#/play/{{comp}}/{{group.group_id}}">Play</a></td>
+				</tr>
+			</table>
+		</div>
+		<div class="col col-sm-3">
+			<h3>Add New Group</h3>
+			<form name="add" class="form-inline">
+				<input type="text" class="form-control" ng-model="form.group_name" required placeholder="Enter Name" />
+				<button class="btn btn-default" ng-click="addGroup(add)">Add</button>
+			</form>
+			<p class="alert alert-info" ng-show="data.response">{{data.response}}</p>
+		</div>
+	</div>
+</div>
+
+<div ng-show="data.loading" class="loading">
+	<div class="row">
+		<div class="col col-sm-7">
+			<img src="css/select2-spinner.gif" />
+		</div>
+		<div class="col col-sm-3">
+			<img src="css/select2-spinner.gif" />
+		</div>
+	</div>
 </div>
