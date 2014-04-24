@@ -54,10 +54,10 @@
                     <li><a href="#/play/{{comp}}/{{group}}" class="active">Play</a>
                     </li>
                 </ul>
-                <p class="navbar-text navbar-right">| <a href="#/edit/{{comp}}">Groups</a>
+                <p class="navbar-text navbar-right">| <a href="#/edit/{{competition.id}}">Groups</a>
                 </p>
-                <p class="navbar-text navbar-right" ng-hide="user.loggedin"><a href="#/register/{{comp}}">Register to Play</a>
-                </p>
+               <!-- <p class="navbar-text navbar-right" ng-hide="user.loggedin"><a href="#/register/{{competition.id}}">Register to Play</a>
+                </p> -->
                 <div ng-hide="user.loggedin">
                     <form class="navbar-form navbar-right" ng-submit="login(form.email)">
                         <div class="form-group">
