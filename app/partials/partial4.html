@@ -18,18 +18,20 @@
 					<td>{{group.group_id}}</td>
 					<td>{{group.group_name}}</td>
 					<td>{{group.comp_id}}</td>
-					<td><a href="#/register/{{comp}}/{{group.group_id}}">Register</a></td>
-					<td><a href="#/play/{{comp}}/{{group.group_id}}">Play</a></td>
+<!-- 					<td><a href="#/register/{{competition.id}}/{{group.group_id}}">Register</a></td> -->
+					<td><a href="#/play/{{competition.id}}/{{group.group_id}}">Play</a></td>
 				</tr>
 			</table>
 		</div>
 		<div class="col col-sm-3">
 			<h3>Add New Group</h3>
-			<form name="add" class="form-inline">
-				<input type="text" class="form-control" ng-model="form.group_name" required placeholder="Enter Name" />
-				<button class="btn btn-default" ng-click="addGroup(add)">Add</button>
+			<form role="form" name="add" class="form" ng-submit="addGroup(add)">
+				<div class="form-group">
+					<input type="text" class="form-control" ng-model="form.group_name" required placeholder="Enter Name for Group" />
+				</div>
+				<button type="submit" class="btn btn-default">Add Group</button>
 			</form>
-			<p class="alert alert-info" ng-show="data.response">{{data.response}}</p>
+			<p class="alert alert-info" style="margin-top:20px" ng-show="data.response">{{data.response}}</p>
 		</div>
 	</div>
 </div>

@@ -13,7 +13,6 @@ angular.module('myApp.controllers', [])
         }
         $scope.initComp = function(params){
 			// Set the competition id and get competition name
-			console.log(params.comp);
 			$http.get("ajax/getComp.php?comp="+params.comp).success(function(data){
 				if(typeof data == 'object'){
 					$scope.competition.name = data[0].name;
@@ -121,12 +120,11 @@ angular.module('myApp.controllers', [])
         };
         function updatePicks(team){
             $http.get("ajax/addTeam.php?user="+$scope.user.id+"&team="+team+"&group="+$scope.data.group_id).success(function(data){
-                console.log(data);
+//                 console.log(data);
             });
         };
         $scope.pickTeam = function() {
             if($scope.data.picks >= $scope.data.maxpicks){
-                console.log("Max picks exceeded");
                 return;
             }
             var i = 1;
@@ -209,30 +207,29 @@ angular.module('myApp.controllers', [])
 		function getGroups(){
 			$http.get("ajax/getGroups.php?comp="+$scope.competition.id).success(function(data){
 				if(typeof data == 'object'){
+					$scope.data.user_message = "";
 					$scope.groups = data;
 					$scope.data.loading = false;
 					$scope.data.loaded = true;
+					
 				} 
 				else {
-					$scope.data.user_message = "Competition can't be found. Please check the address.";
+					$scope.groups = {};
+					$scope.data.loading = false;
 				}				
 			})
-			.error(function(data){
-				console.log(data);
-			});
 		}
 		
-        $scope.addGroup = function(){
+        $scope.addGroup = function(form){
+			console.log($scope.form.group_name);
             $http.get("ajax/addGroup.php?comp="+$scope.competition.id+"&group_name="+$scope.form.group_name)
             .success(function(data){
+				console.log("success");
                 $scope.data.response = data;
                 $scope.form = {};
-                $scope.init($routeParams);
                 form.$setPristine();
-            }).
-            error(function(data){
-                $scope.data.user_message = data;
-            });
+				getGroups();
+            })
         };
 		// Watchers
 		$scope.$watch('competition.name', function(newValue, oldValue) {
@@ -240,7 +237,6 @@ angular.module('myApp.controllers', [])
 			// then get groups.
 			if (newValue == "NF"){
 				$scope.data.user_message = "Competion not found. Please check address.";
-				$scope.data.loading = false;
 			}
 			else if(newValue != 'undefined'){
 				$scope.form.comp_id = $scope.competition.id;

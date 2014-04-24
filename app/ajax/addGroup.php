@@ -12,7 +12,7 @@ if(isset($_GET['group_name'])){
     (`group_id`, `group_name`, `comp_id`)
     values
     ('$id', '$group_name', '$comp')
-    ;") or die(mysql_error());
+    ;") or die($id . " : " . mysql_error());
      
     # JSON-encode the response
     echo $group_name . " inserted into sweep_groups";
