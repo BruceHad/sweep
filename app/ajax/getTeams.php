@@ -10,7 +10,7 @@ if(isset($_GET['comp'])){
             st.team_id,
             st.name,
             st.status,
-            st.competition,
+            st.comp_id,
             sut.user_id,
             sut.group_id,
             su.username,
@@ -21,7 +21,7 @@ if(isset($_GET['comp'])){
             on (st.team_id = sut.team_id)
             left outer join sweep_users su
             on (su.user_id = sut.user_id)
-        where st.competition = '$comp'
+        where st.comp_id = '$comp'
         and (sut.group_id = '$group' or sut.group_id is null)
     ;") or die(mysql_error());
      

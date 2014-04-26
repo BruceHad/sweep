@@ -15,7 +15,7 @@
 				</div>
             </div>
 			<div class="col-sm-offset-3 col-sm-9">
-            	<button type="submit" class="btn btn-default">Login or Pick Teams</button>
+            	<button type="submit" class="btn btn-default" ng-disabled="data.user_exists">Pick Teams</button>
 			</div>
         </form>
         <p class="alert alert-info" style="margin-top:20px" ng-show="data.response">{{data.response}}</p>
@@ -23,17 +23,24 @@
     </div>
     <div class="col col-sm-6">
 		<h2>The Teams</h2>
-        <table class="table">
+        <table class="table teamlist">
             <tr>
                 <th>Team</th>
                 <th>Username</th>
                 <th>Email</th>
             </tr>
-            <tr ng-repeat="team in data.teams">
-                <td>{{team.name}}</td>
+            <tr ng-repeat="team in data.teams" ng-class="{picked: team.email}">
+                <td>{{team.team_id}}. {{team.name}}</td>
                 <td>{{team.username}}</td>
                 <td>{{team.email}}</td>
             </tr>
         </table>
     </div>
 </div>
+<div class="row">
+    <div class="col col-sm-6 col-sm-offset-3" id="all-picked" ng-show="data.all_picked">
+        <h2>All Picked!</h2>
+        <p>All teams have been picked.</p>
+    </div>
+</div>
+

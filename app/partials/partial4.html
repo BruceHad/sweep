@@ -1,7 +1,7 @@
 <div ng-show="data.user_message" class="alert alert-warning">
 	<p>{{data.user_message}}</p>
 </div>
-<div ng-show="data.loaded">
+<div ng-show="!data.loading">
 	<h2>{{competition.name}} <small>{{data.view}}</small></h2>
 	<div class="row">
 		<div class="col col-sm-7">

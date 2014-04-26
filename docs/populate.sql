@@ -1,16 +1,3 @@
-insert into `sweep_groups` 
-    (`group_id`, `group_name`, `comp_id`)
-values
-    ('BRECHI', 'Brechin Boys', 'WC2014'),
-    ('ABERDE', 'Aberdeen Boys', 'WC2014')
-; 
-
-insert into `sweep_users` 
-    (`username`, `nickname`, `group_id`)
-values 
-    ('Bruce H', 'Bonus', 1)
-;
-
 insert into `sweep_competitions`
     (`comp_id`, `name`)
 values
@@ -18,7 +5,7 @@ values
 ;
 
 insert into `sweep_teams` 
-    (`competition`, `name`, `status`)
+    (`comp_id`, `name`, `status`)
 values 
     ('wc2014', 'Brazil', 'in'),
 ('wc2014', 'Croatia', 'in'),
