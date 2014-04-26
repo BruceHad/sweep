@@ -23,6 +23,17 @@
     </div>
     <div class="col col-sm-6">
 		<h2>The Teams</h2>
+        <div class="teamlist">
+            <div ng-repeat="team in data.teams" class="teambox" ng-class="{picked: team.email}">
+                {{team.name}}
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row" ng-show="data.all_picked" id="all-picked">
+    <div class="col col-sm-8 col-sm-offset-2">
+        <h2>All Picked!</h2>
+        <p>All teams have been picked.</p>
         <table class="table teamlist">
             <tr>
                 <th>Team</th>
@@ -35,12 +46,6 @@
                 <td>{{team.email}}</td>
             </tr>
         </table>
-    </div>
-</div>
-<div class="row">
-    <div class="col col-sm-6 col-sm-offset-3" id="all-picked" ng-show="data.all_picked">
-        <h2>All Picked!</h2>
-        <p>All teams have been picked.</p>
     </div>
 </div>
 

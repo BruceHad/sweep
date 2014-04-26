@@ -124,22 +124,26 @@ button.invalid {
 .teamlist .highlight {
     border: 1px solid red;
 }
-.teamlist.fade {
-  opacity: 0.3;
-  height: 0;
-  overflow: hidden;
+
+/* Modal
+--------------------------------*/
+#wrap {
+  position: relative;
 }
-.teamlist .fade.in {
-  visibility: visible;
-  opacity: 1;
+#all-picked{
+  position: absolute;
+  width: 100%;
+  top: 0; left:15px; 
+  background-color: rgba(256,256,256,0.5);
+  
 }
 
-.right section {
-    padding: 5px;
-    margin-bottom: 10px;
+#all-picked .col{
+  border:1px solid #ddd;
+  margin-top: 50px; margin-bottom: 50px;
+  min-height: 400px;
+  background-color: white;
 }
-
-
 
 
 
