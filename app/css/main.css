@@ -36,12 +36,12 @@ body {
 
 /* Lastly, apply responsive CSS fixes as necessary */
 @media (max-width: 767px) {
-#footer {
-  margin-left: -20px;
-  margin-right: -20px;
-  padding-left: 20px;
-  padding-right: 20px;
-}
+    #footer {
+      margin-left: -20px;
+      margin-right: -20px;
+      padding-left: 20px;
+      padding-right: 20px;
+    }
 }
 
 /* Random
@@ -64,7 +64,7 @@ body {
     line-height: 1;
     padding: 6px 12px;
     border-radius: 4px;
-    border-top-left-radius: 0;
+    border-thttp://colorschemedesigner.com/#0931Lu6p9F3Iuop-left-radius: 0;
     border-bottom-left-radius: 0;
     min-width: 200px;
 }
@@ -102,28 +102,45 @@ button.invalid {
     color: #444;
 }
 
-
-/* Team Pickers
+/* Play
 -----------------------------------------*/
-.teamlist .teambox {
+h1 {
+    border-bottom: 1px solid #aaa;
+}
+
+.block {
+    min-height: 200px;
+    margin: 20px 0;
+    padding: 40px 0;
+    border: 1px solid #aaa;
+    border-radius: 10px;
+}
+
+.block.pick-teams{
+    padding:15px;
+}
+
+.teambox {
     border: 1px solid #ddd;
     border-radius: 4px;
     margin: 5px;
     float:left;
     width: 130px;
     height: 100px;
-    line-height: 100px;
+    display: inline-block;
+    vertical-align: middle;
     text-align:center;
     font-size: small;
     color: #666;
     font-weight: bold;
 }
+.teambox p{
+    padding: 0; margin: 0;
+}
 .teamlist  .picked {
     background-color: #ddd;
 }
-.teamlist .highlight {
-    border: 1px solid red;
-}
+
 
 
 

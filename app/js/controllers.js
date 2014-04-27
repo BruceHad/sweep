@@ -38,9 +38,7 @@ angular.module('myApp.controllers', [])
         };
         
         $scope.addUser = function(form, data){
-            console.log(data);
             data.group_id = $scope.group.group_id;
-            console.log("Group Id: "+data.group_id)
             $http.get("ajax/addUser.php", {params: data}).success(function(response){
                 $scope.login(data);
                 $scope.form = {};
@@ -88,6 +86,7 @@ angular.module('myApp.controllers', [])
         $scope.initGroup($routeParams);
         $scope.data = {};
         $scope.data.picked_teams = [];
+        $scope.data.complete = false;
         $scope.data.view = "Select Your Teams";
         $scope.form = {};
         $scope.data.picking = false;
@@ -97,7 +96,6 @@ angular.module('myApp.controllers', [])
             $http.get("ajax/getTeams.php?comp="+$scope.competition.id+"&group="+$scope.group.group_id).success(function(data){
                 $scope.data.teams = data;
                 console.log(data);
-                console.log($scope.user);
                 var count = 0;
                 for(var i=0; i < data.length; i++){
                     if(data[i].user_id == null){
@@ -114,7 +112,6 @@ angular.module('myApp.controllers', [])
                     $scope.data.complete = true;
                     if(count == 0) $scope.data.all_picked = true;
                     if($scope.data.picked_teams.length == maxpicks) $scope.data.you_picked = true;
-                    console.log($scope.data.complete)   
                 }
             });
 
@@ -146,12 +143,10 @@ angular.module('myApp.controllers', [])
                 var rand = Math.floor(Math.random() * teams.length);
                 your_teams.push(teams[rand]);
                 addPicks(teams[rand]);
-                // console.log(i + " " + maxpicks + " " + rand + " " + teams.length);
                 delete teams[rand];
                 teams.splice(rand, 1);
                 $scope.data.complete = true;
             }
-            console.log($scope.data.picked_teams);
             for(var i=0; i < all_teams.length; i++){             
                 if(your_teams.indexOf(all_teams[i].team_id) != -1){
                     all_teams[i].email = $scope.user.email;
@@ -162,7 +157,6 @@ angular.module('myApp.controllers', [])
                         team_name: all_teams[i].name,
                         team_status: all_teams[i].status
                     });
-                    console.log($scope.data.picked_teams);
                 }
             }
         };
@@ -173,24 +167,7 @@ angular.module('myApp.controllers', [])
             if(newValue[0] != undefined && newValue[1] != undefined){
                 getTeams();
             }
-        }, true);
-        // Watch for user to login and then get teams
-        $scope.$watch("user.id", function(newValue, oldValue){
-            // getTeams();
-            console.log(newValue);
-        });
-        // Watch for teams to be picked (or user to login), and when
-        // // both are true, update database, then refresh.
-        // $scope.$watch("[data.your_teams, user.id]", function(newValue, oldValue){
-        //     if($scope.data.your_teams.length == maxpicks && $scope.user.id != undefined){
-        //         console.log($scope.user.id);
-        //         for(var i=0; i<$scope.data.your_teams.length; i++){
-        //             updatePicks($scope.data.your_teams[i], $scope.user.id);
-        //         }
-        //         $scope.data.your_teams = [];
-        //     }
-        // }, true);
-        
+        }, true);        
     }])
     .controller('MyCtrl2', ['$scope', '$http', '$routeParams', function($scope, $http, $routeParams) {
         $scope.init($routeParams);

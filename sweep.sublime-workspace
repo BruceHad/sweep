@@ -4,6 +4,10 @@
 		"selected_items":
 		[
 			[
+				"set",
+				"setPristine"
+			],
+			[
 				"picked",
 				"picked_teams"
 			],
@@ -367,15 +371,47 @@
 			"file": "app/js/controllers.js",
 			"settings":
 			{
-				"buffer_size": 8858,
+				"buffer_size": 10242,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "app/ajax/getTeams.php",
+			"file": "app/ajax/addUser.php",
 			"settings":
 			{
-				"buffer_size": 957,
+				"buffer_size": 476,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/partials/partial1.html",
+			"settings":
+			{
+				"buffer_size": 2596,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/ajax/addGroup.php",
+			"settings":
+			{
+				"buffer_size": 537,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "docs/notes.md",
+			"settings":
+			{
+				"buffer_size": 1968,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/home/treerock/Projects/Notes/programming-notes-and-practice/reading/eloquent_javascript.md",
+			"settings":
+			{
+				"buffer_size": 14083,
 				"line_ending": "Unix"
 			}
 		},
@@ -386,38 +422,6 @@
 				"buffer_size": 93,
 				"line_ending": "Unix",
 				"name": "Team picking not working"
-			}
-		},
-		{
-			"file": "app/partials/partial1.html",
-			"settings":
-			{
-				"buffer_size": 2250,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "app/css/main.css",
-			"settings":
-			{
-				"buffer_size": 2283,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "app/index.html",
-			"settings":
-			{
-				"buffer_size": 4790,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "docs/notes.md",
-			"settings":
-			{
-				"buffer_size": 1968,
-				"line_ending": "Unix"
 			}
 		}
 	],
@@ -446,6 +450,11 @@
 	"file_history":
 	[
 		"/home/treerock/Projects/sweep/app/index.html",
+		"/home/treerock/Projects/sweep/app/partials/partial4.html",
+		"/home/treerock/Projects/sweep/app/ajax/getGroups.php",
+		"/home/treerock/Projects/sweep/app/partials/partial1.html",
+		"/home/treerock/Projects/sweep/app/css/main.css",
+		"/home/treerock/Projects/sweep/app/ajax/getTeams.php",
 		"/home/treerock/Projects/sb-do-something/app/partials/partial2.html",
 		"/home/treerock/Projects/sb-do-something/app/js/controllers.js",
 		"/home/treerock/Projects/sb-do-something/app/partials/partial1.html",
@@ -454,15 +463,10 @@
 		"/home/treerock/Projects/sweep/app/ajax/addUser.php",
 		"/home/treerock/Projects/sweep/app/ajax/db.php",
 		"/home/treerock/Projects/sweep/app/ajax/getComp.php",
-		"/home/treerock/Projects/sweep/app/ajax/getGroups.php",
 		"/home/treerock/Projects/sweep/app/ajax/getPicks.php",
-		"/home/treerock/Projects/sweep/app/ajax/getTeams.php",
 		"/home/treerock/Projects/sweep/app/ajax/getUserGroups.php",
 		"/home/treerock/Projects/sweep/app/ajax/getUsers.php",
-		"/home/treerock/Projects/sweep/app/partials/partial4.html",
-		"/home/treerock/Projects/sweep/app/css/main.css",
 		"/home/treerock/Projects/sweep/app/js/app.js",
-		"/home/treerock/Projects/sweep/app/partials/partial1.html",
 		"/home/treerock/Projects/sweep/app/js/controllers.js",
 		"/home/treerock/Projects/sweep/app/partials/partial3.html",
 		"/home/treerock/Projects/sweep/app/partials/partial2.html",
@@ -590,6 +594,15 @@
 		"case_sensitive": true,
 		"find_history":
 		[
+			"picked_teams",
+			"picked_team",
+			"$scope.data.your_teams",
+			"exists",
+			"email",
+			"user",
+			"scope.groups",
+			"params",
+			"add",
 			"con",
 			"cons",
 			"competition",
@@ -708,16 +721,7 @@
 			"console.log(",
 			"nav ",
 			"section",
-			"'active': is",
-			"length",
-			"// ",
-			"container",
-			"backgroun",
-			"first",
-			"@media",
-			"media",
-			"med\n\nmedia",
-			"med	"
+			"'active': is"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -776,15 +780,15 @@
 					"file": "app/js/controllers.js",
 					"settings":
 					{
-						"buffer_size": 8858,
+						"buffer_size": 10242,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								4217,
-								4217
+								3969,
+								3969
 							]
 						],
 						"settings":
@@ -793,6 +797,32 @@
 							"tab_size": 4,
 							"translate_tabs_to_spaces": true
 						},
+						"translation.x": 98.0,
+						"translation.y": 1549.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "app/ajax/addUser.php",
+					"settings":
+					{
+						"buffer_size": 476,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								328,
+								328
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.tmLanguage"
+						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
 						"zoom_level": 1.0
@@ -800,19 +830,47 @@
 					"type": "text"
 				},
 				{
-					"buffer": 1,
-					"file": "app/ajax/getTeams.php",
+					"buffer": 2,
+					"file": "app/partials/partial1.html",
 					"settings":
 					{
-						"buffer_size": 957,
+						"buffer_size": 2596,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								0
+								2007,
+								2007
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 702.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "app/ajax/addGroup.php",
+					"settings":
+					{
+						"buffer_size": 537,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								509,
+								509
 							]
 						],
 						"settings":
@@ -826,125 +884,15 @@
 						"zoom_level": 1.0
 					},
 					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"settings":
-					{
-						"buffer_size": 93,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"auto_name": "Team picking not working",
-							"syntax": "Packages/Text/Plain text.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "app/partials/partial1.html",
-					"settings":
-					{
-						"buffer_size": 2250,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								216,
-								216
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/HTML/HTML.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"file": "app/css/main.css",
-					"settings":
-					{
-						"buffer_size": 2283,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								2267,
-								2267
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/CSS/CSS.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 1836.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 5,
-					"file": "app/index.html",
-					"settings":
-					{
-						"buffer_size": 4790,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								3568,
-								3568
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/HTML/HTML.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 1242.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
 				}
 			]
 		},
 		{
-			"selected": 0,
+			"selected": 1,
 			"sheets":
 			[
 				{
-					"buffer": 6,
+					"buffer": 4,
 					"file": "docs/notes.md",
 					"settings":
 					{
@@ -962,6 +910,58 @@
 						"settings":
 						{
 							"syntax": "Packages/Markdown/Markdown.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "/home/treerock/Projects/Notes/programming-notes-and-practice/reading/eloquent_javascript.md",
+					"settings":
+					{
+						"buffer_size": 14083,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								9636,
+								9636
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Markdown/Markdown.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 6041.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"settings":
+					{
+						"buffer_size": 93,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"auto_name": "Team picking not working",
+							"syntax": "Packages/Text/Plain text.tmLanguage"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -1000,7 +1000,7 @@
 		"cols":
 		[
 			0.0,
-			0.653001464128,
+			0.630307467056,
 			1.0
 		],
 		"rows":

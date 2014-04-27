@@ -1,58 +1,46 @@
 <div ng-show="data.user_message" class="alert alert-warning">
     <p>{{data.user_message}}</p>
 </div>
-<div class="row" ng-hide="data.complete">
-    <div class="col col-sm-6 ">
-        <div ng-hide="user.loggedin">
-    		<p>So you want to play with team <strong>{{group.group_name}}</strong>. Enter your email address and click the button to register. Then you can pick teams, or, if you have already picked your teams, view progress.</p>
+<div class="row">
+    <div class="col col-sm-5">
+        <h2><em>{{group.group_name}}</em> Sweep</h2>
+        <p>This is the {{competition.name}} sweep for {{group.group_name}}.  To play, enter your email address and click the button to register.</p>
+        <div class="register block" ng-hide="user.loggedin">   		
             <form  name="user_form" class="form-horizontal" role="form" ng-submit="addUser(user_form, form)">
                 <div class="form-group">
-    				<label class="col col-sm-3 control-label" for="email">Email Address</label>
-    				<div class="col-sm-9">
+    				<label class="col col-sm-4 control-label" for="email">Email Address</label>
+    				<div class="col-sm-6">
     					<input name="email" id="email" type="email" class="form-control" ng-model="form.email" required placeholder="Enter Email Address" />
     				</div>
                 </div>
-    			<div class="col-sm-offset-3 col-sm-9">
-                	<button type="submit" class="btn btn-default" ng-disabled="data.user_exists">Register</button>
+    			<div class="col-sm-offset-4 col-sm-8">
+                	<button type="submit" class="btn btn-default" ng-disabled="data.user_exists">Register/Login</button>
     			</div>
-                <p class="alert alert-info" style="margin-top:20px" ng-show="data.response">{{data.response}}</p>
             </form>
         </div>
-        <div ng-show="user.loggedin">
-            <p>Hello {{user.username}} ({{user.email}}).
-            <form ng-submit="pickTeams()">
+        <div class="pick-teams block" ng-show="user.loggedin">
+            <form ng-submit="pickTeams()" ng-hide="data.complete" style="text-align:center">
+                <p>Hello {{user.username}} ({{user.email}}). You've now logged in/registered. But you've not picked your teams yet. Click the button to randomly select from the remaining teams.</p>
                 <button type="submit" class="btn btn-default">Pick Teams</button>
             </form>
-        </div>        
-        <p>{{data.yourteams}}</p>
+            <div ng-show="data.complete">
+                <p>Hello {{user.username}} ({{user.email}}). You've picked your teams already.</p>
+                <ul>
+                    <li ng-repeat="team in data.picked_teams">{{team.team_name}} ({{team.team_status}})</li>
+                </ul>
+            </div>
+        </div>
+        
+        <p class="alert alert-info" style="margin-top:20px" ng-show="data.response">{{data.response}}</p>
     </div>
-    <div class="col col-sm-6">
+    <div class="col col-sm-6 col-sm-offset-1">
 		<h2>The Teams</h2>
         <div class="teamlist">
             <div ng-repeat="team in data.teams" class="teambox" ng-class="{picked: team.email}">
-                {{team.name}}
+                <p>{{team.name}}</p>
+                <p>{{team.team_id}}</p>
             </div>
         </div>
-    </div>
-</div>
-<div class="row" ng-show="data.complete" id="complete">
-    <div class="col col-sm-8">
-        <h2>All Picked!</h2>
-        <p>You viewing the {{competition.name}} sweep for team <strong>{{group.group_name}}</strong>.</p>
-        {{data.picked_teams}}
-        <p ng-show"data.you_picked">You've had <span ng-repeat="team in data.picked_teams">{{team.team_name}} </span> selected for your teams. Good luck.</p>
-        <table class="table teamlist">
-            <tr>
-                <th>Team</th>
-                <th>Username</th>
-                <th>Email</th>
-            </tr>
-            <tr ng-repeat="team in data.teams">
-                <td>{{team.team_id}}. {{team.name}}</td>
-                <td>{{team.username}}</td>
-                <td>{{team.email}}</td>
-            </tr>
-        </table>
     </div>
 </div>
 
