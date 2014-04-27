@@ -2,16 +2,16 @@
 
 require_once 'db.php'; // The mysql database connection script
 
-if(isset($_GET['group_name'])){
-    $comp = strtoupper ($_GET['comp']);
+if(isset($_GET)){
+    $group_id = $_GET['group_id'];
     $group_name = $_GET['group_name'];
-    $id = uniqid();
+    $comp_id = strtoupper ($_GET['comp_id']);
 
     $query=mysql_query("
     insert into `sweep_groups` 
     (`group_id`, `group_name`, `comp_id`)
     values
-    ('$id', '$group_name', '$comp')
+    ('$group_id', '$group_name', '$comp_id')
     ;") or die($id . " : " . mysql_error());
      
     # JSON-encode the response

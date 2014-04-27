@@ -1,7 +1,10 @@
 <?php
 
+// Returns details about a group, or all groups if '$group' id is not
+// set.
 
 require_once 'db.php'; // The mysql database connection script
+
 
 if(isset($_GET['comp'])){
     $comp = $_GET['comp'];

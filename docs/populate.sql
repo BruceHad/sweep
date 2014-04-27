@@ -1,7 +1,15 @@
+
+
 insert into `sweep_competitions`
     (`comp_id`, `name`)
 values
     ('WC2014', 'World Cup 2014')
+;
+
+insert into `sweep_groups`
+    (`group_id`, `group_name`, `comp_id`)
+values
+    (5, 'First Group', 'wc2014')
 ;
 
 insert into `sweep_teams` 

@@ -125,26 +125,6 @@ button.invalid {
     border: 1px solid red;
 }
 
-/* Modal
---------------------------------*/
-#wrap {
-  position: relative;
-}
-#all-picked{
-  position: absolute;
-  width: 100%;
-  top: 0; left:15px; 
-  background-color: rgba(256,256,256,0.5);
-  
-}
-
-#all-picked .col{
-  border:1px solid #ddd;
-  margin-top: 50px; margin-bottom: 50px;
-  min-height: 400px;
-  background-color: white;
-}
-
 
 
 

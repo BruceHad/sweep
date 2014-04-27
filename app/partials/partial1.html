@@ -1,24 +1,29 @@
 <div ng-show="data.user_message" class="alert alert-warning">
     <p>{{data.user_message}}</p>
 </div>
-
-<!-- this section is visible when the user hasn't yet picked any teams -->
-<div class="row">
+<div class="row" ng-hide="data.complete">
     <div class="col col-sm-6 ">
-        <h2>{{competition.name}} <small>{{data.view}}</small></h2>
-		<p>So you want to play with team <strong>{{group.group_name}}</strong>. Enter your email address and click the button to randomly select you sweep team(s), or, if you have already picked your teams, view progress.</p>
-        <form name="pick" class="form-horizontal" role="form" ng-submit="pickTeam(pick)">
-            <div class="form-group">
-				<label class="col col-sm-3 control-label" for="email">Email Address</label>
-				<div class="col-sm-9">
-					<input name="email" id="email" type="email" class="form-control" ng-model="form.email" required placeholder="Enter Email Address" />
-				</div>
-            </div>
-			<div class="col-sm-offset-3 col-sm-9">
-            	<button type="submit" class="btn btn-default" ng-disabled="data.user_exists">Pick Teams</button>
-			</div>
-        </form>
-        <p class="alert alert-info" style="margin-top:20px" ng-show="data.response">{{data.response}}</p>
+        <div ng-hide="user.loggedin">
+    		<p>So you want to play with team <strong>{{group.group_name}}</strong>. Enter your email address and click the button to register. Then you can pick teams, or, if you have already picked your teams, view progress.</p>
+            <form  name="user_form" class="form-horizontal" role="form" ng-submit="addUser(user_form, form)">
+                <div class="form-group">
+    				<label class="col col-sm-3 control-label" for="email">Email Address</label>
+    				<div class="col-sm-9">
+    					<input name="email" id="email" type="email" class="form-control" ng-model="form.email" required placeholder="Enter Email Address" />
+    				</div>
+                </div>
+    			<div class="col-sm-offset-3 col-sm-9">
+                	<button type="submit" class="btn btn-default" ng-disabled="data.user_exists">Register</button>
+    			</div>
+                <p class="alert alert-info" style="margin-top:20px" ng-show="data.response">{{data.response}}</p>
+            </form>
+        </div>
+        <div ng-show="user.loggedin">
+            <p>Hello {{user.username}} ({{user.email}}).
+            <form ng-submit="pickTeams()">
+                <button type="submit" class="btn btn-default">Pick Teams</button>
+            </form>
+        </div>        
         <p>{{data.yourteams}}</p>
     </div>
     <div class="col col-sm-6">
@@ -30,17 +35,19 @@
         </div>
     </div>
 </div>
-<div class="row" ng-show="data.all_picked" id="all-picked">
-    <div class="col col-sm-8 col-sm-offset-2">
+<div class="row" ng-show="data.complete" id="complete">
+    <div class="col col-sm-8">
         <h2>All Picked!</h2>
-        <p>All teams have been picked.</p>
+        <p>You viewing the {{competition.name}} sweep for team <strong>{{group.group_name}}</strong>.</p>
+        {{data.picked_teams}}
+        <p ng-show"data.you_picked">You've had <span ng-repeat="team in data.picked_teams">{{team.team_name}} </span> selected for your teams. Good luck.</p>
         <table class="table teamlist">
             <tr>
                 <th>Team</th>
                 <th>Username</th>
                 <th>Email</th>
             </tr>
-            <tr ng-repeat="team in data.teams" ng-class="{picked: team.email}">
+            <tr ng-repeat="team in data.teams">
                 <td>{{team.team_id}}. {{team.name}}</td>
                 <td>{{team.username}}</td>
                 <td>{{team.email}}</td>

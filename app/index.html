@@ -59,7 +59,7 @@
                <!-- <p class="navbar-text navbar-right" ng-hide="user.loggedin"><a href="#/register/{{competition.id}}">Register to Play</a>
                 </p> -->
                 <div ng-hide="user.loggedin">
-                    <form class="navbar-form navbar-right" ng-submit="login(form.email)">
+                    <form class="navbar-form navbar-right" ng-submit="login(form)">
                         <div class="form-group">
                             <input type="email" placeholder="Enter Email Address" class="form-control" ng-model="form.email">
                         </div>
@@ -74,8 +74,7 @@
     </div>
 
     <div class="container" id="wrap">
-        <h1>Sweep</h1>
-
+        <h1>Sweep <small>{{competition.name}}</small></h1>
         <div class="ng-view"></div>
 		<div id="push"></div><!-- for sticky footer -->
     </div>

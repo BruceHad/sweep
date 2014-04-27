@@ -1,5 +1,5 @@
 create table if not exists `sweep_groups`(
-    `group_id` varchar(14) not null,
+    `group_id` int(10) not null,
     `group_name` varchar(50) not null,
     `comp_id`  varchar(10) not null,
     primary key (`group_id`)
