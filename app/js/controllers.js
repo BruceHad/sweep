@@ -60,7 +60,7 @@ angular.module('myApp.controllers', [])
                     }
                 }
                 else {
-                    $scope.user_message = "Invalid user: " + email;
+                    $scope.user_message = "Invalid user: " + username;
                 }
             });
 
@@ -73,13 +73,6 @@ angular.module('myApp.controllers', [])
             $scope.user = {"loggedin": "false"};
             $cookies = $scope.user;
         };
-        
-        // Watchers
-        $scope.$watch('form.email', function(newValue, oldValue) {
-            // If email address changes, clear the userMessage.
-//             $scope.user_message = "";
-        });
-
     }])
     .controller('MyCtrl1', ['$scope', '$http', '$routeParams', function($scope, $http, $routeParams) {
         $scope.initComp($routeParams);
@@ -101,7 +94,7 @@ angular.module('myApp.controllers', [])
                     if(data[i].user_id == null){
                         count++;
                     }
-                    if(data[i].email == $scope.user.email && $scope.user.email != null){
+                    if(data[i].username == $scope.user.username && $scope.user.username != null){
                         $scope.data.picked_teams.push({
                             team_id: data[i].team_id,
                             team_name: data[i].name,
