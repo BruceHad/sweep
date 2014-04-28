@@ -36,9 +36,11 @@
     <div class="col col-sm-6 col-sm-offset-1">
 		<h2>The Teams</h2>
         <div class="teamlist">
-            <div ng-repeat="team in data.teams" class="teambox" ng-class="{picked: team.email}">
-                <p>{{team.name}}</p>
-                <p>{{team.team_id}}</p>
+            <div ng-repeat="team in data.teams" class="teambox table" ng-class="{picked: team.email}">
+                <div class="cell">
+                    <p>{{team.name}}</p>
+                    <p>{{team.email}}</p>
+                </div>
             </div>
         </div>
     </div>

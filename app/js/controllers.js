@@ -129,16 +129,18 @@ angular.module('myApp.controllers', [])
         };
         
         $scope.pickTeams = function() {
-            // Get list of teams that are not picked
             var all_teams = $scope.data.teams; // full team list
             var teams = []; // unpicked teams
             var your_teams = []; // teams that have been picked
+            
+            // Get list of teams that are not picked and add to 'teams'
             for(var i=0; i < all_teams.length; i++){
                 if(all_teams[i].user_id == null){
                     teams.push(all_teams[i].team_id);
                 }
             }
-            // Pick teams from list
+            // Pick teams from list and add to 'your_teams'
+            // Also, addPicks  to the database.
             for(var i=0; i<maxpicks; i++){
                 var rand = Math.floor(Math.random() * teams.length);
                 your_teams.push(teams[rand]);
@@ -147,6 +149,8 @@ angular.module('myApp.controllers', [])
                 teams.splice(rand, 1);
                 $scope.data.complete = true;
             }
+            // Update App State data.
+            // 
             for(var i=0; i < all_teams.length; i++){             
                 if(your_teams.indexOf(all_teams[i].team_id) != -1){
                     all_teams[i].email = $scope.user.email;
@@ -167,7 +171,10 @@ angular.module('myApp.controllers', [])
             if(newValue[0] != undefined && newValue[1] != undefined){
                 getTeams();
             }
-        }, true);        
+        }, true);
+//         $scope.$watch("data.teams", function(newValue, oldValue){
+//             console.log(newValue + " " + oldValue);
+//         }, true);
     }])
     .controller('MyCtrl2', ['$scope', '$http', '$routeParams', function($scope, $http, $routeParams) {
         $scope.init($routeParams);
