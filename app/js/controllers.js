@@ -189,6 +189,7 @@ angular.module('myApp.controllers', [])
             user_message: false,
             competition_set: false
         };
+        $scope.groups = [];
         $scope.form = {};
         $scope.initComp($routeParams);
         function getGroups(){
@@ -207,7 +208,8 @@ angular.module('myApp.controllers', [])
         }
 
         $scope.addGroup = function(form){
-            var group_id = Number($scope.groups[$scope.groups.length-1].group_id)+5;
+            if($scope.groups.length == 0){var group_id = 5}
+            else {var group_id = Number($scope.groups[$scope.groups.length-1].group_id)+5;}
             $scope.form.group_id = group_id;
             $scope.groups.push($scope.form);
             $http.get("ajax/addGroup.php", {params: $scope.form}).success(function(response){
