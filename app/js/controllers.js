@@ -77,18 +77,21 @@ angular.module('myApp.controllers', [])
     .controller('MyCtrl1', ['$scope', '$http', '$routeParams', function($scope, $http, $routeParams) {
         $scope.initComp($routeParams);
         $scope.initGroup($routeParams);
-        $scope.data = {};
-        $scope.data.picked_teams = [];
-        $scope.data.complete = false;
-        $scope.data.view = "Select Your Teams";
-        $scope.form = {};
-        $scope.data.picking = false;
+        $scope.data = {
+            view: "Select your Teams",
+            teams: [],
+            picked_teams: [],
+            form: {},
+            complete: false,
+            picking: false,
+            you_picked: false,
+            loading: true
+        };
         var maxpicks = 2;
 
         function getTeams(group){
             $http.get("ajax/getTeams.php?comp="+$scope.competition.id+"&group="+$scope.group.group_id).success(function(data){
                 $scope.data.teams = data;
-                console.log(data);
                 var count = 0;
                 for(var i=0; i < data.length; i++){
                     if(data[i].user_id == null){
@@ -106,6 +109,7 @@ angular.module('myApp.controllers', [])
                     if(count == 0) $scope.data.all_picked = true;
                     if($scope.data.picked_teams.length == maxpicks) $scope.data.you_picked = true;
                 }
+                $scope.data.loading = false;
             });
 
         }
@@ -161,7 +165,10 @@ angular.module('myApp.controllers', [])
         // Watchers
         // Watch for the competition and group to be set, then get teams.
         $scope.$watch("[competition.name, group.group_name]", function(newValue, oldValue) {
-            if(newValue[0] != undefined && newValue[1] != undefined){
+            if(oldValue != newValue && newValue[0] != undefined && newValue[1] != undefined){
+                console.log(oldValue);
+                console.log(newValue);
+                console.log(oldValue == newValue);
                 getTeams();
             }
         }, true);

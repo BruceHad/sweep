@@ -2,7 +2,7 @@
     <p>{{data.user_message}}</p>
 </div>
 <div class="row">
-    <div class="col col-sm-5">
+    <div class="col col-sm-5" ng-hide="data.loading">
         <h2><em>{{group.group_name}}</em> Sweep</h2>
         <p>This is the {{competition.name}} sweep for {{group.group_name}}.  To play, enter your email address and click the button to register.</p>
         <div class="register block" ng-hide="user.loggedin">   		
@@ -33,7 +33,10 @@
         
         <p class="alert alert-info" style="margin-top:20px" ng-show="data.response">{{data.response}}</p>
     </div>
-    <div class="col col-sm-6 col-sm-offset-1">
+    <div class="col col-sm-5" ng-show="data.loading">
+		<div style="text-align:center; line-height: 200px;"><img src="css/select2-spinner.gif" /></div>
+	</div>
+    <div class="col col-sm-6 col-sm-offset-1" ng-hide="data.loading">
 		<h2>The Teams</h2>
         <div class="teamlist">
             <div ng-repeat="team in data.teams" class="teambox table" ng-class="{picked: team.email}">
@@ -43,6 +46,9 @@
                 </div>
             </div>
         </div>
+    </div>
+    <div class="col col-sm-6" ng-show="data.loading">
+        <div style="text-align:center; line-height: 200px;"><img src="css/select2-spinner.gif" /></div>
     </div>
 </div>
 
