@@ -186,7 +186,7 @@ angular.module('myApp.controllers', [])
         $scope.data = {
             view: "Manage Groups",
             loading: true,
-            user_message: false,
+            user_message: "",
             competition_set: false
         };
         $scope.groups = [];
@@ -226,7 +226,8 @@ angular.module('myApp.controllers', [])
             if (newValue == "NF"){
                 $scope.data.user_message = "Competion not found. Please check address.";
             }
-            else if(newValue != 'undefined'){
+            else if(newValue != undefined){
+                console.log(newValue);
                 $scope.form.comp_id = $scope.competition.id;
                 getGroups();
             }

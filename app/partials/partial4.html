@@ -1,10 +1,10 @@
 <div ng-show="data.user_message" class="alert alert-warning">
 	<p>{{data.user_message}}</p>
 </div>
-<div ng-show="!data.loading">
-	<h2>{{competition.name}} <small>{{data.view}}</small></h2>
+<div>
+	<h2 ng-show="!data.loading">{{competition.name}} <small>{{data.view}}</small></h2>
 	<div class="row">
-		<div class="col col-sm-7">
+		<div class="col col-sm-7" ng-show="!data.loading">
 			<h3>Sweep Teams playing <em>{{competition.name}}</em></h3>
 			<table class="table">
 				<tr>
@@ -22,7 +22,10 @@
 				</tr>
 			</table>
 		</div>
-		<div class="col col-sm-3">
+        <div class="col col-sm-7" ng-show="data.loading">
+			<div style="text-align:center; line-height: 200px;"><img src="css/select2-spinner.gif" /></div>
+		</div>
+		<div class="col col-sm-3" ng-show="!data.loading">
 			<h3>Add New Group</h3>
 			<form role="form" name="add" class="form" ng-submit="addGroup(add)">
 				<div class="form-group">
@@ -32,16 +35,8 @@
 			</form>
 			<p class="alert alert-info" style="margin-top:20px" ng-show="data.response">{{data.response}}</p>
 		</div>
-	</div>
-</div>
-
-<div ng-show="data.loading" class="loading">
-	<div class="row">
-		<div class="col col-sm-7">
-			<img src="css/select2-spinner.gif" />
-		</div>
-		<div class="col col-sm-3">
-			<img src="css/select2-spinner.gif" />
+        <div class="col col-sm-3" ng-show="data.loading">
+			<div style="text-align:center; line-height: 200px;"><img src="css/select2-spinner.gif" /></div>
 		</div>
 	</div>
 </div>

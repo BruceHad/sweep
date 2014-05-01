@@ -19,11 +19,6 @@
             padding-top: 50px;
             padding-bottom: 20px;
         }
-        /* 
-              Allow angular.js to be loaded in body, hiding cloaked elements until 
-              templates compile.  The !important is important given that there may be 
-              other selectors that are more specific or come later and might alter display.  
-             */
         [ng\:cloak], [ng-cloak], .ng-cloak {
             display: none !important;
         }
@@ -39,7 +34,7 @@
     <!--[if lt IE 7]>
             <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
         <![endif]-->
-    <div class="navbar navbar-fixed-top ng-cloak">
+    <div class="navbar navbar-fixed-top">
         <div class="container">
             <div class="navbar-header ">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
