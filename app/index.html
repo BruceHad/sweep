@@ -46,24 +46,10 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li><a href="#/play/{{comp}}/{{group}}" class="active">Play</a>
-                    </li>
+                    <li><a href="#/play/{{comp}}/{{group}}" class="active">Play</a></li>
+                    <li><a href="#/edit/{{competition.id}}">Groups</a></li>
                 </ul>
-                <p class="navbar-text navbar-right">| <a href="#/edit/{{competition.id}}">Groups</a>
-                </p>
-               <!-- <p class="navbar-text navbar-right" ng-hide="user.loggedin"><a href="#/register/{{competition.id}}">Register to Play</a>
-                </p> -->
-                <div ng-hide="user.loggedin">
-                    <form class="navbar-form navbar-right" ng-submit="login(form)">
-                        <div class="form-group">
-                            <input type="email" placeholder="Enter Email Address" class="form-control" ng-model="form.email">
-                        </div>
-                        <button type="submit" class="btn">Sign in</button>
-                    </form>
-                </div>
-                <p ng-show="user.loggedin" class="navbar-text navbar-right">Logged in as <strong>{{user.username}} ({{user.email}})</strong>  <a href="" ng-click="logout()">Logout</a>
-                </p>
-            </div>
+
             <!--/.navbar-collapse -->
         </div>
     </div>

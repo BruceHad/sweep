@@ -6,11 +6,11 @@
         <h2><em>{{group.group_name}}</em> Sweep</h2>
         <p>This is the {{competition.name}} sweep for {{group.group_name}}.  To play, enter your email address and click the button to register.</p>
         <div class="register block" ng-hide="user.loggedin">   		
-            <form  name="user_form" class="form-horizontal" role="form" ng-submit="addUser(user_form, form)">
+            <form  name="user_form" class="form-horizontal" role="form" ng-submit="pickTeams(user_form)">
                 <div class="form-group">
     				<label class="col col-sm-4 control-label" for="username">Name</label>
     				<div class="col-sm-6">
-    					<input name="username" id="username" type="text" class="form-control" ng-model="form.email" required placeholder="Enter Email Address" />
+    					<input name="username" id="username" type="text" class="form-control" ng-model="data.user_name" required placeholder="Enter Name" />
     				</div>
                 </div>
     			<div class="col-sm-offset-4 col-sm-8">
@@ -41,8 +41,8 @@
         <div class="teamlist">
             <div ng-repeat="team in data.teams" class="teambox table" ng-class="{picked: team.email}">
                 <div class="cell">
-                    <p>{{team.name}}</p>
-                    <p>{{team.email}}</p>
+                    <p>{{team.team_name}}</p>
+                    <p>{{team.user_name}}</p>
                 </div>
             </div>
         </div>
