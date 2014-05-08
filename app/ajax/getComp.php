@@ -6,9 +6,9 @@ if(isset($_GET['comp'])){
     $comp = $_GET['comp'];
     $query=mysql_query("
     select comp_id,
-        name
+        comp_name
     from sweep_competitions
-    where comp_id = upper('$comp')
+    where comp_id = lower('$comp')
     ;") or die(mysql_error());
      
     # Collect the results

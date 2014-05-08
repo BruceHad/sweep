@@ -5,11 +5,11 @@ require_once 'db.php'; // The mysql database connection script
 if(isset($_GET)){
     $group_id = $_GET['group_id'];
     $group_name = $_GET['group_name'];
-    $comp_id = strtoupper ($_GET['comp_id']);
+    $comp_id = strtolower($_GET['comp_id']);
 
     $query=mysql_query("
-    insert into `sweep_groups` 
-    (`group_id`, `group_name`, `comp_id`)
+    insert into sweep_groups 
+    (group_id, group_name, c_comp_id)
     values
     ('$group_id', '$group_name', '$comp_id')
     ;") or die($id . " : " . mysql_error());

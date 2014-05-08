@@ -1,23 +1,11 @@
 select *
-from sweep_competitions
-;
-
-select *
-from sweep_teams
-;
-
-select *
-from sweep_groups
-;
-
--- Users
-select *
-from sweep_users
-;
-
--- sweep user teams
-select *
-from sweep_user_team
+from sweep_competions sc
+    inner join sweep_teams st
+    on (sc.comp_id = st.c_comp_id)
+    inner join sweep_groups sg
+    on (sc.comp_id = sg.c_comp_id)
+    left outer join sweep_picks sp
+    on (sg.group_id = sp.g_group_id and st.team_id = sp.t_team_id)
 ;
 
 -- All Teams

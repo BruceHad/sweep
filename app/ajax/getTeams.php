@@ -10,27 +10,14 @@ if(isset($_GET['comp']))
         $query=mysql_query("
             select
                 st.team_id,
-                st.name team_name,
+                st.team_name,
                 st.status team_status,
-                sut.user_id user_name,
-                sut.group_id
+                sp.pick_name
             from sweep_teams st
-                left outer join sweep_user_team sut
-                on (st.team_id = sut.team_id)
-            where st.comp_id = '$comp'
-            and (sut.group_id = '$group' or sut.group_id is null)
-        ;") or die(mysql_error());
-    }
-    else {
-        $query=mysql_query("
-            select
-                st.team_id,
-                st.name team_name,
-                st.status team_status,
-                sut.user_id user_name,
-                sut.group_id
-            from sweep_teams st
-            where st.comp_id = '$comp'
+                left outer join sweep_picks sp
+                on (st.team_id = sp.t_team_id)
+            where st.c_comp_id = '$comp'
+            and (sp.g_group_id = '$group' or sp.g_group_id is null)
         ;") or die(mysql_error());
     }
      

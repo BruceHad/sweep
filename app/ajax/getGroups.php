@@ -9,16 +9,19 @@ require_once 'db.php'; // The mysql database connection script
 if(isset($_GET['comp'])){
     $comp = $_GET['comp'];
     $query=mysql_query("
-        select group_id, group_name, comp_id
+        select 
+			group_id, 
+			group_name, 
+			c_comp_id comp_id
         from sweep_groups
-        where comp_id = '$comp'
+        where c_comp_id = '$comp'
         ;") or die(mysql_error());
 
 }
 elseif(isset($_GET['group'])){
 	$group = $_GET['group'];
 	$query=mysql_query("
-		select group_id, group_name, comp_id
+		select group_id, group_name, c_comp_id
 		from sweep_groups
 		where group_id = '$group'
 		;") or die(mysql_error());
