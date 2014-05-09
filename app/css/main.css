@@ -2,6 +2,9 @@
 
 /* ==========================================================================
    Author's custom styles
+#087479 - Grey
+http://colorschemedesigner.com/#0931Lu6p9F3Iu
+
    ========================================================================== */
 
 /* Sticky footer styles
@@ -74,7 +77,7 @@ div.cell{
     line-height: 1;
     padding: 6px 12px;
     border-radius: 4px;
-    border-thttp://colorschemedesigner.com/#0931Lu6p9F3Iuop-left-radius: 0;
+    border-top-left-radius: 0;
     border-bottom-left-radius: 0;
     min-width: 200px;
 }
@@ -131,24 +134,26 @@ h1 {
 }
 
 .teambox {
-    border: 1px solid #ddd;
+    border: 1px solid #50B10A;
     border-radius: 4px;
-    margin: 5px;
+    margin: 2px;
     float:left;
-    width: 130px;
+    width: 140px;
     height: 100px;
     display: inline-block;
     vertical-align: middle;
     text-align:center;
-    font-size: small;
-    color: #666;
-    font-weight: bold;
+}
+.teamlist  .picked {
+    background-color: #ddd;
+    border: 1px solid darkred;
 }
 .teambox p{
     padding: 0; margin: 0;
 }
-.teamlist  .picked {
-    background-color: #ddd;
+
+.teamlist .team-name {
+    font-weight: bold;
 }
 
 

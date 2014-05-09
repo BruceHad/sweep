@@ -37,17 +37,30 @@ angular.module('myApp.controllers', []).controller('MainCtrl', ['$scope', '$http
         $scope.initGroup($routeParams);
         $scope.data = {
             view: "Select your Teams",
-            teams: [],
+            teams: [], // all teams
+			p_teams: [], // picked teams
             you_picked: false,
             loading: true,
-            user_name: ""
+            user_name: "",
+			complete: false,
+			user_message: ""
         };
-        var maxpicks = 2;
+		var u_teams = []; // unpicked teams
 
         function getTeams() {
             $http.get("ajax/getTeams.php?comp=" + $scope.competition.id + "&group=" + $scope.group.group_id).success(function(response) {
                 $scope.data.teams = response;
                 $scope.data.loading = false;
+				// Get list of unpicked teams
+				for(var i = 0; i < $scope.data.teams.length; i++) {
+					if($scope.data.teams[i].user_id == null) {
+						u_teams.push($scope.data.teams[i].team_id);
+					}
+				}
+				// If no teams available.
+				if(u_teams.length == 0){
+					$scope.data.complete = true;
+				}
             });
         }
         function addPicks(team_id, user_name) {
@@ -59,34 +72,25 @@ angular.module('myApp.controllers', []).controller('MainCtrl', ['$scope', '$http
             $http.get("ajax/addTeam.php", {params: parameters}).success(function(response) {
                 console.log(response);
             });
-        };
+        }
         $scope.pickTeams = function(form) {
-            console.log(form);
-            // Get list of unpicked teams
-            var u_teams = []; // unpicked teams
-            for(var i = 0; i < $scope.data.teams.length; i++) {
-                if($scope.data.teams[i].user_id == null) {
-                    u_teams.push($scope.data.teams[i].team_id);
-                }
-            }
-            // If no teams available.
+            // Pick teams from list and add to the database.
+            var rand = Math.floor(Math.random() * u_teams.length);
+            var team_id = u_teams[rand];
+            console.log(team_id);
+//             addPicks(team_id, $scope.data.user_name);
+            u_teams.splice(rand, 1);
             if(u_teams.length == 0){
-                $scope.data.user_message = "All teams have already been picked";               
-            } else {
-                // Pick teams from list and add to the database.
-                var picks = Math.min(maxpicks, u_teams.length);
-                for(var i = 0; i<picks; i++) {
-                    var rand = Math.floor(Math.random() * u_teams.length);
-                    var team_id = u_teams[rand];
-                    console.log(team_id);
-                    addPicks(team_id, $scope.data.user_name);
-                    u_teams.splice(rand, 1);
-                    $scope.data.you_picked = true;
-                    forEach($scope.data.teams, function(element){
-                        console.log(element);
-                    });
-                }
+                $scope.data.complete = true;
             }
+            forEach($scope.data.teams, function(elem){
+                if(elem.team_id == team_id){
+                    elem.pick_name = $scope.data.user_name;
+                    $scope.data.p_teams.push(elem);
+                }
+            });
+            $scope.data.you_picked = true;
+            console.log($scope.data.teams);
         };
         // Watch for the competition and group to be set, then get teams.
         $scope.$watch("[competition.name, group.group_name]", function(newValue, oldValue) {

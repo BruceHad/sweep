@@ -4,9 +4,9 @@
 <div class="row">
     <div class="col col-sm-5" ng-hide="data.loading">
         <h2><em>{{group.group_name}}</em> Sweep</h2>
-        <p>This is the {{competition.name}} sweep for {{group.group_name}}.  To play, enter your email address and click the button to register.</p>
-        <div class="register block" ng-hide="user.loggedin">   		
-            <form  name="user_form" class="form-horizontal" role="form" ng-submit="pickTeams(user_form)">
+        <p>This is the {{competition.name}} sweep for {{group.group_name}}.  To play, enter your name and click the button to pick teams.</p>
+        <div class="block">   		
+            <form name="pick_form" class="form-horizontal" role="form" ng-submit="pickTeams(pick_form)">
                 <div class="form-group">
     				<label class="col col-sm-4 control-label" for="username">Name</label>
     				<div class="col-sm-6">
@@ -14,24 +14,16 @@
     				</div>
                 </div>
     			<div class="col-sm-offset-4 col-sm-8">
-                	<button type="submit" class="btn btn-default" ng-disabled="data.user_exists">Register/Login</button>
+                	<button type="submit" class="btn btn-default" ng-disabled="data.complete">Pick Random Team</button>
     			</div>
             </form>
-        </div>
-        <div class="pick-teams block" ng-show="user.loggedin">
-            <form ng-submit="pickTeams()" ng-hide="data.complete" style="text-align:center">
-                <p>Hello {{user.username}} ({{user.email}}). You've now logged in/registered. But you've not picked your teams yet. Click the button to randomly select from the remaining teams.</p>
-                <button type="submit" class="btn btn-default">Pick Teams</button>
-            </form>
-            <div ng-show="data.complete">
-                <p>Hello {{user.username}} ({{user.email}}). You've picked your teams already.</p>
+            <div ng-show="data.you_picked">
+                <p>Your teams have been selected...</p>
                 <ul>
-                    <li ng-repeat="team in data.picked_teams">{{team.team_name}} ({{team.team_status}})</li>
+                    <li ng-repeat="team in data.p_teams"><strong style="text-transform: captalize">{{team.pick_name}}</strong> picked <em>{{team.team_name}}</em></li>
                 </ul>
             </div>
         </div>
-        
-        <p class="alert alert-info" style="margin-top:20px" ng-show="data.response">{{data.response}}</p>
     </div>
     <div class="col col-sm-5" ng-show="data.loading">
 		<div style="text-align:center; line-height: 200px;"><img src="css/select2-spinner.gif" /></div>
@@ -39,10 +31,10 @@
     <div class="col col-sm-6 col-sm-offset-1" ng-hide="data.loading">
 		<h2>The Teams</h2>
         <div class="teamlist">
-            <div ng-repeat="team in data.teams" class="teambox table" ng-class="{picked: team.email}">
+            <div ng-repeat="team in data.teams" class="teambox table" ng-class="{picked: team.pick_name}">
                 <div class="cell">
-                    <p>{{team.team_name}}</p>
-                    <p>{{team.user_name}}</p>
+                    <p class="team-name">{{team.team_name}}</p>
+                    <p class="pick-name" ng-show="team.pick_name">Picked by <em>{{team.pick_name}}</em></p>
                 </div>
             </div>
         </div>
