@@ -10,14 +10,20 @@ if(isset($_GET['comp'])){
     from sweep_competitions
     where comp_id = lower('$comp')
     ;") or die(mysql_error());
-     
-    # Collect the results
-    while($obj = mysql_fetch_object($query)) {
-        $arr[] = $obj;
-    }
-     
-    # JSON-encode the response
-    echo $json_response = json_encode($arr);
+} else {
+   $query=mysql_query("
+    select comp_id,
+        comp_name
+    from sweep_competitions
+    ;") or die(mysql_error());
 }
+
+# Collect the results
+while($obj = mysql_fetch_object($query)) {
+    $arr[] = $obj;
+}
+
+# JSON-encode the response
+echo $json_response = json_encode($arr);
 
 ?>

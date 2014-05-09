@@ -14,10 +14,8 @@ angular.module('myApp', [
 // therefore partials are disabled
 // and I need to define the controller in the template.
 .config(['$routeProvider', function($routeProvider) {
-  $routeProvider.when('/play/:comp/:group', {templateUrl: 'partials/partial1.html', controller: 'MyCtrl1'});
-  $routeProvider.when('/register/:comp/:group', {templateUrl: 'partials/partial2.html', controller: 'MyCtrl2'});
-  $routeProvider.when('/progress/:comp/:group', {templateUrl: 'partials/partial3.html', controller: 'MyCtrl3'});
-  $routeProvider.when('/edit/:comp/', {templateUrl: 'partials/partial4.html', controller: 'MyCtrl4'});
-  $routeProvider.otherwise({redirectTo: '/register/'});
+    $routeProvider.when('/play/:comp/:group', {templateUrl: 'partials/partial1.html', controller: 'MyCtrl1'});
+  $routeProvider.when('/edit/:comp?', {templateUrl: 'partials/partial4.html', controller: 'MyCtrl4'});
+  $routeProvider.otherwise({redirectTo: '/edit/'});
 }])
 ;

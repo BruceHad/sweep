@@ -8,9 +8,9 @@ function forEach(array, action) {
 /* Controllers */
 angular.module('myApp.controllers', []).controller('MainCtrl', ['$scope', '$http',
     function($scope, $http) {
-        $scope.competition = {};
-        $scope.group = {};
         $scope.initComp = function(params) {
+            $scope.group = {};
+            $scope.competition = {};
             // Set the competition id and get competition name
             $http.get("ajax/getComp.php?comp=" + params.comp).success(function(response) {
                 if(typeof response == 'object') {
@@ -22,6 +22,8 @@ angular.module('myApp.controllers', []).controller('MainCtrl', ['$scope', '$http
             });
         };
         $scope.initGroup = function(params) {
+            $scope.group = {};
+            $scope.competition = {};
             $http.get("ajax/getGroups.php?group=" + params.group).success(function(response) {
                 if(typeof response == 'object') {
                     $scope.group = response[0];
@@ -105,11 +107,31 @@ angular.module('myApp.controllers', []).controller('MainCtrl', ['$scope', '$http
             view: "Manage Groups",
             loading: true,
             user_message: "",
-            competition_set: false
+            competition_set: false,
+            comps: [],
+            groups: false
         };
         $scope.groups = [];
         $scope.form = {};
-        $scope.initComp($routeParams);
+        if($routeParams.comp){
+            $scope.initComp($routeParams);
+            $scope.data.groups = true;
+        } else {
+            $scope.data.groups = false;
+            getComps();
+        }
+        
+        function getComps() {
+            $http.get("ajax/getComp.php").success(function(response) {
+                console.log(response);
+                if(typeof response == 'object') {
+                    $scope.data.comps = response;
+                } else {
+                    $scope.data.user_message = "No competitions found.";
+                }
+                $scope.data.loading = false;
+            });
+        }
 
         function getGroups() {
             $http.get("ajax/getGroups.php?comp=" + $scope.competition.id).success(function(response) {
@@ -121,7 +143,7 @@ angular.module('myApp.controllers', []).controller('MainCtrl', ['$scope', '$http
                     $scope.groups = [];                    
                 }
                 $scope.data.loading = false;
-            })
+            });
         }
         $scope.addGroup = function(form) {
             if($scope.groups.length == 0) {
