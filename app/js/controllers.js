@@ -41,7 +41,6 @@ angular.module('myApp.controllers', []).controller('MainCtrl', ['$scope', '$http
 			p_teams: [], // picked teams
             you_picked: false,
             loading: true,
-            user_name: "",
 			complete: false,
 			user_message: ""
         };
@@ -50,13 +49,15 @@ angular.module('myApp.controllers', []).controller('MainCtrl', ['$scope', '$http
         function getTeams() {
             $http.get("ajax/getTeams.php?comp=" + $scope.competition.id + "&group=" + $scope.group.group_id).success(function(response) {
                 $scope.data.teams = response;
+                console.log($scope.data.teams);
                 $scope.data.loading = false;
 				// Get list of unpicked teams
 				for(var i = 0; i < $scope.data.teams.length; i++) {
-					if($scope.data.teams[i].user_id == null) {
+					if($scope.data.teams[i].pick_name == null) {
 						u_teams.push($scope.data.teams[i].team_id);
 					}
 				}
+                console.log(u_teams);
 				// If no teams available.
 				if(u_teams.length == 0){
 					$scope.data.complete = true;
@@ -77,15 +78,14 @@ angular.module('myApp.controllers', []).controller('MainCtrl', ['$scope', '$http
             // Pick teams from list and add to the database.
             var rand = Math.floor(Math.random() * u_teams.length);
             var team_id = u_teams[rand];
-            console.log(team_id);
-//             addPicks(team_id, $scope.data.user_name);
+            addPicks(team_id, $scope.data.pick_name);
             u_teams.splice(rand, 1);
             if(u_teams.length == 0){
                 $scope.data.complete = true;
             }
             forEach($scope.data.teams, function(elem){
                 if(elem.team_id == team_id){
-                    elem.pick_name = $scope.data.user_name;
+                    elem.pick_name = $scope.data.pick_name;
                     $scope.data.p_teams.push(elem);
                 }
             });
