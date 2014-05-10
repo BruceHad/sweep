@@ -2,20 +2,23 @@
     <p>{{data.user_message}}</p>
 </div>
 <div>
-    <h2 ng-show="!data.loading">{{competition.name}} <small>{{data.view}}</small></h2>
     <div class="row">
         <div class="col col-sm-7" ng-show="!data.loading">
             <div ng-show="data.groups">
-                <h3>Sweep Teams playing <em>{{competition.name}}</em></h3>
+                <h3>Find a Sweep for <em>{{competition.name}}</em></h3>
                 <table class="table">
                     <tr>
-                        <th>Name</th>
+                        <th>Sweep Name</th>
                         <th>Competition</th>
+                        <th>Sweep Owner</th>
+                        <th>Location</th>
                         <th>Play</th>
                     </tr>
                     <tr ng-repeat="group in groups">
                         <td>{{group.group_name}}</td>
                         <td>{{competition.name}}</td>
+                        <td>{{group.owner}}</td>
+                        <td>{{group.location}}</td>
                         <td><a href="#/play/{{competition.id}}/{{group.group_id}}">Play</a>
                         </td>
                     </tr>
@@ -30,7 +33,8 @@
                     </tr>
                     <tr ng-repeat="comp in data.comps">
                         <td>{{comp.comp_name}}</td>
-                        <td><a href="#/edit/{{comp.comp_id}}">Play</a></td>
+                        <td><a href="#/edit/{{comp.comp_id}}">Play</a>
+                        </td>
                     </tr>
                 </table>
             </div>
@@ -44,7 +48,15 @@
             <h3>Add New Group</h3>
             <form role="form" name="add" class="form" ng-submit="addGroup(add)">
                 <div class="form-group">
-                    <input type="text" class="form-control" ng-model="form.group_name" required placeholder="Enter Name for Group" />
+                    <div class="form-group">
+                        <input type="text" class="form-control" ng-model="form.group_name" required placeholder="Enter Name for Group" />
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" ng-model="form.owner" required placeholder="Enter Owner/Organisation name" />
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" ng-model="form.location" placeholder="Enter Locations (optional)" />
+                    </div>
                 </div>
                 <button type="submit" class="btn btn-default">Add Group</button>
             </form>

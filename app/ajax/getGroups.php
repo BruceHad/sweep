@@ -12,7 +12,9 @@ if(isset($_GET['comp'])){
         select 
 			group_id, 
 			group_name, 
-			c_comp_id comp_id
+			c_comp_id comp_id,
+            owner,
+            location
         from sweep_groups
         where c_comp_id = '$comp'
         ;") or die(mysql_error());

@@ -12,7 +12,8 @@
     <title></title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
-    <base href="/sweep/app/"> <!-- for clean urls -->
+    <base href="/sweep/app/">
+    <!-- for clean urls -->
 
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <style>
@@ -47,18 +48,20 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li><a href="#/play/{{comp}}/{{group}}" class="active">Play</a></li>
-                    <li><a href="#/edit/{{competition.id}}">Groups</a></li>
+                    <li><a href="#/edit/{{competition.id}}">Groups</a>
+                    </li>
                 </ul>
 
-            <!--/.navbar-collapse -->
+                <!--/.navbar-collapse -->
+            </div>
         </div>
     </div>
 
     <div class="container" id="wrap">
-        <h1>Sweep <small>{{competition.name}}</small></h1>
+        <h1>Sweep <small>get a team, take a chance</small></h1>
         <div class="ng-view"></div>
-		<div id="push"></div><!-- for sticky footer -->
+        <div id="push"></div>
+        <!-- for sticky footer -->
     </div>
     <footer id="footer">
     </footer>

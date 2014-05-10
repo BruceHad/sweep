@@ -92,7 +92,9 @@ angular.module('myApp.controllers', []).controller('MainCtrl', ['$scope', '$http
                 }
             });
             $scope.data.you_picked = true;
-            console.log($scope.data.teams);
+//             console.log($scope.data.teams);
+            $scope.data.pick_name = "";
+            form.$setPristine();
         };
         // Watch for the competition and group to be set, then get teams.
         $scope.$watch("[competition.name, group.group_name]", function(newValue, oldValue) {
@@ -158,6 +160,7 @@ angular.module('myApp.controllers', []).controller('MainCtrl', ['$scope', '$http
                 params: $scope.form
             }).success(function(response) {
                 $scope.data.response = response;
+                console.log(response);
             });
             $scope.form = {};
             $scope.form.comp_id = $scope.competition.id;

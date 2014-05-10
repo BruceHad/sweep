@@ -14,6 +14,8 @@ values
 create table if not exists sweep_groups(
     group_id int(10) not null auto_increment,
     group_name varchar(50) not null,
+    owner varchar(50) not null,
+    location varchar(50),
     c_comp_id  varchar(10) not null,
     primary key (group_id),
     FOREIGN KEY (c_comp_id) REFERENCES sweep_competitions(comp_id)
@@ -21,9 +23,9 @@ create table if not exists sweep_groups(
 ;
 
 insert into sweep_groups
-    (group_id, group_name, c_comp_id)
+    (group_id, group_name, c_comp_id, owner, location)
 values
-    (5, 'First Group', 'wc2014')
+    (5, 'First Group', 'wc2014', 'Bruce', 'Broxburn')
 ;
 
 create table if not exists sweep_teams(
@@ -46,8 +48,7 @@ values
 ('wc2014', 'Spain', 'in'),
 ('wc2014', 'Netherlands', 'in'),
 ('wc2014', 'Chile', 'in'),
-('wc2014', 'Australia', 'in');
---
+('wc2014', 'Australia', 'in'),
 ('wc2014', 'Colombia', 'in'),
 ('wc2014', 'Greece', 'in'),
 ('wc2014', 'Ivory Coast', 'in'),
