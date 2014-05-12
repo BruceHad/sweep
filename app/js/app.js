@@ -11,6 +11,10 @@ angular.module('myApp', ['ngRoute', 'ngCookies', 'myApp.filters', 'myApp.service
             templateUrl: 'partials/partial4.html',
             controller: 'MyCtrl4'
         });
+        $routeProvider.when('/about', {
+            templateUrl: 'partials/about.html',
+            controller: 'MyCtrl2'
+        });
         $routeProvider.otherwise({
             redirectTo: '/edit/'
         });

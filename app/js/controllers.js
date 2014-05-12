@@ -6,7 +6,8 @@ function forEach(array, action) {
 
 
 /* Controllers */
-angular.module('myApp.controllers', []).controller('MainCtrl', ['$scope', '$http',
+angular.module('myApp.controllers', [])
+.controller('MainCtrl', ['$scope', '$http',
     function($scope, $http) {
         $scope.initComp = function(params) {
             $scope.group = {};
@@ -102,6 +103,8 @@ angular.module('myApp.controllers', []).controller('MainCtrl', ['$scope', '$http
                 getTeams();
             }
         }, true);
+    }
+]).controller('MyCtrl2', ['$scope', function($scope) {
     }
 ]).controller('MyCtrl4', ['$scope', '$http', '$routeParams',
     function($scope, $http, $routeParams) {
